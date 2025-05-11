@@ -11,7 +11,8 @@ const chatRequestSchema = z.object({
     id: z.string(),
     role: z.enum(["user", "assistant", "system"]),
     content: z.string()
-  }))
+  })),
+  course: z.enum(["APUSH", "APWH", "APEURO"]).default("APUSH")
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -27,13 +28,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      const { message, history } = result.data;
+      const { message, history, course } = result.data;
       
-      // Get contextually relevant information from APUSH content
-      const relevantContent = await getRelevantAPUSHContent(message);
+      // Get contextually relevant information based on course
+      const relevantContent = await getRelevantCourseContent(message, course);
       
       // Format messages for OpenAI
-      const messages = formatMessagesForOpenAI(message, history, relevantContent);
+      const messages = formatMessagesForOpenAI(message, history, relevantContent, course);
       
       // Get response from Groq
       const aiResponse = await groq.chat.completions.create({
@@ -56,14 +57,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   return httpServer;
 }
 
-// Helper function to get relevant APUSH content based on the user's message
-async function getRelevantAPUSHContent(message: string): Promise<string> {
+// Helper function to get relevant course content based on the user's message and selected course
+async function getRelevantCourseContent(message: string, course: string): Promise<string> {
   // In a real implementation, we would:
   // 1. Generate an embedding for the user's message
   // 2. Find the most similar content using vector similarity search
   // Here we'll do a simple keyword search
   
-  const results = await storage.searchApContent("APUSH", message);
+  const results = await storage.searchApContent(course, message);
   
   if (results.length === 0) {
     return "";
@@ -79,11 +80,12 @@ async function getRelevantAPUSHContent(message: string): Promise<string> {
 function formatMessagesForOpenAI(
   currentMessage: string, 
   history: Message[], 
-  context: string
+  context: string,
+  course: string = "APUSH"
 ): any[] {
-  const systemMessage = {
-    role: "system",
-    content: `You are an expert AP U.S. History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
+  // Course-specific system prompts
+  const coursePrompts = {
+    APUSH: `You are an expert AP U.S. History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
     Base your responses on the official College Board Course and Exam Description (CED).
     
     When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
@@ -93,7 +95,36 @@ function formatMessagesForOpenAI(
     
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the APUSH exam.
     
+    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`,
+
+    APWH: `You are an expert AP World History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
+    Base your responses on the official College Board Course and Exam Description (CED).
+    
+    When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
+    
+    For context about the student's question, here is relevant information from the AP World History curriculum:
+    ${context}
+    
+    If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP World History exam.
+    
+    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`,
+    
+    APEURO: `You are an expert AP European History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
+    Base your responses on the official College Board Course and Exam Description (CED).
+    
+    When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
+    
+    For context about the student's question, here is relevant information from the AP European History curriculum:
+    ${context}
+    
+    If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP European History exam.
+    
     Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`
+  };
+
+  const systemMessage = {
+    role: "system",
+    content: coursePrompts[course] || coursePrompts.APUSH
   };
   
   // Convert history to OpenAI message format

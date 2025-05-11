@@ -144,14 +144,38 @@ export class MemStorage implements IStorage {
 
 export const storage = new MemStorage();
 
-// Initialize with APUSH content
+// Initialize with content for all courses
 import { apushContent } from "./lib/apush-data";
+import { apwhContent } from "./lib/apwh-data";
+import { apeuroContent } from "./lib/apeuro-data";
 
 (async function initializeStorage() {
   // Add APUSH content to storage
   for (const content of apushContent) {
     await storage.addApContent({
       course: "APUSH",
+      title: content.title,
+      content: content.content,
+      period: content.period,
+      topic: content.topic
+    });
+  }
+  
+  // Add APWH content to storage
+  for (const content of apwhContent) {
+    await storage.addApContent({
+      course: "APWH",
+      title: content.title,
+      content: content.content,
+      period: content.period,
+      topic: content.topic
+    });
+  }
+  
+  // Add APEURO content to storage
+  for (const content of apeuroContent) {
+    await storage.addApContent({
+      course: "APEURO",
       title: content.title,
       content: content.content,
       period: content.period,
