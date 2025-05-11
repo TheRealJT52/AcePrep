@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { Send } from "lucide-react";
+import { Send, Sparkles, GraduationCap, Bot, History, BookOpen, LightbulbIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ChatMessage } from "@/components/ui/chat-message";
 import { TopicPill } from "@/components/ui/topic-pill";
 import { useChat } from "@/hooks/use-chat";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function APUSHTutorPage() {
   const [inputValue, setInputValue] = useState("");
@@ -43,89 +44,140 @@ export default function APUSHTutorPage() {
   }, [messages]);
 
   return (
-    <section className="py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-40 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-50"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-medium text-neutral-500 mb-4">
-            AP U.S. History AI Tutor
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+            <Bot className="h-4 w-4 mr-2" />
+            <span className="text-sm font-medium">AI-Powered Learning</span>
+          </div>
+          
+          <h1 className="text-4xl font-bold mb-4">
+            <span className="text-primary glow-primary">AP U.S. History</span> AI Tutor
           </h1>
+          
           <p className="text-neutral-400 max-w-3xl mx-auto">
             Ask questions about any APUSH topic and get accurate, contextual answers based on the official College Board Course and Exam Description.
           </p>
         </div>
         
         {/* Tutor Interface */}
-        <div className="max-w-4xl mx-auto bg-neutral-100 rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
-          {/* Chat header */}
-          <div className="bg-primary text-white p-4 flex items-center">
-            <span className="mr-2">🤖</span>
-            <h3 className="font-medium">APUSH AI Tutor</h3>
-          </div>
-          
-          {/* Chat messages container */}
-          <div 
-            ref={chatContainerRef}
-            className="chat-container overflow-y-auto p-4"
-          >
-            {messages.map((message) => (
-              <ChatMessage
-                key={message.id}
-                message={message.content}
-                role={message.role}
-              />
-            ))}
+        <div className="max-w-4xl mx-auto">
+          <Tabs defaultValue="chat" className="mb-8">
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="chat" className="flex items-center gap-2">
+                <Bot className="h-4 w-4" />
+                AI Chat
+              </TabsTrigger>
+              <TabsTrigger value="resources" className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4" />
+                Resources
+              </TabsTrigger>
+              <TabsTrigger value="practice" className="flex items-center gap-2">
+                <LightbulbIcon className="h-4 w-4" />
+                Practice
+              </TabsTrigger>
+            </TabsList>
             
-            {isLoading && (
-              <div className="flex mb-4">
-                <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
-                  <span className="text-sm">🤖</span>
+            <TabsContent value="chat">
+              <Card className="border border-neutral-200/20 shadow-xl shadow-primary/5 bg-neutral-100/20 backdrop-blur-sm overflow-hidden">
+                {/* Chat header */}
+                <div className="bg-gradient-to-r from-primary/80 to-primary text-white p-4 flex items-center">
+                  <div className="bg-white/20 p-2 rounded-full mr-3">
+                    <GraduationCap className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">APUSH AI Tutor</h3>
+                    <p className="text-xs text-white/80">Powered by Groq AI</p>
+                  </div>
                 </div>
-                <Card className="chat-message bg-primary-light shadow-sm">
-                  <CardContent className="p-3 flex space-x-2">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
-                  </CardContent>
-                </Card>
+                
+                {/* Chat messages container */}
+                <div 
+                  ref={chatContainerRef}
+                  className="chat-container overflow-y-auto p-4 bg-neutral-100/30"
+                >
+                  {messages.map((message) => (
+                    <ChatMessage
+                      key={message.id}
+                      message={message.content}
+                      role={message.role}
+                    />
+                  ))}
+                  
+                  {isLoading && (
+                    <div className="flex mb-4">
+                      <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
+                        <Bot className="h-4 w-4" />
+                      </div>
+                      <Card className="chat-message bg-primary-light shadow-sm">
+                        <CardContent className="p-3 flex space-x-2">
+                          <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                          <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Chat input */}
+                <div className="border-t border-neutral-200/20 p-4 bg-neutral-100/50">
+                  <form onSubmit={handleSubmit} className="flex">
+                    <Input
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      className="flex-grow rounded-l-full focus-visible:ring-primary bg-neutral-200/20 border-neutral-200/30"
+                      placeholder="Ask a question about APUSH..."
+                      disabled={isLoading}
+                    />
+                    <Button
+                      type="submit"
+                      className="rounded-r-full bg-primary hover:bg-primary-hover"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? <Sparkles className="h-4 w-4" /> : <Send className="h-4 w-4" />}
+                    </Button>
+                  </form>
+                </div>
+              </Card>
+              
+              {/* Topic suggestions */}
+              <div className="mt-8">
+                <h4 className="text-lg font-medium text-neutral-400 mb-4 flex items-center">
+                  <History className="h-4 w-4 mr-2 text-primary" />
+                  Suggested Topics to Explore:
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {suggestedTopics.map((topic) => (
+                    <TopicPill
+                      key={topic}
+                      topic={topic}
+                      onClick={() => handleTopicClick(topic)}
+                    />
+                  ))}
+                </div>
               </div>
-            )}
-          </div>
-          
-          {/* Chat input */}
-          <div className="border-t border-neutral-200 p-4 bg-white">
-            <form onSubmit={handleSubmit} className="flex">
-              <Input
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                className="flex-grow rounded-r-none focus:ring-primary"
-                placeholder="Ask a question about APUSH..."
-                disabled={isLoading}
-              />
-              <Button
-                type="submit"
-                className="rounded-l-none"
-                disabled={isLoading}
-              >
-                <Send className="h-4 w-4" />
-              </Button>
-            </form>
-          </div>
-        </div>
-        
-        {/* Topic suggestions */}
-        <div className="max-w-4xl mx-auto mt-8">
-          <h4 className="text-lg font-medium text-neutral-500 mb-4">
-            Suggested Topics to Explore:
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {suggestedTopics.map((topic) => (
-              <TopicPill
-                key={topic}
-                topic={topic}
-                onClick={() => handleTopicClick(topic)}
-              />
-            ))}
-          </div>
+            </TabsContent>
+            
+            <TabsContent value="resources">
+              <Card className="border border-neutral-200/20 p-6">
+                <h3 className="text-xl font-bold text-primary mb-4">APUSH Study Resources</h3>
+                <p className="text-neutral-400 mb-4">Coming soon! This section will include downloadable guides, timelines, and reference materials.</p>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="practice">
+              <Card className="border border-neutral-200/20 p-6">
+                <h3 className="text-xl font-bold text-primary mb-4">Practice Questions</h3>
+                <p className="text-neutral-400 mb-4">Coming soon! This section will include practice questions, sample essays, and mock exams.</p>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </section>

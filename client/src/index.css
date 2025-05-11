@@ -3,39 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 98%;
-  --foreground: 0 0% 13%;
-  --muted: 60 4.8% 95.9%;
-  --muted-foreground: 25 5.3% 44.7%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 20 14.3% 4.1%;
-  --card: 0 0% 100%;
-  --card-foreground: 20 14.3% 4.1%;
-  --border: 20 5.9% 90%;
-  --input: 20 5.9% 90%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
-  --primary-hover: 210 100% 45%;
-  --primary-light: 210 100% 97%;
-  --secondary: 142 69% 42%;
-  --secondary-foreground: 355 100% 100%;
-  --secondary-hover: 142 70% 35%;
-  --accent: 47 95% 50%;
-  --accent-foreground: 24 9.8% 10%;
-  --accent-hover: 47 100% 48%;
-  --accent-light: 47 100% 95%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 20 14.3% 4.1%;
-  --radius: 0.5rem;
-  --neutral-100: 0 0% 98%;
-  --neutral-200: 0 0% 92%;
-  --neutral-300: 0 0% 82%;
-  --neutral-400: 0 0% 39%;
-  --neutral-500: 0 0% 13%;
-}
-
-.dark {
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
   --muted: 240 3.7% 15.9%;
@@ -46,21 +13,54 @@
   --card-foreground: 0 0% 98%;
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
-  --primary-hover: 210 100% 45%;
-  --primary-light: 210 100% 97%;
-  --secondary: 142 69% 42%;
-  --secondary-foreground: 355 100% 100%;
-  --secondary-hover: 142 70% 35%;
-  --accent: 47 95% 50%;
+  --primary: 263 90% 51%;
+  --primary-foreground: 210 40% 98%;
+  --primary-hover: 263 84% 40%;
+  --primary-light: 263 60% 15%;
+  --secondary: 176 68% 64%;
+  --secondary-foreground: 180 10% 10%;
+  --secondary-hover: 176 68% 70%;
+  --accent: 23 83% 60%;
   --accent-foreground: 24 9.8% 10%;
-  --accent-hover: 47 100% 48%;
-  --accent-light: 47 100% 95%;
+  --accent-hover: 23 83% 65%;
+  --accent-light: 23 83% 20%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
   --ring: 240 4.9% 83.9%;
-  --radius: 0.5rem;
+  --radius: 0.75rem;
+  --neutral-100: 240 6% 10%;
+  --neutral-200: 240 5% 20%;
+  --neutral-300: 240 4% 30%;
+  --neutral-400: 240 5% 70%;
+  --neutral-500: 240 5% 90%;
+}
+
+.light {
+  --background: 0 0% 98%;
+  --foreground: 240 10% 3.9%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 263 90% 51%;
+  --primary-foreground: 210 40% 98%;
+  --primary-hover: 263 84% 40%;
+  --primary-light: 263 90% 95%;
+  --secondary: 176 68% 64%;
+  --secondary-foreground: 180 10% 10%;
+  --secondary-hover: 176 68% 70%;
+  --accent: 23 83% 60%;
+  --accent-foreground: 24 9.8% 10%;
+  --accent-hover: 23 83% 65%;
+  --accent-light: 23 83% 95%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 240 10% 3.9%;
+  --radius: 0.75rem;
   --neutral-100: 0 0% 98%;
   --neutral-200: 0 0% 92%;
   --neutral-300: 0 0% 82%;
@@ -74,11 +74,29 @@
   }
 
   body {
-    @apply font-sans antialiased bg-neutral-100 text-foreground;
+    @apply font-sans antialiased bg-background text-foreground;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+  }
+  
+  /* Modern glowing highlights */
+  .glow-primary {
+    text-shadow: 0 0 10px hsla(var(--primary), 0.5),
+                 0 0 20px hsla(var(--primary), 0.3);
+  }
+  
+  .glow-accent {
+    text-shadow: 0 0 10px hsla(var(--accent), 0.5),
+                 0 0 20px hsla(var(--accent), 0.3);
+  }
+  
+  /* Glass effect for modern UI */
+  .glass-effect {
+    backdrop-filter: blur(8px);
+    background: hsla(var(--background), 0.6);
+    border: 1px solid hsla(var(--border), 0.3);
   }
 }
 

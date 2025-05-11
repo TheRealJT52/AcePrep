@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { School, Menu } from "lucide-react";
+import { Rocket, Menu, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
@@ -19,14 +19,20 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-neutral-100 backdrop-blur-md sticky top-0 z-50 border-b border-neutral-200/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and site name */}
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
-              <School className="text-primary h-6 w-6 mr-2" />
-              <span className="font-heading font-medium text-lg text-neutral-500">AP Scholar AI</span>
+            <Link href="/" className="flex-shrink-0 flex items-center group">
+              <div className="bg-primary/20 p-2 rounded-md mr-3 group-hover:bg-primary/30 transition-colors">
+                <Rocket className="text-primary h-5 w-5" />
+              </div>
+              <div className="flex items-center">
+                <span className="font-heading font-bold text-xl text-primary glow-primary mr-1">Ace</span>
+                <span className="font-heading font-bold text-xl text-neutral-400">Prep</span>
+                <Sparkles className="h-4 w-4 text-accent ml-1" />
+              </div>
             </Link>
           </div>
           
@@ -45,6 +51,9 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <Button variant="secondary" size="sm" className="ml-4">
+              Sign In
+            </Button>
           </nav>
           
           {/* Mobile menu button */}
@@ -63,7 +72,7 @@ export default function Header() {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-neutral-200">
+        <div className="md:hidden bg-neutral-100/90 backdrop-blur-md border-t border-neutral-200/20">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -79,6 +88,11 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <div className="px-3 py-3">
+              <Button variant="secondary" size="sm" className="w-full">
+                Sign In
+              </Button>
+            </div>
           </div>
         </div>
       )}
