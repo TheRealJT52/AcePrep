@@ -84,20 +84,11 @@ function formatMessagesForOpenAI(
   course: string = "APUSH"
 ): any[] {
   // Course-specific system prompts
-  const coursePrompts = {
-    APUSH: `You are an expert AP U.S. History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
-    Base your responses on the official College Board Course and Exam Description (CED).
-    
-    When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
-    
-    For context about the student's question, here is relevant information from the APUSH curriculum:
-    ${context}
-    
-    If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the APUSH exam.
-    
-    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`,
-
-    APWH: `You are an expert AP World History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
+  let systemContent = "";
+  
+  // Select the appropriate prompt based on course type
+  if (course === "APWH") {
+    systemContent = `You are an expert AP World History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
     Base your responses on the official College Board Course and Exam Description (CED).
     
     When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
@@ -107,9 +98,9 @@ function formatMessagesForOpenAI(
     
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP World History exam.
     
-    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`,
-    
-    APEURO: `You are an expert AP European History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
+    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`;
+  } else if (course === "APEURO") {
+    systemContent = `You are an expert AP European History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
     Base your responses on the official College Board Course and Exam Description (CED).
     
     When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
@@ -119,12 +110,25 @@ function formatMessagesForOpenAI(
     
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP European History exam.
     
-    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`
-  };
+    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`;
+  } else {
+    // Default to APUSH
+    systemContent = `You are an expert AP U.S. History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 
+    Base your responses on the official College Board Course and Exam Description (CED).
+    
+    When answering, include references to specific historical periods, themes, and thinking skills from the CED where appropriate.
+    
+    For context about the student's question, here is relevant information from the APUSH curriculum:
+    ${context}
+    
+    If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the APUSH exam.
+    
+    Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`;
+  }
 
   const systemMessage = {
     role: "system",
-    content: coursePrompts[course] || coursePrompts.APUSH
+    content: systemContent
   };
   
   // Convert history to OpenAI message format

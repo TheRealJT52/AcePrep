@@ -83,7 +83,9 @@ export class MemStorage implements IStorage {
     const chatSession: ChatSession = { 
       ...session, 
       id, 
-      createdAt: now 
+      createdAt: now,
+      userId: session.userId || null,
+      topic: session.topic || null
     };
     this.chatSessions.set(id, chatSession);
     return chatSession;
@@ -100,7 +102,8 @@ export class MemStorage implements IStorage {
     const chatMessage: ChatMessage = {
       ...message,
       id,
-      createdAt: now
+      createdAt: now,
+      sessionId: message.sessionId || null
     };
     this.chatMessages.set(id, chatMessage);
     return chatMessage;
@@ -118,6 +121,8 @@ export class MemStorage implements IStorage {
     const apContent: ApContent = {
       ...content,
       id,
+      topic: content.topic || null,
+      period: content.period || null,
       embedding: null // We'd generate this with an embedding model in a real implementation
     };
     this.apContent.set(id, apContent);
