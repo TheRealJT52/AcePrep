@@ -11,7 +11,7 @@ import { Link } from "wouter";
 export default function APUSHTutorPage() {
   const [inputValue, setInputValue] = useState("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const { messages, sendMessage, isLoading } = useChat();
+  const { messages, sendMessage, isLoading } = useChat("APUSH");
 
   const suggestedTopics = [
     "Colonial America",

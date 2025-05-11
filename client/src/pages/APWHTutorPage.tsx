@@ -11,7 +11,7 @@ import { Link } from "wouter";
 export default function APWHTutorPage() {
   const [inputValue, setInputValue] = useState("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const { messages, sendMessage, isLoading } = useChat();
+  const { messages, sendMessage, isLoading } = useChat("APWH");
 
   const suggestedTopics = [
     "Ancient Civilizations",

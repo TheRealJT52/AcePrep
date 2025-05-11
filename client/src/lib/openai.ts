@@ -6,13 +6,16 @@ export interface Message {
   content: string;
 }
 
-export async function sendChatMessage(message: string, history: Message[]) {
+export type CourseType = "APUSH" | "APWH" | "APEURO";
+
+export async function sendChatMessage(message: string, history: Message[], course: CourseType = "APUSH") {
   const response = await apiRequest(
     "POST",
     "/api/chat",
     {
       message,
       history,
+      course
     }
   );
   

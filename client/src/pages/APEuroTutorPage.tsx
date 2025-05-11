@@ -11,7 +11,7 @@ import { Link } from "wouter";
 export default function APEuroTutorPage() {
   const [inputValue, setInputValue] = useState("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const { messages, sendMessage, isLoading } = useChat();
+  const { messages, sendMessage, isLoading } = useChat("APEURO");
 
   const suggestedTopics = [
     "Renaissance",

@@ -1,23 +1,35 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Message, sendChatMessage } from "@/lib/openai";
+import { Message, sendChatMessage, CourseType } from "@/lib/openai";
 import { useToast } from "@/hooks/use-toast";
 
-export function useChat() {
+export function useChat(course: CourseType = "APUSH") {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  const getWelcomeMessage = (course: CourseType): string => {
+    switch (course) {
+      case "APWH":
+        return "Hello! I'm your AP World History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";
+      case "APEURO":
+        return "Hello! I'm your AP European History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";
+      case "APUSH":
+      default:
+        return "Hello! I'm your AP U.S. History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";
+    }
+  };
 
   // Initialize with a welcome message
   useEffect(() => {
     const welcomeMessage: Message = {
       id: uuidv4(),
       role: "assistant",
-      content: "Hello! I'm your AP U.S. History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?"
+      content: getWelcomeMessage(course)
     };
     
     setMessages([welcomeMessage]);
-  }, []);
+  }, [course]);
 
   const sendMessage = async (content: string) => {
     try {
@@ -32,7 +44,7 @@ export function useChat() {
       setIsLoading(true);
       
       // Send to API
-      const response = await sendChatMessage(content, messages);
+      const response = await sendChatMessage(content, messages, course);
       
       // Add response to chat
       const assistantMessage: Message = {
