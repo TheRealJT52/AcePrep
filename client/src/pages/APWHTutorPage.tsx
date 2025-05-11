@@ -8,20 +8,20 @@ import { TopicPill } from "@/components/ui/topic-pill";
 import { useChat } from "@/hooks/use-chat";
 import { Link } from "wouter";
 
-export default function APUSHTutorPage() {
+export default function APWHTutorPage() {
   const [inputValue, setInputValue] = useState("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const { messages, sendMessage, isLoading } = useChat();
 
   const suggestedTopics = [
-    "Colonial America",
-    "Civil War",
-    "Progressive Era",
-    "Great Depression",
+    "Ancient Civilizations",
+    "Middle Ages",
+    "Renaissance",
+    "Industrial Revolution",
+    "Imperialism",
+    "World Wars",
     "Cold War",
-    "Civil Rights Movement",
-    "SAQ Practice",
-    "DBQ Tips"
+    "Globalization"
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -64,11 +64,11 @@ export default function APUSHTutorPage() {
           </div>
           
           <h1 className="text-4xl font-bold mb-4">
-            <span className="text-primary glow-primary">AP U.S. History</span> AI Tutor
+            <span className="text-primary glow-primary">AP World History</span> AI Tutor
           </h1>
           
           <p className="text-neutral-400 max-w-3xl mx-auto">
-            Ask questions about any APUSH topic and get accurate, contextual answers based on the official College Board Course and Exam Description.
+            Ask questions about any AP World History topic and get accurate, contextual answers based on the official College Board Course and Exam Description.
           </p>
         </div>
         
@@ -76,12 +76,12 @@ export default function APUSHTutorPage() {
         <div className="max-w-4xl mx-auto">
           <Card className="border border-neutral-200/20 shadow-xl shadow-primary/5 bg-neutral-100/20 backdrop-blur-sm overflow-hidden">
             {/* Chat header */}
-            <div className="bg-gradient-to-r from-primary/80 to-primary text-white p-4 flex items-center">
+            <div className="bg-gradient-to-r from-secondary/80 to-secondary text-white p-4 flex items-center">
               <div className="bg-white/20 p-2 rounded-full mr-3">
                 <GraduationCap className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-bold">APUSH AI Tutor</h3>
+                <h3 className="font-bold">AP World History AI Tutor</h3>
                 <p className="text-xs text-white/80">Powered by Groq AI</p>
               </div>
             </div>
@@ -101,14 +101,14 @@ export default function APUSHTutorPage() {
               
               {isLoading && (
                 <div className="flex mb-4">
-                  <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
+                  <div className="h-8 w-8 rounded-full bg-secondary text-white flex items-center justify-center mr-2">
                     <Bot className="h-4 w-4" />
                   </div>
-                  <Card className="chat-message bg-primary-light shadow-sm">
+                  <Card className="chat-message bg-secondary-light shadow-sm">
                     <CardContent className="p-3 flex space-x-2">
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                      <div className="w-2 h-2 bg-secondary rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-secondary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                      <div className="w-2 h-2 bg-secondary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
                     </CardContent>
                   </Card>
                 </div>
@@ -121,13 +121,13 @@ export default function APUSHTutorPage() {
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="flex-grow rounded-l-full focus-visible:ring-primary bg-neutral-200/20 border-neutral-200/30"
-                  placeholder="Ask a question about APUSH..."
+                  className="flex-grow rounded-l-full focus-visible:ring-secondary bg-neutral-200/20 border-neutral-200/30"
+                  placeholder="Ask a question about AP World History..."
                   disabled={isLoading}
                 />
                 <Button
                   type="submit"
-                  className="rounded-r-full bg-primary hover:bg-primary-hover"
+                  className="rounded-r-full bg-secondary hover:bg-secondary-hover"
                   disabled={isLoading}
                 >
                   {isLoading ? <Sparkles className="h-4 w-4" /> : <Send className="h-4 w-4" />}
@@ -139,7 +139,7 @@ export default function APUSHTutorPage() {
           {/* Topic suggestions */}
           <div className="mt-8">
             <h4 className="text-lg font-medium text-neutral-400 mb-4 flex items-center">
-              <History className="h-4 w-4 mr-2 text-primary" />
+              <History className="h-4 w-4 mr-2 text-secondary" />
               Suggested Topics to Explore:
             </h4>
             <div className="flex flex-wrap gap-2">

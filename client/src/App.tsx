@@ -7,6 +7,8 @@ import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/HomePage";
 import CoursesPage from "@/pages/CoursesPage";
 import APUSHTutorPage from "@/pages/APUSHTutorPage";
+import APWHTutorPage from "@/pages/APWHTutorPage";
+import APEuroTutorPage from "@/pages/APEuroTutorPage";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -19,6 +21,8 @@ function Router() {
           <Route path="/" component={HomePage} />
           <Route path="/courses" component={CoursesPage} />
           <Route path="/apush-tutor" component={APUSHTutorPage} />
+          <Route path="/apwh-tutor" component={APWHTutorPage} />
+          <Route path="/apeuro-tutor" component={APEuroTutorPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

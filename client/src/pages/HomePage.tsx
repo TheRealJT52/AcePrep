@@ -30,18 +30,11 @@ export default function HomePage() {
               Get personalized help, practice tests, and instant feedback for your AP courses using our advanced AI tutor system.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-              <Button asChild size="lg" className="gap-2 rounded-full shadow-lg shadow-primary/20 h-14 px-8">
+            <div className="flex justify-center mb-16">
+              <Button asChild size="lg" className="gap-2 rounded-full shadow-lg shadow-primary/20 h-14 px-8 group">
                 <Link href="/courses">
                   <Rocket className="h-5 w-5" />
-                  Explore Courses
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" 
-                className="border-primary text-primary hover:bg-primary-light hover:text-primary gap-2 rounded-full h-14 px-8 group">
-                <Link href="/apush-tutor">
-                  <MessageSquareText className="h-5 w-5" />
-                  Try APUSH Tutor
+                  Explore AP Courses
                   <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>

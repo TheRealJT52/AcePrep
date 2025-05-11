@@ -18,16 +18,16 @@ export default function CoursesPage() {
       title: "AP World History",
       image: "https://images.unsplash.com/photo-1447069387593-a5de0862481e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "coming-soon",
-      link: "#"
+      status: "available",
+      link: "/apwh-tutor"
     },
     {
       id: "apeh",
       title: "AP European History",
       image: "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "coming-soon",
-      link: "#"
+      status: "available",
+      link: "/apeuro-tutor"
     }
   ];
 
