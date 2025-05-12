@@ -47,7 +47,10 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
         } shadow-sm`}
       >
         <CardContent className="p-3">
-          <div dangerouslySetInnerHTML={{ __html: formatMessage(message) }} />
+          <div 
+            className={role === "user" ? "text-black" : ""} 
+            dangerouslySetInnerHTML={{ __html: formatMessage(message) }} 
+          />
         </CardContent>
       </Card>
       

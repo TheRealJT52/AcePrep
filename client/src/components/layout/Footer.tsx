@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Rocket, Mail, HelpCircle, ShieldCheck, Facebook, Twitter, Instagram, GraduationCap, Sparkles } from "lucide-react";
+import { Rocket, HelpCircle, ShieldCheck, GraduationCap, Sparkles } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
@@ -22,17 +22,7 @@ export default function Footer() {
             <p className="text-neutral-400 mb-6 max-w-md">
               Supercharge your AP exam preparation with advanced AI tutoring. Get personalized help for your specific needs, anytime.
             </p>
-            <div className="flex space-x-4 mb-4">
-              <a href="#" className="bg-neutral-200/10 hover:bg-neutral-200/20 p-2 rounded-full transition-colors">
-                <Facebook className="h-5 w-5 text-primary" />
-              </a>
-              <a href="#" className="bg-neutral-200/10 hover:bg-neutral-200/20 p-2 rounded-full transition-colors">
-                <Twitter className="h-5 w-5 text-primary" />
-              </a>
-              <a href="#" className="bg-neutral-200/10 hover:bg-neutral-200/20 p-2 rounded-full transition-colors">
-                <Instagram className="h-5 w-5 text-primary" />
-              </a>
-            </div>
+
           </div>
           
           {/* Quick Links */}
@@ -49,16 +39,13 @@ export default function Footer() {
             </ul>
           </div>
           
-          {/* Contact */}
+          {/* Resources */}
           <div>
             <h4 className="font-heading font-bold text-lg text-neutral-500 mb-4 flex items-center">
-              <Mail className="h-4 w-4 mr-2 text-primary" />
-              Contact
+              <HelpCircle className="h-4 w-4 mr-2 text-primary" />
+              Resources
             </h4>
             <ul className="space-y-3">
-              <li className="flex items-center group">
-                <a href="mailto:info@aceprep.com" className="text-neutral-400 group-hover:text-primary transition-colors">info@aceprep.com</a>
-              </li>
               <li className="flex items-center group">
                 <a href="#" className="text-neutral-400 group-hover:text-primary transition-colors">Help Center</a>
               </li>

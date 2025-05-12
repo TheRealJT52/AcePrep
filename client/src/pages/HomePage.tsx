@@ -1,9 +1,7 @@
 import { Link } from "wouter";
-import { Rocket, MessageSquareText, Sparkles, ArrowRight } from "lucide-react";
+import { Rocket, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FeaturesSection from "@/components/sections/features-section";
-import StatsSection from "@/components/sections/stats-section";
-import TestimonialsSection from "@/components/sections/testimonials-section";
 
 export default function HomePage() {
   return (
@@ -60,9 +58,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Stats and Testimonials */}
-      <StatsSection />
-      <TestimonialsSection />
+
     </>
   );
 }
