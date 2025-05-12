@@ -51,9 +51,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button variant="secondary" size="sm" className="ml-4">
-              Sign In
-            </Button>
+
           </nav>
           
           {/* Mobile menu button */}
@@ -88,11 +86,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="px-3 py-3">
-              <Button variant="secondary" size="sm" className="w-full">
-                Sign In
-              </Button>
-            </div>
+
           </div>
         </div>
       )}

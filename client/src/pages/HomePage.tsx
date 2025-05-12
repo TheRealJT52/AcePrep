@@ -16,16 +16,16 @@ export default function HomePage() {
           <div className="text-center">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
               <Sparkles className="h-4 w-4 mr-2" />
-              <span className="text-sm font-medium">Powered by advanced AI</span>
+              <span className="text-sm font-medium">Powered by Advanced AI</span>
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="text-primary glow-primary">Master AP Exams</span> with<br />
+              <span className="text-primary glow-primary">Ace Your AP Classes</span> With<br />
               Your Personal AI Tutor
             </h1>
             
             <p className="text-xl text-neutral-400 max-w-3xl mx-auto mb-10">
-              Get personalized help, practice tests, and instant feedback for your AP courses using our advanced AI tutor system.
+              Get instant help and instant feedback for your AP courses using our advanced AI tutor system.
             </p>
             
             <div className="flex justify-center mb-16">
