@@ -2,32 +2,33 @@ import { Link } from "wouter";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, CalendarClock, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CourseCardProps {
   title: string;
-  imageUrl: string;
+  icon: LucideIcon;
+  bgColor: string;
   description: string;
   status: "available" | "coming-soon";
-  link: string;
+  link?: string;
 }
 
 export function CourseCard({
   title,
-  imageUrl,
+  icon: Icon,
+  bgColor,
   description,
   status,
-  link
+  link = "#"
 }: CourseCardProps) {
   return (
     <Card className="overflow-hidden border border-neutral-200/30 bg-neutral-100/50 backdrop-blur-sm transition-all hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 group">
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-        <img 
-          src={imageUrl} 
-          alt={title} 
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        <div className={`p-6 flex flex-col items-center justify-center ${bgColor} h-48`}>
+          <Icon className="h-16 w-16 text-white mb-4" />
+          <h3 className="text-xl font-heading font-bold text-white text-center">{title}</h3>
+        </div>
         <Badge 
           variant={status === "available" ? "default" : "outline"}
           className={`absolute top-3 right-3 z-20 ${
@@ -48,7 +49,6 @@ export function CourseCard({
             </div>
           )}
         </Badge>
-        <h3 className="absolute bottom-3 left-3 z-20 text-xl font-heading font-bold text-white">{title}</h3>
       </div>
       
       <CardContent className="p-6">

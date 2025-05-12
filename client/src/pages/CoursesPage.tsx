@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap } from "lucide-react";
+import { Filter, Search, GraduationCap, History, Globe, LandmarkIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,8 @@ export default function CoursesPage() {
     {
       id: "apush",
       title: "AP U.S. History",
-      image: "https://images.unsplash.com/photo-1551523713-c1fc7a8978ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      icon: History,
+      bgColor: "bg-primary",
       description: "Learn about US history from pre-colonial times to the present. Our AI tutor helps with concepts, historical thinking skills, and exam prep.",
       status: "available",
       link: "/apush-tutor"
@@ -16,16 +17,20 @@ export default function CoursesPage() {
     {
       id: "apwh",
       title: "AP World History",
-      image: "https://images.unsplash.com/photo-1447069387593-a5de0862481e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      icon: Globe,
+      bgColor: "bg-secondary",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "unavailable"
+      status: "available",
+      link: "/apwh-tutor"
     },
     {
-      id: "apeh",
+      id: "apeuro",
       title: "AP European History",
-      image: "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      icon: LandmarkIcon,
+      bgColor: "bg-accent",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "unavailable"
+      status: "available",
+      link: "/apeuro-tutor"
     }
   ];
 
@@ -68,7 +73,8 @@ export default function CoursesPage() {
             <CourseCard
               key={course.id}
               title={course.title}
-              imageUrl={course.image}
+              icon={course.icon}
+              bgColor={course.bgColor}
               description={course.description}
               status={course.status === "available" ? "available" : "coming-soon"}
               link={course.link}
