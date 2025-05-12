@@ -52,7 +52,7 @@ export default function HomePage() {
       </section>
 
       {/* Features section */}
-      <div className="bg-neutral-100 py-20">
+      <div className="bg-blue-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FeaturesSection />
         </div>
