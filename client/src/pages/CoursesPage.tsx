@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, History, Globe, LandmarkIcon } from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,7 @@ export default function CoursesPage() {
     {
       id: "apush",
       title: "AP U.S. History",
-      icon: History,
+      icon: Flag,
       bgColor: "bg-primary",
       description: "Learn about US history from pre-colonial times to the present. Our AI tutor helps with concepts, historical thinking skills, and exam prep.",
       status: "available",
@@ -20,16 +20,16 @@ export default function CoursesPage() {
       icon: Globe,
       bgColor: "bg-secondary",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "available",
+      status: "unavailable",
       link: "/apwh-tutor"
     },
     {
       id: "apeuro",
       title: "AP European History",
-      icon: LandmarkIcon,
+      icon: Crown,
       bgColor: "bg-accent",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "available",
+      status: "unavailable",
       link: "/apeuro-tutor"
     }
   ];

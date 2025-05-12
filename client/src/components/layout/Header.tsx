@@ -31,7 +31,6 @@ export default function Header() {
               <div className="flex items-center">
                 <span className="font-heading font-bold text-xl text-primary glow-primary mr-1">Ace</span>
                 <span className="font-heading font-bold text-xl text-neutral-400">Prep</span>
-                <Sparkles className="h-4 w-4 text-accent ml-1" />
               </div>
             </Link>
           </div>
