@@ -22,7 +22,7 @@ export default function FeaturesSection() {
 
   return (
     <div className="mt-20">
-      <h2 className="text-3xl font-heading font-medium text-center text-neutral-500 mb-12">
+      <h2 className="text-3xl font-heading font-medium text-center text-neutral-500 mb-12 ">
         How AcePrep Helps You Succeed
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

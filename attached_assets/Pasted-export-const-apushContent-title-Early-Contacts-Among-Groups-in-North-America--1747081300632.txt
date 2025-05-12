@@ -1,5 +1,3 @@
-// A simplified subset of APUSH (AP U.S. History) content based on College Board Course and Exam Description
-// In a production environment, this would be more extensive and include proper embeddings
 export const apushContent = [
     {
         title: "Early Contacts Among Groups in North America",
@@ -55,48 +53,5 @@ export const apushContent = [
         period: "Period 9, 1980-Present"
         topic: "Reagan and conservatism, The end of the Cold War, Shifts in the economy, Migration and immigration, Challenges of the 21st century"
         content: "Unit 9 marks the rise of modern conservatism and the reshaping of American domestic and foreign policy. Ronald Reagan’s election in 1980 symbolized a rightward shift in American politics. Reaganomics promoted tax cuts, deregulation, and supply-side economics, claiming that reducing government intervention would spur economic growth. Critics argued it widened inequality. Reagan also escalated Cold War tensions before later negotiating with Mikhail Gorbachev, contributing to the collapse of the Soviet Union in 1991.The 1990s, under George H.W. Bush and Bill Clinton, saw the emergence of U.S. unipolar power. The Gulf War demonstrated U.S. military supremacy. At home, Clinton embraced centrist “Third Way” policies: welfare reform, the North American Free Trade Agreement (NAFTA), and a budget surplus. He also faced scandal and impeachment, though he was acquitted. Technological innovation exploded, particularly with the rise of the Internet and personal computing. Economic globalization expanded, bringing both prosperity and anxieties about outsourcing and inequality. Immigration from Latin America and Asia surged, transforming American demographics. Cultural debates over race, gender, and identity intensified. The 2000 election between George W. Bush and Al Gore was contested and decided by the Supreme Court. The terrorist attacks of September 11, 2001, fundamentally altered U.S. policy. The War on Terror included the invasion of Afghanistan (2001) and Iraq (2003), based on disputed claims about weapons of mass destruction. The wars sparked intense debate over civil liberties, torture, surveillance, and foreign policy. Domestically, the 2008 financial crisis triggered a major recession, leading to the election of Barack Obama, the first Black president. His administration passed the Affordable Care Act and managed the economic recovery. His presidency also saw the legalization of same-sex marriage (Obergefell v. Hodges) and the rise of movements like Black Lives Matter. The 2016 election of Donald Trump highlighted deep political polarization. His administration focused on immigration restriction, tax reform, deregulation, and an “America First” foreign policy. His handling of the COVID-19 pandemic and response to the 2020 election loss sparked controversy and culminated in the January 6 Capitol riot. The election of Joe Biden in 2020 emphasized a return to democratic norms amid ongoing debates over race, economics, climate change, and America’s role in the world.”
-  }, 
-  {
-    title: "AP Historical Thinking Skills",
-    period: "All periods",
-    topic: "Exam skills",
-    content: `The AP U.S. History exam tests these key historical thinking skills:
-    - Developments and Processes: Identify and explain historical developments and processes
-    - Sourcing and Situation: Analyze sourcing and situation of primary and secondary sources
-    - Claims and Evidence: Analyze arguments in primary and secondary sources
-    - Contextualization: Analyze the context of historical events and developments
-    - Making Connections: Using historical reasoning to develop an argument
-    - Argumentation: Develop an argument supported by historical evidence
-    
-    These skills are tested through multiple-choice questions, short-answer questions (SAQs), a document-based question (DBQ), and a long essay question (LEQ).`
-  },
-  {
-    title: "DBQ Writing Tips",
-    period: "All periods",
-    topic: "Exam skills",
-    content: `For the Document-Based Question (DBQ), follow these guidelines:
-    - Thoroughly analyze all documents provided (typically 7 documents)
-    - Establish a clear thesis that directly addresses the prompt
-    - Contextualize the documents within the broader historical period
-    - Use evidence from at least 6 documents to support your argument
-    - Include at least one piece of outside evidence not found in documents
-    - Analyze point of view, purpose, context, or audience for at least 3 documents
-    - Demonstrate complexity by acknowledging contradictions, nuance, or multiple perspectives
-    
-    The DBQ is worth 25% of your total exam score and is evaluated on a 7-point rubric.`
-  },
-  {
-    title: "SAQ Writing Tips",
-    period: "All periods",
-    topic: "Exam skills",
-    content: `For Short-Answer Questions (SAQs), follow these guidelines:
-    - Address each part of the question directly (typically 3 parts labeled a, b, and c)
-    - Provide specific historical evidence rather than generalizations
-    - Be concise but thorough – each response should be a few sentences
-    - Focus on analysis rather than just description
-    - Make explicit connections to larger historical themes when appropriate
-    - Manage time effectively – spend about 10-12 minutes per SAQ
-    
-    The three SAQs together account for 20% of your total exam score.`
-  }
+    }
 ];

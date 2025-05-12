@@ -19,7 +19,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-neutral-100 backdrop-blur-md sticky top-0 z-50 border-b border-neutral-200/20">
+    <header className="bg-black-100 backdrop-blur-md sticky top-0 z-50 border-b border-neutral-200/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and site name */}
