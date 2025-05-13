@@ -121,7 +121,7 @@ export default function APUSHTutorPage() {
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="flex-grow rounded-l-full focus-visible:ring-primary bg-neutral-200/20 border-neutral-200/30"
+                  className="flex-grow rounded-l-full focus-visible:ring-primary bg-neutral-200/20 border-neutral-200/30 placeholder-red-500"
                   placeholder="Ask a question about APUSH..."
                   disabled={isLoading}
                 />
