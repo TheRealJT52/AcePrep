@@ -20,7 +20,7 @@ export default function CoursesPage() {
       icon: Globe,
       bgColor: "bg-secondary",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "available",
+      status: "unavailable",
       link: "/apwh-tutor"
     },
     {
@@ -29,7 +29,7 @@ export default function CoursesPage() {
       icon: Crown,
       bgColor: "bg-accent",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "available",
+      status: "unavailable",
       link: "/apeuro-tutor"
     },
     {
@@ -38,7 +38,7 @@ export default function CoursesPage() {
       icon: Leaf,
       bgColor: "bg-green-600",
       description: "Explore environmental issues, renewable energy, pollution, and ecosystems. Prepare for the AP exam with our specialized AI tutor.",
-      status: "available",
+      status: "unavailable",
       link: "/apes-tutor"
     },
     {
@@ -47,7 +47,7 @@ export default function CoursesPage() {
       icon: LineChart,
       bgColor: "bg-blue-600",
       description: "Master economic principles, fiscal and monetary policy, and economic indicators. Ideal for AP exam preparation.",
-      status: "available",
+      status: "unavailable",
       link: "/apmacro-tutor"
     },
     {
@@ -56,7 +56,7 @@ export default function CoursesPage() {
       icon: BarChart3,
       bgColor: "bg-purple-600",
       description: "Study market structures, firm behavior, and consumer choice with our AI tutor. Perfect for mastering microeconomic concepts.",
-      status: "available",
+      status: "unavailable",
       link: "/apmicro-tutor"
     },
     {
@@ -65,7 +65,7 @@ export default function CoursesPage() {
       icon: Building2,
       bgColor: "bg-red-600",
       description: "Understand the U.S. political system, constitutional foundations, and civil liberties with our comprehensive tutor.",
-      status: "available",
+      status: "unavailable",
       link: "/apgov-tutor"
     }
   ];
