@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, Crown, Globe, Flag } from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Building2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -20,7 +20,7 @@ export default function CoursesPage() {
       icon: Globe,
       bgColor: "bg-secondary",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "unavailable",
+      status: "available",
       link: "/apwh-tutor"
     },
     {
@@ -29,8 +29,44 @@ export default function CoursesPage() {
       icon: Crown,
       bgColor: "bg-accent",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "unavailable",
+      status: "available",
       link: "/apeuro-tutor"
+    },
+    {
+      id: "apes",
+      title: "AP Environmental Science",
+      icon: Leaf,
+      bgColor: "bg-green-600",
+      description: "Explore environmental issues, renewable energy, pollution, and ecosystems. Prepare for the AP exam with our specialized AI tutor.",
+      status: "available",
+      link: "/apes-tutor"
+    },
+    {
+      id: "apmacro",
+      title: "AP Macroeconomics",
+      icon: LineChart,
+      bgColor: "bg-blue-600",
+      description: "Master economic principles, fiscal and monetary policy, and economic indicators. Ideal for AP exam preparation.",
+      status: "available",
+      link: "/apmacro-tutor"
+    },
+    {
+      id: "apmicro",
+      title: "AP Microeconomics",
+      icon: BarChart3,
+      bgColor: "bg-purple-600",
+      description: "Study market structures, firm behavior, and consumer choice with our AI tutor. Perfect for mastering microeconomic concepts.",
+      status: "available",
+      link: "/apmicro-tutor"
+    },
+    {
+      id: "apgov",
+      title: "AP Government & Politics",
+      icon: Building2,
+      bgColor: "bg-red-600",
+      description: "Understand the U.S. political system, constitutional foundations, and civil liberties with our comprehensive tutor.",
+      status: "available",
+      link: "/apgov-tutor"
     }
   ];
 
