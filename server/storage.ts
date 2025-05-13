@@ -153,6 +153,10 @@ export const storage = new MemStorage();
 import { apushContent } from "./lib/apush-data";
 import { apwhContent } from "./lib/apwh-data";
 import { apeuroContent } from "./lib/apeuro-data";
+import { apesContent } from "./lib/apes-data";
+import { apmacroContent } from "./lib/apmacro-data";
+import { apmicroContent } from "./lib/apmicro-data";
+import { apgovContent } from "./lib/apgov-data";
 
 (async function initializeStorage() {
   // Add APUSH content to storage

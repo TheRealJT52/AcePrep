@@ -12,7 +12,7 @@ const chatRequestSchema = z.object({
     role: z.enum(["user", "assistant", "system"]),
     content: z.string()
   })),
-  course: z.enum(["APUSH", "APWH", "APEURO"]).default("APUSH")
+  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV"]).default("APUSH")
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
