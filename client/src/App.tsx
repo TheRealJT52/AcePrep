@@ -15,10 +15,12 @@ import APMicroTutorPage from "@/pages/APMicroTutorPage";
 import APGovTutorPage from "@/pages/APGovTutorPage";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { AnnouncementBanner } from "@/components/ui/announcement-banner";
 
 function Router() {
   return (
     <div className="flex flex-col min-h-screen">
+      <AnnouncementBanner />
       <Header />
       <main className="flex-grow">
         <Switch>
