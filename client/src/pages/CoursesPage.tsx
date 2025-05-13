@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Building2 } from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -62,7 +62,7 @@ export default function CoursesPage() {
     {
       id: "apgov",
       title: "AP Government & Politics",
-      icon: Building2,
+      icon: Landmark,
       bgColor: "bg-red-600",
       description: "Understand the U.S. political system, constitutional foundations, and civil liberties with our comprehensive tutor.",
       status: "unavailable",

@@ -150,7 +150,7 @@ export class MemStorage implements IStorage {
 export const storage = new MemStorage();
 
 // Initialize with content for all courses
-import { apushContent } from "./lib/apush-data";
+import { apushContent } from "./lib/apush-data.fixed";
 import { apwhContent } from "./lib/apwh-data";
 import { apeuroContent } from "./lib/apeuro-data";
 import { apesContent } from "./lib/apes-data";
