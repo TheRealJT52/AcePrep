@@ -14,6 +14,14 @@ export function useChat(course: CourseType = "APUSH") {
         return "Hello! I'm your AP World History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";
       case "APEURO":
         return "Hello! I'm your AP European History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";
+      case "APES":
+        return "Hello! I'm your AP Environmental Science tutor. I can help you understand key scientific concepts, environmental issues, and answer questions based on the official College Board CED. What would you like to learn about today?";
+      case "APMACRO":
+        return "Hello! I'm your AP Macroeconomics tutor. I can help you understand economic concepts, models, graphs, and answer questions based on the official College Board CED. What would you like to learn about today?";
+      case "APMICRO":
+        return "Hello! I'm your AP Microeconomics tutor. I can help you understand economic concepts, models, graphs, and answer questions based on the official College Board CED. What would you like to learn about today?";
+      case "APGOV":
+        return "Hello! I'm your AP U.S. Government and Politics tutor. I can help you understand political concepts, governmental structures, and answer questions based on the official College Board CED. What would you like to learn about today?";
       case "APUSH":
       default:
         return "Hello! I'm your AP U.S. History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";

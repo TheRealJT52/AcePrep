@@ -191,4 +191,50 @@ import { apgovContent } from "./lib/apgov-data";
       topic: content.topic
     });
   }
+  
+  // Add APES content to storage
+  for (const content of apesContent) {
+    await storage.addApContent({
+      course: "APES",
+      title: content.title,
+      content: content.content,
+      period: content.period,
+      topic: content.topic
+    });
+  }
+  
+  // Add APMACRO content to storage
+  for (const content of apmacroContent) {
+    await storage.addApContent({
+      course: "APMACRO",
+      title: content.title,
+      content: content.content,
+      period: content.period,
+      topic: content.topic
+    });
+  }
+  
+  // Add APMICRO content to storage
+  for (const content of apmicroContent) {
+    await storage.addApContent({
+      course: "APMICRO",
+      title: content.title,
+      content: content.content,
+      period: content.period,
+      topic: content.topic
+    });
+  }
+  
+  // Add APGOV content to storage
+  for (const content of apgovContent) {
+    await storage.addApContent({
+      course: "APGOV",
+      title: content.title,
+      content: content.content,
+      period: content.period,
+      topic: content.topic
+    });
+  }
+  
+  console.log("Initialized storage with course content");
 })();
