@@ -1,147 +1,44 @@
-// A simplified subset of APWH (AP World History) content based on College Board Course and Exam Description
-// In a production environment, this would be more extensive and include proper embeddings
-
 export const apwhContent = [
+{
+  title: "Transoceanic Interconnections",
+  period: "c. 1450–1750",
+  topic: "Maritime exploration, global trade, colonization, and cultural exchange",
+  content: "Unit 4 focuses on the maritime exploration and global interconnection that defined the early modern era. European powers began exploring sea routes to Asia, Africa, and the Americas, establishing overseas empires and triggering unprecedented global exchange. Motivated by the 3 G’s—God, Gold, and Glory—nations like Spain, Portugal, England, France, and the Netherlands built maritime empires. The Portuguese established trading posts along the African coast and in the Indian Ocean, while Spain colonized the Americas after Columbus’s voyages. Spain’s conquest of the Aztec and Inca Empires by Cortés and Pizarro led to widespread cultural destruction and the incorporation of the Americas into the global economy. European ships enabled direct trade with Asia, bypassing overland routes. The Columbian Exchange was a major outcome of this era, exchanging crops, animals, people, and diseases between the Old and New Worlds. American crops like maize, potatoes, and tomatoes revolutionized Eurasian diets, while horses, pigs, and wheat transformed the Americas. Diseases like smallpox devastated Indigenous populations. The Atlantic Slave Trade expanded massively, creating the triangular trade system: slaves from Africa to the Americas, raw goods to Europe, and manufactured goods to Africa. African kingdoms such as the Ashanti and Kongo grew powerful by participating, but the trade caused demographic and social disruption. Mercantilism became the dominant economic theory, promoting colonies as sources of wealth for the mother country. European powers established joint-stock companies like the British and Dutch East India Companies, combining private investment and state support to control trade and territory. Colonization often involved coercive labor systems, such as encomienda, mita, chattel slavery, and indentured servitude. Resistance came from enslaved Africans, Indigenous peoples, and maroon societies. Cultural and religious syncretism was widespread. In Latin America, Catholicism blended with Indigenous and African traditions. In Asia, Christian missionaries had limited success, though the Jesuits engaged deeply in China and Japan. Some Asian states (like Japan under the Tokugawa) adopted isolationist policies in response to foreign influence. Unit 4 highlights the birth of global trade networks, the devastating human cost of empire-building, and the deepening of global interdependence through maritime exploration, forced labor, and cultural exchange. It marks the true beginning of globalization in world history."
+},
+{
+  title: "Revolutions",
+  period: "c. 1750–1900",
+  topic: "Political, social, and industrial revolutions that transformed societies",
+  content: "Unit 5 covers the Age of Revolutions, Enlightenment thought, and the transformative impact of industrialization. Enlightenment philosophers like John Locke, Voltaire, and Rousseau championed individual rights, liberty, and reason, challenging monarchies and inspiring revolutions. The American Revolution (1776) marked the first major colonial independence movement based on Enlightenment ideals. The French Revolution (1789) challenged feudal privilege and absolute monarchy, leading to radical social change, the rise of Napoleon, and the spread of revolutionary ideals across Europe. The Haitian Revolution (1791), led by Toussaint Louverture, became the first successful slave revolt and challenged racial hierarchies and colonial rule. Latin American revolutions followed, with leaders like Simón Bolívar advocating independence and republicanism, although new nations often retained social inequalities. Simultaneously, the Industrial Revolution began in Britain and spread to Europe, the U.S., and Japan. Innovations in textiles, steam power, and mechanization transformed production. The factory system replaced artisan labor, increasing output but creating harsh working conditions. Urbanization surged as people moved to cities for factory jobs. Capitalism became dominant, championed by thinkers like Adam Smith. However, exploitation led to critiques from socialists, communists, and labor reformers. Karl Marx and Friedrich Engels wrote the Communist Manifesto, calling for worker revolution. Labor unions and reform laws emerged to address poor working conditions and child labor. Women gained new economic roles but continued to face gender inequality. Abolitionist movements grew, leading to the gradual end of the transatlantic slave trade and slavery in most regions by the late 1800s. Nationalism surged as people sought self-determination, contributing to the unification of Germany and Italy and inspiring independence movements globally. Technological innovation, political upheaval, and ideologies of equality and liberty defined this era, laying the foundation for modern economic, political, and social structures. Unit 5 shows how Enlightenment ideals and industrialization reshaped the global order."
+},
+{
+  title: "Consequences of Industrialization",
+  period: "c. 1750–1900",
+  topic: "Global capitalism, social reform, and imperial expansion",
+  content: "Unit 6 explores the far-reaching consequences of industrialization, especially in shaping global power dynamics, economies, labor systems, and ideologies. Industrial powers sought raw materials and new markets, accelerating imperial expansion. European nations, the U.S., and Japan colonized or dominated much of Asia, Africa, and Oceania, often using military force and economic pressure. The Second Industrial Revolution brought advances in steel, electricity, chemicals, and communication, further empowering imperial states. Economic imperialism emerged, as Western powers established spheres of influence, especially in China and Latin America. Colonies served as sources of raw materials and consumers of manufactured goods, deepening global inequalities. Resource extraction disrupted traditional economies and led to environmental degradation. Resistance to imperialism took many forms. African leaders like Samori Touré and Zulu king Shaka resisted conquest, while the Indian Revolt of 1857 challenged British control. Most rebellions were ultimately suppressed, but they revealed growing discontent. In colonized regions, new labor systems emerged. Indentured servitude, convict labor, and continued slavery in some areas supplied labor for plantations and infrastructure. Many South and East Asians migrated to work in colonies or settler societies. These diasporas preserved cultural traditions but often faced racism and exploitation. Imperial ideologies justified domination. Social Darwinism promoted racial hierarchies, and the “civilizing mission” portrayed colonization as benevolent. Christian missionaries spread religion alongside empire. In industrialized societies, reform movements addressed social and labor issues. Working-class movements demanded suffrage, education, and better conditions. Feminists like Mary Wollstonecraft and Emmeline Pankhurst advanced women’s rights. While some reforms succeeded, inequalities persisted. In colonized regions, Western education and exposure to new ideas fueled nationalism. Elites in India, Egypt, and China began to adopt Enlightenment and nationalist thought, laying the groundwork for future independence movements. Unit 6 shows how industrialization transformed global power, intensified imperialism, and sparked both resistance and reform. It highlights the growing disparities between industrial and non-industrial societies and the ideological justifications used to maintain dominance."
+},
+{
+  title: "Global Conflict",
+  period: "c. 1900–present",
+  topic: "World wars, decolonization, Cold War, and global realignments",
+  content: "Unit 7 focuses on the global conflicts and political realignments of the 20th century. World War I began due to nationalism, militarism, alliances, and imperial competition. The war saw trench warfare and unprecedented casualties. The Treaty of Versailles blamed Germany, leading to economic hardship and political instability. The Russian Revolution in 1917 led to the creation of the Soviet Union under Lenin and later Stalin. The interwar years saw the rise of totalitarian regimes, including fascism in Italy, Nazism in Germany, and militarism in Japan. These regimes pursued aggressive expansion, leading to World War II. WWII was the most destructive conflict in history, involving total war, genocide, and global mobilization. The Holocaust and other atrocities exposed the dangers of racist ideologies. The Allies’ victory led to the decline of European empires and the emergence of the U.S. and USSR as superpowers. The Cold War between capitalist and communist blocs involved proxy wars, nuclear arms races, and ideological competition. Conflicts like the Korean War, Vietnam War, and Soviet-Afghan War were part of this struggle. Non-aligned nations attempted to chart independent paths. Decolonization reshaped the world. African, Asian, and Middle Eastern nations gained independence through negotiation, conflict, or revolution. Leaders like Gandhi, Nkrumah, and Ho Chi Minh led anti-colonial movements. Newly independent states faced challenges including poverty, political instability, and neocolonialism. The late 20th century saw the collapse of the Soviet Union and the end of the Cold War. Global institutions like the UN, World Bank, and IMF emerged to manage international relations. Unit 7 demonstrates the massive political, social, and ideological upheavals of the 20th century, highlighting how wars, revolutions, and decolonization reshaped global power structures."
+},
+{
+  title: "Cold War and Decolonization",
+  period: "c. 1900–present",
+  topic: "End of empire, rise of new nations, and superpower rivalry",
+  content: "Unit 8 focuses on the Cold War, decolonization, and the reshaping of global alliances in the mid-to-late 20th century. After WWII, the world divided into two ideological blocs: the capitalist West led by the U.S. and the communist East led by the USSR. The Cold War never escalated into direct conflict between the superpowers, but proxy wars and political interference defined the era. The arms race and the threat of mutually assured destruction shaped international relations. Key events included the Berlin Blockade, Cuban Missile Crisis, and détente. The space race symbolized ideological competition. Decolonization swept through Africa, Asia, and the Middle East. Former colonies gained independence, sometimes peacefully (e.g., India) and sometimes violently (e.g., Algeria, Vietnam). Nationalist leaders emerged, and post-colonial states experimented with various political and economic models. Many newly independent countries struggled with poverty, corruption, and internal conflict. Some aligned with either the U.S. or USSR, while others formed the Non-Aligned Movement. In Latin America, socialist movements and U.S. interventions shaped politics. In the Middle East, nationalism and Cold War tensions intersected with the Arab-Israeli conflict. Cultural movements, civil rights activism, and youth protests challenged traditional norms in many countries. The Cold War ended with the fall of the Berlin Wall and the collapse of the USSR in 1991. Unit 8 illustrates how ideological conflict and the end of empire reshaped global politics, while also highlighting the hopes and struggles of post-colonial states."
+},
+{
+  title: "Globalization",
+  period: "c. 1900–present",
+  topic: "Modern globalization, economic development, environment, and cultural exchange",
+  content: "Unit 9 examines the acceleration of globalization and the major global trends from the late 20th century to the present. Technological innovations in transportation, communication, and information systems have made the world more interconnected than ever. The internet, mobile technology, and satellite systems revolutionized communication. Global supply chains emerged, making economies interdependent. Neoliberal economic policies promoted free trade, deregulation, and privatization. Institutions like the WTO and IMF facilitated economic integration, though critics argued these benefited wealthy nations. Developing nations pursued industrialization and participated in global trade, though inequalities persisted. Social movements emerged in response to globalization's effects. Environmental concerns such as climate change, deforestation, and pollution spurred international efforts like the Kyoto Protocol and Paris Agreement. Medical advances extended life expectancy and reduced disease, but access remained unequal. Migration surged due to economic opportunity, conflict, and environmental change. Cultural globalization spread popular culture, languages, and ideas, while also provoking reactions seeking to preserve tradition and identity. Resistance movements emerged, advocating for indigenous rights, anti-globalization, and alternative economic systems. Supranational organizations like the EU and UN played growing roles, while nationalism and populism challenged globalism. Terrorism, pandemics, and financial crises highlighted global vulnerabilities. Unit 9 concludes the course by showing how the modern world is shaped by interconnected economies, shared challenges, and diverse cultural and political responses to globalization."
+},
   {
-    title: "Ancient Civilizations (to 600 BCE)",
-    period: "Period 1: to 600 BCE",
-    topic: "Early civilizations, development of agriculture, early empires",
-    content: `The earliest human societies developed agriculture, which led to the rise of complex civilizations.
-    Key developments included:
-    - Neolithic Revolution and the development of agriculture
-    - Rise of urban societies in Mesopotamia, Egypt, Indus Valley, and China
-    - Early empires including Akkadian, Babylonian, and Assyrian
-    - Development of early writing systems such as cuneiform and hieroglyphics
-    - Early legal codes such as the Code of Hammurabi
-    - Early religious beliefs including polytheism and animism
-    - Trade networks connecting early civilizations
-    - Technological innovations in metallurgy, irrigation, and architecture`
-  },
-  {
-    title: "Classical Civilizations (600 BCE-600 CE)",
-    period: "Period 2: 600 BCE-600 CE",
-    topic: "Major empires, philosophical traditions, religious developments",
-    content: `Classical civilizations established complex political systems and enduring cultural traditions.
-    Key developments included:
-    - Greek city-states and Hellenism after Alexander the Great
-    - Roman Republic and Empire with extensive political and legal institutions
-    - Han Dynasty in China with centralized bureaucracy and Confucian principles
-    - Maurya and Gupta empires in India with religious and cultural achievements
-    - Persian Empire as a model of imperial administration
-    - Development of major philosophical traditions (Confucianism, Daoism, Greek philosophy)
-    - Spread of major world religions (Buddhism, Hinduism, Christianity)
-    - Expansion of trade networks including the Silk Roads
-    - Technological and architectural achievements`
-  },
-  {
-    title: "Post-Classical Era (600-1450)",
-    period: "Period 3: 600-1450",
-    topic: "Regional empires, Islamic world, Mongol conquests",
-    content: `The post-classical era saw the rise of new empires and major religious transformations.
-    Key developments included:
-    - Spread of Islam across Middle East, North Africa, and parts of Asia and Europe
-    - Tang and Song dynasties in China with economic and technological innovation
-    - Byzantine Empire preserving Greco-Roman heritage
-    - Mongol conquests creating world's largest land empire
-    - Delhi Sultanate in India with Islamic influence
-    - Emergence of regional kingdoms in Africa including Ghana, Mali, and Songhay
-    - European feudalism and the rise of medieval kingdoms
-    - Viking, Arab, and Turkic migrations reshaping political landscapes
-    - Development of trans-Saharan and Indian Ocean trade networks
-    - Agricultural and technological innovations including compass and gunpowder`
-  },
-  {
-    title: "Early Modern Period (1450-1750)",
-    period: "Period 4: 1450-1750",
-    topic: "Global connections, empires, colonization",
-    content: `The early modern period witnessed the first global networks of exchange and conquest.
-    Key developments included:
-    - European maritime exploration and early colonization
-    - Ottoman, Safavid, and Mughal Islamic empires (the "Gunpowder Empires")
-    - Ming and Qing dynasties in China with periods of expansion and isolation
-    - Tokugawa Shogunate in Japan implementing seclusion policies
-    - Columbian Exchange of plants, animals, diseases, and people between hemispheres
-    - Atlantic slave trade and plantation economies in the Americas
-    - Scientific Revolution in Europe challenging traditional knowledge
-    - Protestant Reformation splitting Christianity in Europe
-    - Renaissance and early Enlightenment intellectual movements
-    - Global trade networks connecting all major world regions`
-  },
-  {
-    title: "Industrial Age (1750-1900)",
-    period: "Period 5: 1750-1900",
-    topic: "Industrial Revolution, nationalism, imperialism",
-    content: `The Industrial Age brought unprecedented technological, economic, and political transformations.
-    Key developments included:
-    - Industrial Revolution beginning in Britain and spreading globally
-    - Rise of nation-states and nationalist movements
-    - European imperialism and colonization across Africa and Asia
-    - Decline of Ottoman, Qing, and other traditional empires
-    - Meiji Restoration modernizing Japan
-    - Revolutionary movements including American, French, Haitian, and Latin American revolutions
-    - Development of industrial capitalism and new social classes
-    - Intellectual movements including liberalism, socialism, and social Darwinism
-    - Technological innovations in transportation, communication, and production
-    - Global migration patterns reshaping population distribution`
-  },
-  {
-    title: "20th Century (1900-Present)",
-    period: "Period 6: 1900-Present",
-    topic: "World wars, Cold War, decolonization, globalization",
-    content: `The twentieth century witnessed devastating conflicts, ideological struggles, and accelerating global integration.
-    Key developments included:
-    - World War I and collapse of European empires
-    - Communist revolutions in Russia and later China
-    - Great Depression affecting the global economy
-    - Rise of fascism and World War II
-    - Cold War between Soviet bloc and Western democracies
-    - Decolonization and emergence of new nations in Africa and Asia
-    - Creation of international organizations (UN, IMF, World Bank)
-    - Globalization of economy and culture
-    - Technological revolutions in computing and digital technology
-    - Environmental challenges including climate change and resource depletion`
-  },
-  {
-    title: "AP Historical Thinking Skills",
-    period: "All periods",
-    topic: "Exam skills",
-    content: `The AP World History exam tests these key historical thinking skills:
-    - Developments and Processes: Identify and explain historical developments and processes
-    - Sourcing and Situation: Analyze sourcing and situation of primary and secondary sources
-    - Claims and Evidence: Analyze arguments in primary and secondary sources
-    - Contextualization: Analyze the context of historical events and developments
-    - Making Connections: Using historical reasoning to develop an argument
-    - Argumentation: Develop an argument supported by historical evidence
-    
-    These skills are tested through multiple-choice questions, short-answer questions (SAQs), a document-based question (DBQ), and a long essay question (LEQ).`
-  },
-  {
-    title: "DBQ Writing Tips",
-    period: "All periods",
-    topic: "Exam skills",
-    content: `For the Document-Based Question (DBQ), follow these guidelines:
-    - Thoroughly analyze all documents provided (typically 7 documents)
-    - Establish a clear thesis that directly addresses the prompt
-    - Contextualize the documents within the broader historical period
-    - Use evidence from at least 6 documents to support your argument
-    - Include at least one piece of outside evidence not found in documents
-    - Analyze point of view, purpose, context, or audience for at least 3 documents
-    - Demonstrate complexity by acknowledging contradictions, nuance, or multiple perspectives
-    
-    The DBQ is worth 25% of your total exam score and is evaluated on a 7-point rubric.`
-  },
-  {
-    title: "SAQ Writing Tips",
-    period: "All periods",
-    topic: "Exam skills",
-    content: `For Short-Answer Questions (SAQs), follow these guidelines:
-    - Address each part of the question directly (typically 3 parts labeled a, b, and c)
-    - Provide specific historical evidence rather than generalizations
-    - Be concise but thorough – each response should be a few sentences
-    - Focus on analysis rather than just description
-    - Make explicit connections to larger historical themes when appropriate
-    - Manage time effectively – spend about 10-12 minutes per SAQ
-    
-    The three SAQs together account for 20% of your total exam score.`
+      title: "Document Based Question Strategies",
+      period: "Exam skills",
+      topic: "Exam skills",
+      content: "The Document-Based Question (DBQ) is a core component of the AP U.S. History exam, worth 25% of your score. It tests your ability to analyze and synthesize historical documents, develop a thesis, and apply historical thinking skills. The DBQ consists of a prompt and 7 historical documents. You'll have around 60 minutes to write a well-organized essay that addresses the prompt using the documents. The DBQ rubric evaluates your essay on the following criteria: 1. THESIS (1 point): Develop a historically defensible, evaluative thesis that establishes a line of reasoning. 2. CONTEXT (1 POINT): Describes a broader historical context relevant to the prompt. The response must relate the topic of the prompt to broader historical events, developments, or processes that occur before, during, or continue after the time frame of the question.This point is not awarded for merely a phrase or a reference. 3. 1st EVIDENCE POINT (1 point): Accurately DESCRIBES the content of at least THREE documents toaddress the topic of the prompt.Quotes are insufficient to earn this point. 2nd EVIDENCE POINT (1 point): ACCURATELY ANALYZES the content of at least THREE documents to address the topic of the prompt. Quotes are insufficient to earn this point. 4. 2nd EVIDENCE POINT: SUPPORTS an argument in response to the prompt using at least FOURdocuments. These documents should meet (and exceed) the standard set for the description point. 5. OUTSIDE EVIDENCE POINT (1 point): (beyond that found in the documents) relevant to an argument about the prompt.The response must describe the evidence and must use more than a phrase or reference. This evidence must be different from the evidence used to earn the contextualization point. 6: ANALYSIS (1 point): For at least TWO documents, EXPLAINS HOW or WHY the document’s historical situation, intended audience, point of view, and/or purpose (HIPP) is relevant to an argument. 7. COMPLEXITY POINT (1 point): COMPLEX UNDERSTANDING of the historical development that is the focus of the prompt through sophisticated argumentation and/or effective use of evidence. The complexity point is awarded for ONE of the following: Exploring nuance by analyzing multiple themes or perspectives, Explaining both similarity and difference, both continuity and change, both causes and effects, multiple causes or effects, multiple similarities or differences, or multiple continuities or changes Explaining relevant and insightful connections within and across periods or geographical areas, Effectively uses ALL SEVEN documents to support an argument, Effective HIPP analysis for, at least FOUR documents Uses documents and outside evidence to demonstrate sophisticated understanding. When asked about DBQs, STRICTLY ADHERE TO THIS RUBRIC. "
   }
 ];

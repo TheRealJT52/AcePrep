@@ -20,7 +20,7 @@ export default function CoursesPage() {
       icon: Globe,
       bgColor: "bg-secondary",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "unavailable",
+      status: "available",
       link: "/apwh-tutor"
     },
     {
