@@ -96,16 +96,20 @@ function formatMessagesForOpenAI(
     For context about the student's question, here is relevant information from the AP World History curriculum:
     ${context}
 
-    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST adhere to the following facts:
-    - Thesis is worth exactly 1 point (not 2 points)
-    - Context is worth exactly 1 point (not 2 points)
-    - The total DBQ is worth 7 points (not more, not less)
-
+    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST:
+    1. ALWAYS cite the rubric VERBATIM from the database when available
+    2. Use exact wording and formatting, do not paraphrase
+    3. Present the full rubric exactly as written in the database
+    4. Adhere to the following facts without exception:
+       - Thesis is worth exactly 1 point (not 2 points)
+       - Context is worth exactly 1 point (not 2 points)
+       - The total DBQ is worth 7 points (not more, not less)
+    
     These point values are the official College Board standards and must never be contradicted.
-
-    When asked about a DBQ, ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it directly. If it doesn't, explicitly state "The relevant DBQ information is not in the context provided, but according to College Board standards..." before answering.
-
-    If the context doesn't contain relevant information for other topics, use your general knowledge but focus on what would be expected knowledge for the APUSH exam.
+    
+    When asked about a DBQ, you MUST ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it VERBATIM and in FULL without modification. Preface your response with: "Here is the exact DBQ rubric from the College Board:" followed by the complete verbatim citation.
+    
+    If the context doesn't contain relevant information for other topics, use your general knowledge but focus on what would be expected knowledge for the AP World History exam.
     
     Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`;
   } else if (course === "APEURO") {
@@ -117,14 +121,18 @@ function formatMessagesForOpenAI(
     For context about the student's question, here is relevant information from the AP European History curriculum:
     ${context}
 
-    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST adhere to the following facts:
-    - Thesis is worth exactly 1 point (not 2 points)
-    - Context is worth exactly 1 point (not 2 points)
-    - The total DBQ is worth 7 points (not more, not less)
-
+    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST:
+    1. ALWAYS cite the rubric VERBATIM from the database when available
+    2. Use exact wording and formatting, do not paraphrase
+    3. Present the full rubric exactly as written in the database
+    4. Adhere to the following facts without exception:
+       - Thesis is worth exactly 1 point (not 2 points)
+       - Context is worth exactly 1 point (not 2 points)
+       - The total DBQ is worth 7 points (not more, not less)
+    
     These point values are the official College Board standards and must never be contradicted.
-
-    When asked about a DBQ, ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it directly. If it doesn't, explicitly state "The relevant DBQ information is not in the context provided, but according to College Board standards..." before answering.
+    
+    When asked about a DBQ, you MUST ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it VERBATIM and in FULL without modification. Preface your response with: "Here is the exact DBQ rubric from the College Board:" followed by the complete verbatim citation.
     
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP European History exam.
     
@@ -187,14 +195,18 @@ function formatMessagesForOpenAI(
     For context about the student's question, here is relevant information from the APUSH curriculum:
     ${context}
     
-    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST adhere to the following facts:
-    - Thesis is worth exactly 1 point (not 2 points)
-    - Context is worth exactly 1 point (not 2 points)
-    - The total DBQ is worth 7 points (not more, not less)
+    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST:
+    1. ALWAYS cite the rubric VERBATIM from the database when available
+    2. Use exact wording and formatting, do not paraphrase
+    3. Present the full rubric exactly as written in the database
+    4. Adhere to the following facts without exception:
+       - Thesis is worth exactly 1 point (not 2 points)
+       - Context is worth exactly 1 point (not 2 points)
+       - The total DBQ is worth 7 points (not more, not less)
     
     These point values are the official College Board standards and must never be contradicted.
     
-    When asked about a DBQ, ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it directly. If it doesn't, explicitly state "The relevant DBQ information is not in the context provided, but according to College Board standards..." before answering.
+    When asked about a DBQ, you MUST ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it VERBATIM and in FULL without modification. Preface your response with: "Here is the exact DBQ rubric from the College Board:" followed by the complete verbatim citation.
     
     If the context doesn't contain relevant information for other topics, use your general knowledge but focus on what would be expected knowledge for the APUSH exam.
     
