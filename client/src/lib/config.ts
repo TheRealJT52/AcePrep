@@ -9,7 +9,7 @@ export const siteConfig = {
   // Announcement configuration
   announcement: {
     // Text to display in the announcement banner
-    message: "The AP World AND European History Tutor is now available!",
+    message: "The AP World AND European History Tutors are now available!",
     // Link destination for the "Try it now" button
     link: "/CoursesPage",
     // Whether to show the secondary message on non-mobile
