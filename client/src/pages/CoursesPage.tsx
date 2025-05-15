@@ -29,7 +29,7 @@ export default function CoursesPage() {
       icon: Crown,
       bgColor: "bg-accent",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "unavailable",
+      status: "available",
       link: "/apeuro-tutor"
     },
     {

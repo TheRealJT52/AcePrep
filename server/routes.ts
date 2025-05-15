@@ -116,6 +116,15 @@ function formatMessagesForOpenAI(
     
     For context about the student's question, here is relevant information from the AP European History curriculum:
     ${context}
+
+    CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST adhere to the following facts:
+    - Thesis is worth exactly 1 point (not 2 points)
+    - Context is worth exactly 1 point (not 2 points)
+    - The total DBQ is worth 7 points (not more, not less)
+
+    These point values are the official College Board standards and must never be contradicted.
+
+    When asked about a DBQ, ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it directly. If it doesn't, explicitly state "The relevant DBQ information is not in the context provided, but according to College Board standards..." before answering.
     
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP European History exam.
     
