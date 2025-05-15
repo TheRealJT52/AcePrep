@@ -122,7 +122,7 @@ function formatMessagesForOpenAI(
     ${context}
 
     CRITICAL INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST:
-    1. ALWAYS cite the rubric VERBATIM from the database when available
+    1. ALWAYS cite the rubric VERBATIM from the database when available. This is provided to you in the context in "Document Based Question Strategies". You must use the exact wording and formatting from the context. Do not group points together, list every point seperately.
     2. Use exact wording and formatting, do not paraphrase
     3. Present the full rubric exactly as written in the database
     4. Adhere to the following facts without exception:
