@@ -9,12 +9,12 @@ export const siteConfig = {
   // Announcement configuration
   announcement: {
     // Text to display in the announcement banner
-    message: "The AP World History Tutor is now available!",
+    message: "The AP World AND European History Tutor is now available!",
     // Link destination for the "Try it now" button
-    link: "/apwh-tutor",
+    link: "/CoursesPage",
     // Whether to show the secondary message on non-mobile
     showSecondaryMessage: true,
     // Secondary message text
-    secondaryMessage: "Explore global history with our intelligent AI assistant.",
+    secondaryMessage: "Explore history with our intelligent AI tutors.",
   }
 };

@@ -1,4 +1,4 @@
-import { Globe } from "lucide-react";
+import { CircleAlert } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 
 export function AnnouncementBanner() {
@@ -17,7 +17,7 @@ export function AnnouncementBanner() {
       
       <div className="max-w-7xl mx-auto flex items-center justify-center">
         <div className="flex items-center space-x-3">
-          <Globe className="h-5 w-5 text-white animate-pulse" />
+          <CircleAlert className="h-5 w-5 text-white animate-pulse" />
           <span className="inline-flex items-center rounded-full bg-white/20 px-2 py-1 text-xs font-medium text-white mr-2">
             New!
           </span>
