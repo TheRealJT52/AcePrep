@@ -11,7 +11,7 @@ export const siteConfig = {
     // Text to display in the announcement banner
     message: "The AP World AND European History Tutors are now available!",
     // Link destination for the "Try it now" button
-    link: "/CoursesPage",
+    link: "/courses",
     // Whether to show the secondary message on non-mobile
     showSecondaryMessage: true,
     // Secondary message text
