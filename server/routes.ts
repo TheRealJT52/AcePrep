@@ -123,7 +123,7 @@ function formatMessagesForOpenAI(
     - Unit 1: Renaissance and Exploration (c. 1450 to c. 1648)
     - Unit 2: Protestant and Catholic Reformations (c. 1450 to c. 1648)  
     - Unit 3: Absolutism and Constitutionalism (c. 1648 to c. 1815)
-    - Unit 4: Scientific Revolution and Enlightenment (c. 1648 to c. 1815)
+    - Unit 4: Scientific, Philosophical, and Political Developments (c. 1648 to c. 1815)
     - Unit 5: Conflict, Crisis, and Reaction in the Late 18th Century (1648–1815)
     - Unit 6: Industrialization and Its Effects (1815–1914)
     - Unit 7: 19th-Century Perspectives and Political Developments (1815–1914)
