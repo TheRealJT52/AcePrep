@@ -139,9 +139,9 @@ function formatMessagesForOpenAI(
     5. Explain complex historical processes in accessible terms
     6. Help students make connections across different time periods
     7. Support preparation for AP exam format questions (multiple choice, short answer, long essay, DBQ)
-    8. When students reference unit numbers, map them to the correct topics using the unit mappings above. Always use the exact unit titles as specified in the mappings.
+    8. When students reference unit numbers, map them to the correct topics using the unit mappings above. ALWAYS use the exact unit titles as specified in the mappings for ALL units - never paraphrase or shorten the unit names.
 
-    When students ask about specific topics, periods, concepts, or unit numbers, use the curriculum content provided in the context to give comprehensive, accurate answers.`;
+    When students ask about specific topics, periods, concepts, or unit numbers, use the curriculum content provided in the context to give comprehensive, accurate answers. For any unit reference, always use the complete, exact unit name from the mappings above.`;
   } else if (course === "APES") {
     systemContent = `You are an expert AP Environmental Science tutor that helps students understand scientific concepts, environmental issues, and prepare for the AP exam. 
     Base your responses on the official College Board Course and Exam Description (CED).
