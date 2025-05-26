@@ -238,3 +238,21 @@ function formatMessagesForOpenAI(
 
   return formattedMessages;
 }
+const quizPrompt = `Create a challenging multiple-choice quiz question based on ${course} content. 
+
+      IMPORTANT: You must include exactly 4 answer choices labeled A, B, C, and D.
+
+      Format your response as:
+      **Question:** [question text]
+
+      **Options:**
+      A) [option 1]
+      B) [option 2]
+      C) [option 3]
+      D) [option 4]
+
+      **Answer:** [correct letter - must be A, B, C, or D]
+
+      **Explanation:** [brief explanation]
+
+      Make the question challenging but fair for AP-level students. Ensure all 4 options are plausible but only one is correct.`;
