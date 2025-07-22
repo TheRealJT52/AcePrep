@@ -4,12 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
 import { PasswordDialog } from "@/components/ui/password-dialog";
-import { usePasswordProtection } from "@/hooks/use-password-protection";
 import { useState } from "react";
 
 export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState<{ name: string; link: string } | null>(null);
-  const { showPasswordDialog, handlePasswordSuccess, closePasswordDialog } = usePasswordProtection();
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
 
   const getStatus = (courseCode: keyof typeof siteConfig.passwordProtection.courses) => {
     const courseConfig = siteConfig.passwordProtection.courses[courseCode];
@@ -32,18 +31,18 @@ export default function CoursesPage() {
 
   const handleDevelopmentClick = (courseName: string, link: string) => {
     setSelectedCourse({ name: courseName, link });
-    showPasswordDialog();
+    setShowPasswordDialog(true);
   };
 
   const handlePasswordDialogSuccess = () => {
     if (selectedCourse) {
-      handlePasswordSuccess(selectedCourse.link);
-      setSelectedCourse(null);
+      // Navigate to the course page
+      window.location.href = selectedCourse.link;
     }
   };
 
   const handlePasswordDialogClose = () => {
-    closePasswordDialog();
+    setShowPasswordDialog(false);
     setSelectedCourse(null);
   };
 
@@ -172,7 +171,7 @@ export default function CoursesPage() {
         </div>
         
         <PasswordDialog
-          isOpen={selectedCourse !== null}
+          isOpen={showPasswordDialog}
           onClose={handlePasswordDialogClose}
           onSuccess={handlePasswordDialogSuccess}
           courseName={selectedCourse?.name || ""}
