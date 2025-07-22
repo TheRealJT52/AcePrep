@@ -199,6 +199,7 @@ function formatMessagesForOpenAI(
     For context about the student's question, here is relevant information from the AP Biology curriculum:
     ${context}
 
+    IMPORTANT: you are NOT to cite specific CED topics in your answer. Instead, use the content provided in the context to answer questions.
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP Biology exam.
 
     Format your responses in a clear, educational way. Use bullet points where appropriate, describe relevant diagrams or processes, and emphasize key concepts.`;
@@ -224,8 +225,6 @@ function formatMessagesForOpenAI(
     These point values are the official College Board standards and must never be contradicted.
 
     When asked about a DBQ, you MUST ONLY use information from the curriculum database provided in the context. If the context contains relevant DBQ information, quote it VERBATIM and in FULL without modification. Preface your response with: "Here is the exact DBQ rubric from the College Board:" followed by the complete verbatim citation.
-
-    If the context doesn't contain relevant information for other topics, use your general knowledge but focus on what would be expected knowledge for the APUSH exam.
 
     Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`;
   }
