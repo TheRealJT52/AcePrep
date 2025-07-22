@@ -10,8 +10,11 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
 
   // Convert newlines to <br> and handle Markdown-style lists
   const formatMessage = (text: string) => {
+    // Ensure text is a string
+    const textStr = typeof text === 'string' ? text : String(text || '');
+    
     // Replace markdown list items with HTML list items
-    let formattedText = text.replace(/\n- /g, "\n• ");
+    let formattedText = textStr.replace(/\n- /g, "\n• ");
     
     // Convert URLs to links
     formattedText = formattedText.replace(
