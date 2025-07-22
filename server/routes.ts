@@ -65,22 +65,43 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   const isUnitOverviewRequest = (messageLower.includes('overview') || messageLower.includes('summary')) && 
                                messageLower.includes('unit');
   
-  // Extract unit number if present (e.g., "unit 1", "unit 2", etc.)
-  const unitMatch = messageLower.match(/unit\s*(\d+)/);
+  // Extract unit number if present (e.g., "unit 1", "unit one", etc.)
+  const unitMatch = messageLower.match(/unit\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)/);
+  
+  // Convert written numbers to digits
+  const numberMap: { [key: string]: string } = {
+    'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5',
+    'six': '6', 'seven': '7', 'eight': '8', 'nine': '9', 'ten': '10'
+  };
   
   if (isUnitOverviewRequest && unitMatch) {
-    const unitNumber = unitMatch[1];
+    const rawUnitNumber = unitMatch[1];
+    const unitNumber = numberMap[rawUnitNumber] || rawUnitNumber; // Convert written numbers to digits
     
-    // Search for all content related to the specific unit - check both title, content, and period field
+    // Search for all content related to the specific unit - handle various unit formats
     const allContent = await storage.getApContentByCourse(course);
     const unitResults = allContent.filter(content => {
       const contentLower = content.content.toLowerCase();
       const titleLower = content.title.toLowerCase();
       const periodLower = content.period?.toLowerCase() || '';
       
-      return contentLower.includes(`unit ${unitNumber}`) || 
-             titleLower.includes(`unit ${unitNumber}`) ||
-             periodLower.includes(`unit ${unitNumber}`);
+      // Check for various unit formats: "unit 1", "Unit 1", "unit one", "Unit One", etc.
+      const unitPatterns = [
+        `unit ${unitNumber}`,
+        `unit${unitNumber}`, 
+        `unit: ${unitNumber}`,
+        `unit  ${unitNumber}`, // extra space
+        `unit ${rawUnitNumber}`, // original format (in case it was written as "one", "two", etc.)
+        `unit${rawUnitNumber}`,
+        `unit: ${rawUnitNumber}`,
+        `unit  ${rawUnitNumber}`
+      ];
+      
+      return unitPatterns.some(pattern => 
+        contentLower.includes(pattern) || 
+        titleLower.includes(pattern) ||
+        periodLower.includes(pattern)
+      );
     });
     
     if (unitResults.length > 0) {
