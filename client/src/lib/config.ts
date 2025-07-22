@@ -21,7 +21,7 @@ export const siteConfig = {
   // Password protection settings
   passwordProtection: {
     // Master password for accessing maintenance-mode courses
-    masterPassword: "aceprep2024",
+    masterPassword: "aceprep2025",
     
     // Course-specific settings
     courses: {

@@ -54,7 +54,7 @@ export function CourseCard({
           ) : status === "maintenance" ? (
              <div className="flex items-center gap-1">
               <Wrench className="h-3 w-3" />
-              <span>Under Maintenance</span>
+              <span>Coming Soon</span>
             </div>
           ) : (
             <div className="flex items-center gap-1">
