@@ -12,7 +12,8 @@ import APEuroTutorPage from "@/pages/APEuroTutorPage";
 import APEScienceTutorPage from "@/pages/APEScienceTutorPage";
 import APMacroTutorPage from "@/pages/APMacroTutorPage";
 import APMicroTutorPage from "@/pages/APMicroTutorPage";
-import APGovTutorPage from "@/pages/APGovTutorPage";
+import APGovTutorPage from "./pages/APGovTutorPage";
+import APBioTutorPage from "./pages/APBioTutorPage";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { AnnouncementBanner } from "@/components/ui/announcement-banner";
@@ -33,6 +34,7 @@ function Router() {
           <Route path="/apmacro-tutor" component={APMacroTutorPage} />
           <Route path="/apmicro-tutor" component={APMicroTutorPage} />
           <Route path="/apgov-tutor" component={APGovTutorPage} />
+          <Route path="/apbio-tutor" component={APBioTutorPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

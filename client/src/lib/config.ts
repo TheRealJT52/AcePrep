@@ -32,6 +32,7 @@ export const siteConfig = {
       APMACRO: { maintenance: true },
       APMICRO: { maintenance: true },
       APGOV: { maintenance: true },
+      APBIO: { maintenance: true },
     }
   }
 };

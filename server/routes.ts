@@ -12,7 +12,7 @@ const chatRequestSchema = z.object({
     role: z.enum(["user", "assistant", "system"]),
     content: z.string()
   })),
-  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV"]).default("APUSH")
+  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO"]).default("APUSH")
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -190,6 +190,18 @@ function formatMessagesForOpenAI(
     If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP Government and Politics exam.
 
     Format your responses in a clear, educational way. Use bullet points where appropriate, and emphasize key concepts.`;
+  } else if (course === "APBIO") {
+    systemContent = `You are an expert AP Biology tutor that helps students understand biological concepts, processes, and prepare for the AP exam. 
+    Base your responses on the official College Board Course and Exam Description (CED).
+
+    When answering, include references to specific biological principles, processes, and experimental design from the CED where appropriate.
+
+    For context about the student's question, here is relevant information from the AP Biology curriculum:
+    ${context}
+
+    If the context doesn't contain relevant information, use your general knowledge but focus on what would be expected knowledge for the AP Biology exam.
+
+    Format your responses in a clear, educational way. Use bullet points where appropriate, describe relevant diagrams or processes, and emphasize key concepts.`;
   } else {
     // Default to APUSH
     systemContent = `You are an expert AP U.S. History tutor that helps students understand historical concepts, events, and prepare for the AP exam. 

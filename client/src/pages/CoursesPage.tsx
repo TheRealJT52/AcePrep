@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark } from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
@@ -79,6 +79,15 @@ export default function CoursesPage() {
       description: "Understand the U.S. political system, constitutional foundations, and civil liberties with our comprehensive tutor.",
       status: getStatus("APGOV"),
       link: "/apgov-tutor"
+    },
+    {
+      id: "apbio",
+      title: "AP Biology",
+      icon: Dna,
+      bgColor: "bg-emerald-600",
+      description: "Explore biological concepts from molecular to ecosystem levels. Master cell biology, genetics, evolution, and ecology.",
+      status: getStatus("APBIO"),
+      link: "/apbio-tutor"
     }
   ];
 
