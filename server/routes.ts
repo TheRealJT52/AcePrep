@@ -61,12 +61,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 async function getRelevantCourseContent(message: string, course: string): Promise<string> {
   const messageLower = message.toLowerCase();
   
-  // Check if user is requesting unit overview or summary
+  // Check if user is requesting unit/period overview or summary
   const isUnitOverviewRequest = (messageLower.includes('overview') || messageLower.includes('summary')) && 
-                               messageLower.includes('unit');
+                               (messageLower.includes('unit') || messageLower.includes('period'));
   
-  // Extract unit number if present (e.g., "unit 1", "unit one", etc.)
-  const unitMatch = messageLower.match(/unit\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)/);
+  // Extract unit/period number if present (e.g., "unit 1", "period 4", "unit one", etc.)
+  const unitMatch = messageLower.match(/(unit|period)\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)/);
   
   // Convert written numbers to digits
   const numberMap: { [key: string]: string } = {
@@ -75,7 +75,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   };
   
   if (isUnitOverviewRequest && unitMatch) {
-    const rawUnitNumber = unitMatch[1];
+    const rawUnitNumber = unitMatch[2]; // Second capture group is the number
     const unitNumber = numberMap[rawUnitNumber] || rawUnitNumber; // Convert written numbers to digits
     
     // Search for all content related to the specific unit - handle various unit formats
@@ -85,7 +85,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
       const titleLower = content.title.toLowerCase();
       const periodLower = content.period?.toLowerCase() || '';
       
-      // Check for various unit formats: "unit 1", "Unit 1", "unit one", "Unit One", etc.
+      // Check for various unit/period formats: "unit 1", "Unit 1", "period 1", "Period 1", etc.
       const unitPatterns = [
         `unit ${unitNumber}`,
         `unit${unitNumber}`, 
@@ -94,7 +94,16 @@ async function getRelevantCourseContent(message: string, course: string): Promis
         `unit ${rawUnitNumber}`, // original format (in case it was written as "one", "two", etc.)
         `unit${rawUnitNumber}`,
         `unit: ${rawUnitNumber}`,
-        `unit  ${rawUnitNumber}`
+        `unit  ${rawUnitNumber}`,
+        // Also search for "Period" (used by APUSH and other courses)
+        `period ${unitNumber}`,
+        `period${unitNumber}`,
+        `period: ${unitNumber}`,
+        `period  ${unitNumber}`,
+        `period ${rawUnitNumber}`,
+        `period${rawUnitNumber}`,
+        `period: ${rawUnitNumber}`,
+        `period  ${rawUnitNumber}`
       ];
       
       return unitPatterns.some(pattern => 
