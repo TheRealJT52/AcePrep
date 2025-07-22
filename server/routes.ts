@@ -75,22 +75,22 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     const unitResults = await storage.searchApContent(course, `unit ${unitNumber}`);
     
     if (unitResults.length > 0) {
-      // Return ALL content for the unit, not just top 3
+      // Return ALL content for the unit
       return unitResults.map(content => {
         return `TOPIC: ${content.title}\n${content.content}`;
       }).join("\n\n");
     }
   }
   
-  // Regular search for non-unit overview requests
+  // Regular search - now returns ALL results with no limit
   const results = await storage.searchApContent(course, message);
 
   if (results.length === 0) {
     return "";
   }
 
-  // Combine the most relevant content (limit to top 3 for context size management)
-  return results.slice(0, 3).map(content => {
+  // Return ALL matching content with no limit
+  return results.map(content => {
     return `TOPIC: ${content.title}\n${content.content}`;
   }).join("\n\n");
 }
