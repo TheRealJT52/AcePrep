@@ -71,8 +71,17 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   if (isUnitOverviewRequest && unitMatch) {
     const unitNumber = unitMatch[1];
     
-    // Search for all content related to the specific unit
-    const unitResults = await storage.searchApContent(course, `unit ${unitNumber}`);
+    // Search for all content related to the specific unit - check both title, content, and period field
+    const allContent = await storage.getApContentByCourse(course);
+    const unitResults = allContent.filter(content => {
+      const contentLower = content.content.toLowerCase();
+      const titleLower = content.title.toLowerCase();
+      const periodLower = content.period?.toLowerCase() || '';
+      
+      return contentLower.includes(`unit ${unitNumber}`) || 
+             titleLower.includes(`unit ${unitNumber}`) ||
+             periodLower.includes(`unit ${unitNumber}`);
+    });
     
     if (unitResults.length > 0) {
       // Return ALL content for the unit
