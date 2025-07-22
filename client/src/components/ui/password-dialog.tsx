@@ -53,10 +53,10 @@ export function PasswordDialog({ isOpen, onClose, onSuccess, courseName }: Passw
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lock className="h-5 w-5 text-yellow-500" />
-            Course Under Maintenance
+            Course Coming Soon
           </DialogTitle>
           <DialogDescription>
-            {courseName} is currently under maintenance. Please enter the staff password to continue.
+            {courseName} is coming soon. Please enter the staff password to continue.
           </DialogDescription>
         </DialogHeader>
         
