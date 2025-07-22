@@ -23,16 +23,16 @@ export const siteConfig = {
     // Master password for accessing maintenance-mode courses
     masterPassword: "aceprep2024",
     
-    // Course-specific settings - set maintenance: true to password protect
+    // Course-specific settings
     courses: {
-      APUSH: { maintenance: false },
-      APWH: { maintenance: false },
-      APEURO: { maintenance: false },
-      APES: { maintenance: true },
-      APMACRO: { maintenance: true },
-      APMICRO: { maintenance: true },
-      APGOV: { maintenance: true },
-      APBIO: { maintenance: true },
+      APUSH: { maintenance: false, development: false },
+      APWH: { maintenance: false, development: false },
+      APEURO: { maintenance: false, development: false },
+      APES: { maintenance: true, development: false },
+      APMACRO: { maintenance: true, development: false },
+      APMICRO: { maintenance: true, development: false },
+      APGOV: { maintenance: true, development: false },
+      APBIO: { maintenance: false, development: true },
     }
   }
 };

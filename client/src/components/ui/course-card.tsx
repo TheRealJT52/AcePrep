@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, CalendarClock, Sparkles, Wrench } from "lucide-react";
+import { ChevronRight, CalendarClock, Sparkles, Wrench, Code } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -10,8 +10,9 @@ interface CourseCardProps {
   icon: LucideIcon;
   bgColor: string;
   description: string;
-  status: "available" | "coming-soon" | "maintenance";
+  status: "available" | "coming-soon" | "maintenance" | "development";
   link?: string;
+  onClick?: () => void;
 }
 
 export function CourseCard({
@@ -20,7 +21,8 @@ export function CourseCard({
   bgColor,
   description,
   status,
-  link = "#"
+  link = "#",
+  onClick
 }: CourseCardProps) {
   return (
     <Card className="overflow-hidden border border-neutral-200/30 bg-neutral-100/50 backdrop-blur-sm transition-all hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 group">
@@ -33,7 +35,9 @@ export function CourseCard({
           variant={status === "available" ? "default" : "outline"}
           className={`absolute top-3 right-3 z-20 ${
             status === "available" 
-              ? "bg-secondary text-white hover:bg-secondary-hover" 
+              ? "bg-secondary text-white hover:bg-secondary-hover"
+              : status === "development"
+              ? "bg-orange-500/80 backdrop-blur-sm text-white hover:bg-orange-600"
               : "bg-accent/80 backdrop-blur-sm text-black hover:bg-accent"
           }`}
         >
@@ -41,6 +45,11 @@ export function CourseCard({
             <div className="flex items-center gap-1">
               <Sparkles className="h-3 w-3" />
               <span>Available</span>
+            </div>
+          ) : status === "development" ? (
+            <div className="flex items-center gap-1">
+              <Code className="h-3 w-3" />
+              <span>Under Development</span>
             </div>
           ) : status === "maintenance" ? (
              <div className="flex items-center gap-1">
@@ -72,6 +81,16 @@ export function CourseCard({
               Start Learning
               <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
             </Link>
+          </Button>
+        ) : status === "development" ? (
+          <Button 
+            onClick={onClick}
+            variant="outline" 
+            size="sm" 
+            className="w-full gap-1 border-orange-300 text-orange-600 hover:bg-orange-50"
+          >
+            <Code className="h-4 w-4 mr-2" />
+            Access Development Version
           </Button>
         ) : (
           <Button 

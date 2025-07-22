@@ -3,17 +3,48 @@ import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, Bar
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
+import { PasswordDialog } from "@/components/ui/password-dialog";
+import { usePasswordProtection } from "@/hooks/use-password-protection";
+import { useState } from "react";
 
 export default function CoursesPage() {
+  const [selectedCourse, setSelectedCourse] = useState<{ name: string; link: string } | null>(null);
+  const { showPasswordDialog, handlePasswordSuccess, closePasswordDialog } = usePasswordProtection();
+
   const getStatus = (courseCode: keyof typeof siteConfig.passwordProtection.courses) => {
-    if (siteConfig.passwordProtection.courses[courseCode]?.maintenance) {
+    const courseConfig = siteConfig.passwordProtection.courses[courseCode];
+    
+    // Development status overrides everything
+    if (courseConfig?.development) {
+      return "development" as const;
+    }
+    
+    if (courseConfig?.maintenance) {
       return "maintenance" as const;
     }
+    
     // Currently available courses
     if (["APUSH", "APWH", "APEURO"].includes(courseCode)) {
       return "available" as const;
     }
     return "coming-soon" as const;
+  };
+
+  const handleDevelopmentClick = (courseName: string, link: string) => {
+    setSelectedCourse({ name: courseName, link });
+    showPasswordDialog();
+  };
+
+  const handlePasswordDialogSuccess = () => {
+    if (selectedCourse) {
+      handlePasswordSuccess(selectedCourse.link);
+      setSelectedCourse(null);
+    }
+  };
+
+  const handlePasswordDialogClose = () => {
+    closePasswordDialog();
+    setSelectedCourse(null);
   };
 
   const courses = [
@@ -133,11 +164,19 @@ export default function CoursesPage() {
               icon={course.icon}
               bgColor={course.bgColor}
               description={course.description}
-              status={course.status === "available" ? "available" : "coming-soon"}
+              status={course.status}
               link={course.link}
+              onClick={course.status === "development" ? () => handleDevelopmentClick(course.title, course.link) : undefined}
             />
           ))}
         </div>
+        
+        <PasswordDialog
+          isOpen={selectedCourse !== null}
+          onClose={handlePasswordDialogClose}
+          onSuccess={handlePasswordDialogSuccess}
+          courseName={selectedCourse?.name || ""}
+        />
       </div>
     </section>
   );
