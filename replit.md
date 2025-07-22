@@ -40,6 +40,10 @@ The platform currently supports eight AP courses:
 ## Recent Changes
 
 **January 22, 2025:**
+- ✅ **Updated all AI models to EXCLUSIVELY use provided curriculum content**
+- ✅ **Removed general knowledge synthesis** - models now only reference context
+- ✅ **Added strict fallback responses** when information not in curriculum 
+- ✅ **Preserved APUSH DBQ verbatim citation requirements**
 - ✅ Fixed AP Biology tutor page structure to match other tutoring pages
 - ✅ Added APBIO CourseType support across frontend and backend
 - ✅ Added APBIO system prompt and welcome message
