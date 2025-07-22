@@ -40,6 +40,9 @@ The platform currently supports eight AP courses:
 ## Recent Changes
 
 **January 22, 2025:**
+- ✅ **Added unit overview detection system** - detects "overview"/"summary" + "unit" requests
+- ✅ **Complete unit content delivery** - provides ALL unit content instead of top 3 results
+- ✅ **Pure content instruction** - unit overviews show only curriculum materials, no added skills
 - ✅ **Updated all AI models to EXCLUSIVELY use provided curriculum content**
 - ✅ **Removed general knowledge synthesis** - models now only reference context
 - ✅ **Added strict fallback responses** when information not in curriculum 

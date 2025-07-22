@@ -59,11 +59,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 // Helper function to get relevant course content based on the user's message and selected course
 async function getRelevantCourseContent(message: string, course: string): Promise<string> {
-  // In a real implementation, we would:
-  // 1. Generate an embedding for the user's message
-  // 2. Find the most similar content using vector similarity search
-  // Here we'll do a simple keyword search
-
+  const messageLower = message.toLowerCase();
+  
+  // Check if user is requesting unit overview or summary
+  const isUnitOverviewRequest = (messageLower.includes('overview') || messageLower.includes('summary')) && 
+                               messageLower.includes('unit');
+  
+  // Extract unit number if present (e.g., "unit 1", "unit 2", etc.)
+  const unitMatch = messageLower.match(/unit\s*(\d+)/);
+  
+  if (isUnitOverviewRequest && unitMatch) {
+    const unitNumber = unitMatch[1];
+    
+    // Search for all content related to the specific unit
+    const unitResults = await storage.searchApContent(course, `unit ${unitNumber}`);
+    
+    if (unitResults.length > 0) {
+      // Return ALL content for the unit, not just top 3
+      return unitResults.map(content => {
+        return `TOPIC: ${content.title}\n${content.content}`;
+      }).join("\n\n");
+    }
+  }
+  
+  // Regular search for non-unit overview requests
   const results = await storage.searchApContent(course, message);
 
   if (results.length === 0) {
@@ -94,6 +113,8 @@ function formatMessagesForOpenAI(
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
 
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add historical thinking skills, essay writing tips, or exam strategies unless they appear in the provided context.
+
     For context about the student's question, here is the curriculum content:
     ${context}
 
@@ -104,6 +125,8 @@ function formatMessagesForOpenAI(
     CRITICAL INSTRUCTION: You must ONLY reference information that appears in the context provided below. If the context does not contain information to answer a question, you must respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
+
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add historical thinking skills, essay writing tips, or exam strategies unless they appear in the provided context.
 
     For context about the student's question, here is the curriculum content:
     ${context}
@@ -116,6 +139,8 @@ function formatMessagesForOpenAI(
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
 
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
+
     For context about the student's question, here is the curriculum content:
     ${context}
 
@@ -126,6 +151,8 @@ function formatMessagesForOpenAI(
     CRITICAL INSTRUCTION: You must ONLY reference information that appears in the context provided below. If the context does not contain information to answer a question, you must respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
+
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
 
     For context about the student's question, here is the curriculum content:
     ${context}
@@ -138,6 +165,8 @@ function formatMessagesForOpenAI(
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
 
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
+
     For context about the student's question, here is the curriculum content:
     ${context}
 
@@ -148,6 +177,8 @@ function formatMessagesForOpenAI(
     CRITICAL INSTRUCTION: You must ONLY reference information that appears in the context provided below. If the context does not contain information to answer a question, you must respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
+
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
 
     For context about the student's question, here is the curriculum content:
     ${context}
@@ -160,6 +191,8 @@ function formatMessagesForOpenAI(
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
 
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
+
     For context about the student's question, here is the curriculum content:
     ${context}
 
@@ -171,6 +204,8 @@ function formatMessagesForOpenAI(
     CRITICAL INSTRUCTION: You must ONLY reference information that appears in the context provided below. If the context does not contain information to answer a question, you must respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
+
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add historical thinking skills, essay writing tips, or exam strategies unless they appear in the provided context.
 
     SPECIAL DBQ INSTRUCTION: When discussing the DBQ (Document-Based Question) rubric, you MUST cite it VERBATIM from the provided context. If DBQ information is in the context, quote it exactly with: "Here is the exact DBQ rubric from the College Board:" followed by the complete verbatim citation.
 
