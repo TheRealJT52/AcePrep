@@ -2,8 +2,20 @@ import { CourseCard } from "@/components/ui/course-card";
 import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/lib/config";
 
 export default function CoursesPage() {
+  const getStatus = (courseCode: keyof typeof siteConfig.passwordProtection.courses) => {
+    if (siteConfig.passwordProtection.courses[courseCode]?.maintenance) {
+      return "maintenance" as const;
+    }
+    // Currently available courses
+    if (["APUSH", "APWH", "APEURO"].includes(courseCode)) {
+      return "available" as const;
+    }
+    return "coming-soon" as const;
+  };
+
   const courses = [
     {
       id: "apush",
@@ -11,7 +23,7 @@ export default function CoursesPage() {
       icon: Flag,
       bgColor: "bg-primary",
       description: "Learn about US history from pre-colonial times to the present. Our AI tutor helps with concepts, historical thinking skills, and exam prep.",
-      status: "available",
+      status: getStatus("APUSH"),
       link: "/apush-tutor"
     },
     {
@@ -20,7 +32,7 @@ export default function CoursesPage() {
       icon: Globe,
       bgColor: "bg-secondary",
       description: "Explore key concepts in world history from 1200 CE to the present. Timeline, comparisons, and contextual connections.",
-      status: "available",
+      status: getStatus("APWH"),
       link: "/apwh-tutor"
     },
     {
@@ -29,7 +41,7 @@ export default function CoursesPage() {
       icon: Crown,
       bgColor: "bg-accent",
       description: "Dive into European history from 1450 to the present. Cultural, intellectual, political, and diplomatic developments.",
-      status: "available",
+      status: getStatus("APEURO"),
       link: "/apeuro-tutor"
     },
     {
@@ -38,7 +50,7 @@ export default function CoursesPage() {
       icon: Leaf,
       bgColor: "bg-green-600",
       description: "Explore environmental issues, renewable energy, pollution, and ecosystems. Prepare for the AP exam with our specialized AI tutor.",
-      status: "unavailable",
+      status: getStatus("APES"),
       link: "/apes-tutor"
     },
     {
@@ -47,7 +59,7 @@ export default function CoursesPage() {
       icon: LineChart,
       bgColor: "bg-blue-600",
       description: "Master economic principles, fiscal and monetary policy, and economic indicators. Ideal for AP exam preparation.",
-      status: "unavailable",
+      status: getStatus("APMACRO"),
       link: "/apmacro-tutor"
     },
     {
@@ -56,7 +68,7 @@ export default function CoursesPage() {
       icon: BarChart3,
       bgColor: "bg-purple-600",
       description: "Study market structures, firm behavior, and consumer choice with our AI tutor. Perfect for mastering microeconomic concepts.",
-      status: "unavailable",
+      status: getStatus("APMICRO"),
       link: "/apmicro-tutor"
     },
     {
@@ -65,7 +77,7 @@ export default function CoursesPage() {
       icon: Landmark,
       bgColor: "bg-red-600",
       description: "Understand the U.S. political system, constitutional foundations, and civil liberties with our comprehensive tutor.",
-      status: "unavailable",
+      status: getStatus("APGOV"),
       link: "/apgov-tutor"
     }
   ];

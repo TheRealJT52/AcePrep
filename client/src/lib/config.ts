@@ -16,5 +16,22 @@ export const siteConfig = {
     showSecondaryMessage: true,
     // Secondary message text
     secondaryMessage: "Explore history with our intelligent AI tutors.",
+  },
+  
+  // Password protection settings
+  passwordProtection: {
+    // Master password for accessing maintenance-mode courses
+    masterPassword: "aceprep2024",
+    
+    // Course-specific settings - set maintenance: true to password protect
+    courses: {
+      APUSH: { maintenance: false },
+      APWH: { maintenance: false },
+      APEURO: { maintenance: false },
+      APES: { maintenance: true },
+      APMACRO: { maintenance: true },
+      APMICRO: { maintenance: true },
+      APGOV: { maintenance: true },
+    }
   }
 };

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, CalendarClock, Sparkles } from "lucide-react";
+import { ChevronRight, CalendarClock, Sparkles, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -10,7 +10,7 @@ interface CourseCardProps {
   icon: LucideIcon;
   bgColor: string;
   description: string;
-  status: "available" | "coming-soon";
+  status: "available" | "coming-soon" | "maintenance";
   link?: string;
 }
 
@@ -42,6 +42,11 @@ export function CourseCard({
               <Sparkles className="h-3 w-3" />
               <span>Available</span>
             </div>
+          ) : status === "maintenance" ? (
+             <div className="flex items-center gap-1">
+              <Wrench className="h-3 w-3" />
+              <span>Under Maintenance</span>
+            </div>
           ) : (
             <div className="flex items-center gap-1">
               <CalendarClock className="h-3 w-3" />
@@ -50,11 +55,11 @@ export function CourseCard({
           )}
         </Badge>
       </div>
-      
+
       <CardContent className="p-6">
         <p className="text-neutral-400 mb-4">{description}</p>
       </CardContent>
-      
+
       <CardFooter className="p-6 pt-0">
         {status === "available" ? (
           <Button 

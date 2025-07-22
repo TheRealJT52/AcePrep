@@ -1,17 +1,20 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, GraduationCap, Bot, Leaf, ChevronLeft } from "lucide-react";
+import { Send, Sparkles, GraduationCap, Bot, History, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChatMessage } from "@/components/ui/chat-message";
 import { TopicPill } from "@/components/ui/topic-pill";
+import { PasswordDialog } from "@/components/ui/password-dialog";
 import { useChat } from "@/hooks/use-chat";
+import { usePasswordProtection } from "@/hooks/use-password-protection";
 import { Link } from "wouter";
 
 export default function APEScienceTutorPage() {
   const [inputValue, setInputValue] = useState("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const { messages, sendMessage, isLoading } = useChat("APES");
+  const { isPasswordProtected, openPasswordDialog } = usePasswordProtection("APES");
 
   const suggestedTopics = [
     "Earth Systems",
@@ -45,12 +48,22 @@ export default function APEScienceTutorPage() {
     }
   }, [messages]);
 
+  if (isPasswordProtected) {
+    return (
+      <PasswordDialog
+        isOpen={isPasswordProtected}
+        onClose={openPasswordDialog}
+        courseName="APES"
+      />
+    );
+  }
+
   return (
     <section className="py-12 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-40 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-50"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <Button variant="ghost" size="sm" asChild className="mb-6 gap-2">
@@ -59,21 +72,21 @@ export default function APEScienceTutorPage() {
               Back to Courses
             </Link>
           </Button>
-          
+
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
             <Bot className="h-4 w-4 mr-2" />
             <span className="text-sm font-medium">AI-Powered Learning</span>
           </div>
-          
+
           <h1 className="text-4xl font-bold mb-4">
             <span className="text-primary glow-primary">AP Environmental Science</span> AI Tutor
           </h1>
-          
+
           <p className="text-neutral-400 max-w-3xl mx-auto">
             Ask questions about any AP Environmental Science topic and get accurate, contextual answers based on the official College Board Course and Exam Description.
           </p>
         </div>
-        
+
         {/* Tutor Interface */}
         <div className="max-w-4xl mx-auto">
           <Card className="border border-neutral-200/20 shadow-xl shadow-primary/5 bg-neutral-100/20 backdrop-blur-sm overflow-hidden">
@@ -87,7 +100,7 @@ export default function APEScienceTutorPage() {
                 <p className="text-xs text-white/80">Powered by Groq AI</p>
               </div>
             </div>
-            
+
             {/* Chat messages container */}
             <div 
               ref={chatContainerRef}
@@ -100,7 +113,7 @@ export default function APEScienceTutorPage() {
                   role={message.role}
                 />
               ))}
-              
+
               {isLoading && (
                 <div className="flex mb-4">
                   <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
@@ -116,7 +129,7 @@ export default function APEScienceTutorPage() {
                 </div>
               )}
             </div>
-            
+
             {/* Chat input */}
             <div className="border-t border-neutral-200/20 p-4 bg-neutral-100/50">
               <form onSubmit={handleSubmit} className="flex">
@@ -137,7 +150,7 @@ export default function APEScienceTutorPage() {
               </form>
             </div>
           </Card>
-          
+
           {/* Topic suggestions */}
           <div className="mt-8">
             <h4 className="text-lg font-medium text-neutral-400 mb-4 flex items-center">
