@@ -13,10 +13,18 @@ import { usePasswordProtection } from "@/hooks/use-password-protection";
 export default function APBioTutorPage() {
   const [input, setInput] = useState("");
   const { messages, sendMessage, isLoading } = useChat("APBIO");
-  const { isUnlocked, PasswordDialog } = usePasswordProtection("APBIO");
+  const { isPasswordProtected, showPasswordDialog, setShowPasswordDialog, validatePassword } = usePasswordProtection("APBIO_PASSWORD");
 
-  if (!isUnlocked) {
-    return <PasswordDialog />;
+  // Password protection check
+  if (isPasswordProtected && !showPasswordDialog) {
+    return (
+      <PasswordDialog
+        isOpen={true}
+        onClose={() => setShowPasswordDialog(false)}
+        onSuccess={() => setShowPasswordDialog(false)}
+        courseName="AP Biology"
+      />
+    );
   }
 
   const handleSend = async () => {
