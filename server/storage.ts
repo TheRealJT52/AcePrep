@@ -142,7 +142,8 @@ export class MemStorage implements IStorage {
       .filter(content => 
         content.course === course && 
         (content.title.toLowerCase().includes(lowercaseQuery) || 
-         content.content.toLowerCase().includes(lowercaseQuery))
+         content.content.toLowerCase().includes(lowercaseQuery) ||
+         content.topic?.toLowerCase().includes(lowercaseQuery))
       );
   }
 }
