@@ -156,8 +156,6 @@ export class MemStorage implements IStorage {
       searchTerms = searchTerms.replace(pattern, '').trim();
     }
     
-    console.log(`Searching for "${query}" -> extracted terms: "${searchTerms}" in course "${course}"`);
-    
     const allContent = Array.from(this.apContent.values());
     const courseContent = allContent.filter(content => content.course === course);
     
@@ -166,17 +164,8 @@ export class MemStorage implements IStorage {
       const contentMatch = content.content.toLowerCase().includes(searchTerms);
       const topicMatch = content.topic?.toLowerCase().includes(searchTerms);
       
-      if (titleMatch || contentMatch || topicMatch) {
-        console.log(`Match found in: ${content.title}`);
-        console.log(`  Title match: ${titleMatch}`);
-        console.log(`  Content match: ${contentMatch}`);
-        console.log(`  Topic match: ${topicMatch}`);
-      }
-      
       return titleMatch || contentMatch || topicMatch;
     });
-    
-    console.log(`Search results: ${results.length}`);
     return results;
   }
 }
