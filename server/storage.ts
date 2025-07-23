@@ -138,37 +138,39 @@ export class MemStorage implements IStorage {
     // In a real implementation, we would use vector similarity search
     // Here we're just doing a simple text search
     const lowercaseQuery = query.toLowerCase();
-    console.log(`Searching for "${query}" in course "${course}"`);
     
-    const allContent = Array.from(this.apContent.values());
-    console.log(`Total content items: ${allContent.length}`);
+    // Extract key terms from common question patterns
+    let searchTerms = lowercaseQuery;
     
-    const courseContent = allContent.filter(content => content.course === course);
-    console.log(`Content items for ${course}: ${courseContent.length}`);
+    // Remove common question words and phrases
+    const questionPatterns = [
+      /^what is (the )?/,
+      /^tell me about (the )?/,
+      /^explain (the )?/,
+      /^describe (the )?/,
+      /^what are (the )?/,
+      /\?$/
+    ];
     
-    // Debug: Show what APBIO content we actually have
-    if (course === "APBIO") {
-      courseContent.forEach((content, index) => {
-        console.log(`APBIO Content ${index + 1}:`);
-        console.log(`  Title: ${content.title}`);
-        console.log(`  Topic: ${content.topic}`);
-        console.log(`  Content preview: ${content.content.substring(0, 100)}...`);
-      });
+    for (const pattern of questionPatterns) {
+      searchTerms = searchTerms.replace(pattern, '').trim();
     }
     
+    console.log(`Searching for "${query}" -> extracted terms: "${searchTerms}" in course "${course}"`);
+    
+    const allContent = Array.from(this.apContent.values());
+    const courseContent = allContent.filter(content => content.course === course);
+    
     const results = courseContent.filter(content => {
-      const titleMatch = content.title.toLowerCase().includes(lowercaseQuery);
-      const contentMatch = content.content.toLowerCase().includes(lowercaseQuery);
-      const topicMatch = content.topic?.toLowerCase().includes(lowercaseQuery);
+      const titleMatch = content.title.toLowerCase().includes(searchTerms);
+      const contentMatch = content.content.toLowerCase().includes(searchTerms);
+      const topicMatch = content.topic?.toLowerCase().includes(searchTerms);
       
       if (titleMatch || contentMatch || topicMatch) {
         console.log(`Match found in: ${content.title}`);
         console.log(`  Title match: ${titleMatch}`);
         console.log(`  Content match: ${contentMatch}`);
         console.log(`  Topic match: ${topicMatch}`);
-        if (topicMatch) {
-          console.log(`  Topic: ${content.topic}`);
-        }
       }
       
       return titleMatch || contentMatch || topicMatch;
