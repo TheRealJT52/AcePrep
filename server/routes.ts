@@ -61,13 +61,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
 async function getRelevantCourseContent(message: string, course: string): Promise<string> {
   const messageLower = message.toLowerCase();
   
-  // Extract unit/period number if present (e.g., "unit 1", "period 4", "unit one", etc.)
-  const unitMatch = messageLower.match(/(unit|period)\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)/);
+  // Check for specific unit overview keywords first
+  const hasOverviewKeywords = messageLower.includes('overview') || 
+                             messageLower.includes('summary') || 
+                             messageLower.includes('tell me about') ||
+                             messageLower.includes('about');
   
-  // Check if user is requesting unit/period content - only if we found a unit number
-  const isUnitOverviewRequest = unitMatch && 
-    (messageLower.includes('overview') || messageLower.includes('summary') || 
-     messageLower.includes('tell me about') || messageLower.includes('about'));
+  // Extract unit/period patterns (single unit or range like "units 1-3")
+  const unitMatch = messageLower.match(/(units?|periods?)\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)(?:-(\d+|one|two|three|four|five|six|seven|eight|nine|ten))?/);
+  
+  // Only activate unit search if we have BOTH keywords AND unit patterns
+  const isUnitOverviewRequest = hasOverviewKeywords && unitMatch;
   
   // Convert written numbers to digits
   const numberMap: { [key: string]: string } = {
@@ -76,46 +80,49 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   };
   
   if (isUnitOverviewRequest && unitMatch) {
-    const rawUnitNumber = unitMatch[2]; // Second capture group is the number
-    const unitNumber = numberMap[rawUnitNumber] || rawUnitNumber; // Convert written numbers to digits
+    const startUnit = unitMatch[2]; // Starting unit number
+    const endUnit = unitMatch[3]; // Ending unit number (for ranges like "units 1-3")
     
-    // Search for all content related to the specific unit - handle various unit formats
+    // Convert written numbers to digits
+    const convertNumber = (num: string) => numberMap[num] || num;
+    const startNum = convertNumber(startUnit);
+    const endNum = endUnit ? convertNumber(endUnit) : startNum;
+    
+    // Generate array of unit numbers to search for
+    const unitsToSearch: string[] = [];
+    for (let i = parseInt(startNum); i <= parseInt(endNum); i++) {
+      unitsToSearch.push(i.toString());
+    }
+    
+    // Search for all content related to the specified unit(s)
     const allContent = await storage.getApContentByCourse(course);
     const unitResults = allContent.filter(content => {
       const contentLower = content.content.toLowerCase();
       const titleLower = content.title.toLowerCase();
       const periodLower = content.period?.toLowerCase() || '';
       
-      // Check for various unit/period formats: "unit 1", "Unit 1", "period 1", "Period 1", etc.
-      const unitPatterns = [
-        `unit ${unitNumber}`,
-        `unit${unitNumber}`, 
-        `unit: ${unitNumber}`,
-        `unit  ${unitNumber}`, // extra space
-        `unit ${rawUnitNumber}`, // original format (in case it was written as "one", "two", etc.)
-        `unit${rawUnitNumber}`,
-        `unit: ${rawUnitNumber}`,
-        `unit  ${rawUnitNumber}`,
-        // Also search for "Period" (used by APUSH and other courses)
-        `period ${unitNumber}`,
-        `period${unitNumber}`,
-        `period: ${unitNumber}`,
-        `period  ${unitNumber}`,
-        `period ${rawUnitNumber}`,
-        `period${rawUnitNumber}`,
-        `period: ${rawUnitNumber}`,
-        `period  ${rawUnitNumber}`
-      ];
-      
-      return unitPatterns.some(pattern => 
-        contentLower.includes(pattern) || 
-        titleLower.includes(pattern) ||
-        periodLower.includes(pattern)
-      );
+      return unitsToSearch.some(unitNum => {
+        const unitPatterns = [
+          `unit ${unitNum}`,
+          `unit${unitNum}`, 
+          `unit: ${unitNum}`,
+          `unit  ${unitNum}`,
+          `period ${unitNum}`,
+          `period${unitNum}`,
+          `period: ${unitNum}`,
+          `period  ${unitNum}`
+        ];
+        
+        return unitPatterns.some(pattern => 
+          contentLower.includes(pattern) || 
+          titleLower.includes(pattern) ||
+          periodLower.includes(pattern)
+        );
+      });
     });
     
     if (unitResults.length > 0) {
-      // Return ALL content for the unit
+      // Return ALL content for the unit(s)
       return unitResults.map(content => {
         return `TOPIC: ${content.title}\n${content.content}`;
       }).join("\n\n");

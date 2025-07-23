@@ -40,7 +40,9 @@ The platform currently supports eight AP courses:
 ## Recent Changes
 
 **January 22, 2025:**
-- ✅ **Enhanced unit/period overview detection** - now works across ALL courses with "unit" OR "period" keywords
+- ✅ **Precision unit search activation** - only triggers with BOTH keywords (overview/summary/about) AND unit patterns
+- ✅ **Multi-unit range support** - handles "units 1-3" for comprehensive multi-unit summaries
+- ✅ **Enhanced unit detection** - works across ALL courses with "unit" OR "period" keywords
 - ✅ **Universal search patterns** - handles "Unit 1", "unit 1", "Period 4", "unit one", etc. for all AP courses
 - ✅ **APUSH compatibility fixed** - searches both "unit" and "period" patterns to match APUSH data structure
 - ✅ **Written number support** - converts "one", "two", "three" to digits automatically
