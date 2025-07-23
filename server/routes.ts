@@ -238,6 +238,13 @@ function formatMessagesForOpenAI(
 
     DO NOT use any general knowledge, outside information, or synthesize beyond what is explicitly stated in the context.
 
+    RESPONSE STRUCTURE GUIDELINES:
+    - When answering specific biological term questions, provide a comprehensive response using ALL relevant information from the context
+    - Include the definition, functions, and any related processes mentioned in the same content section
+    - Connect the term to related concepts that appear in the same curriculum material
+    - Structure your response with clear organization: definition first, then functions, then relationships to other concepts
+    - Use all available details from the context to provide the most complete explanation possible
+
     SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
 
     For context about the student's question, here is the curriculum content:
