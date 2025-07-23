@@ -61,8 +61,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 async function getRelevantCourseContent(message: string, course: string): Promise<string> {
   const messageLower = message.toLowerCase();
   
-  // Check if user is requesting unit/period overview or summary
-  const isUnitOverviewRequest = (messageLower.includes('overview') || messageLower.includes('summary')) && 
+  // Check if user is requesting unit/period content (overview, summary, or general "tell me about")
+  const isUnitOverviewRequest = (messageLower.includes('overview') || messageLower.includes('summary') || 
+                               messageLower.includes('tell me about') || messageLower.includes('about')) && 
                                (messageLower.includes('unit') || messageLower.includes('period'));
   
   // Extract unit/period number if present (e.g., "unit 1", "period 4", "unit one", etc.)
