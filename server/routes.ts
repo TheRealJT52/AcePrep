@@ -61,13 +61,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 async function getRelevantCourseContent(message: string, course: string): Promise<string> {
   const messageLower = message.toLowerCase();
   
-  // Check if user is requesting unit/period content (overview, summary, or general "tell me about")
-  const isUnitOverviewRequest = (messageLower.includes('overview') || messageLower.includes('summary') || 
-                               messageLower.includes('tell me about') || messageLower.includes('about')) && 
-                               (messageLower.includes('unit') || messageLower.includes('period'));
-  
   // Extract unit/period number if present (e.g., "unit 1", "period 4", "unit one", etc.)
   const unitMatch = messageLower.match(/(unit|period)\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)/);
+  
+  // Check if user is requesting unit/period content - only if we found a unit number
+  const isUnitOverviewRequest = unitMatch && 
+    (messageLower.includes('overview') || messageLower.includes('summary') || 
+     messageLower.includes('tell me about') || messageLower.includes('about'));
   
   // Convert written numbers to digits
   const numberMap: { [key: string]: string } = {
