@@ -138,13 +138,34 @@ export class MemStorage implements IStorage {
     // In a real implementation, we would use vector similarity search
     // Here we're just doing a simple text search
     const lowercaseQuery = query.toLowerCase();
-    return Array.from(this.apContent.values())
-      .filter(content => 
-        content.course === course && 
-        (content.title.toLowerCase().includes(lowercaseQuery) || 
-         content.content.toLowerCase().includes(lowercaseQuery) ||
-         content.topic?.toLowerCase().includes(lowercaseQuery))
-      );
+    console.log(`Searching for "${query}" in course "${course}"`);
+    
+    const allContent = Array.from(this.apContent.values());
+    console.log(`Total content items: ${allContent.length}`);
+    
+    const courseContent = allContent.filter(content => content.course === course);
+    console.log(`Content items for ${course}: ${courseContent.length}`);
+    
+    const results = courseContent.filter(content => {
+      const titleMatch = content.title.toLowerCase().includes(lowercaseQuery);
+      const contentMatch = content.content.toLowerCase().includes(lowercaseQuery);
+      const topicMatch = content.topic?.toLowerCase().includes(lowercaseQuery);
+      
+      if (titleMatch || contentMatch || topicMatch) {
+        console.log(`Match found in: ${content.title}`);
+        console.log(`  Title match: ${titleMatch}`);
+        console.log(`  Content match: ${contentMatch}`);
+        console.log(`  Topic match: ${topicMatch}`);
+        if (topicMatch) {
+          console.log(`  Topic: ${content.topic}`);
+        }
+      }
+      
+      return titleMatch || contentMatch || topicMatch;
+    });
+    
+    console.log(`Search results: ${results.length}`);
+    return results;
   }
 }
 
