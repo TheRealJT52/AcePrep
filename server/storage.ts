@@ -146,6 +146,16 @@ export class MemStorage implements IStorage {
     const courseContent = allContent.filter(content => content.course === course);
     console.log(`Content items for ${course}: ${courseContent.length}`);
     
+    // Debug: Show what APBIO content we actually have
+    if (course === "APBIO") {
+      courseContent.forEach((content, index) => {
+        console.log(`APBIO Content ${index + 1}:`);
+        console.log(`  Title: ${content.title}`);
+        console.log(`  Topic: ${content.topic}`);
+        console.log(`  Content preview: ${content.content.substring(0, 100)}...`);
+      });
+    }
+    
     const results = courseContent.filter(content => {
       const titleMatch = content.title.toLowerCase().includes(lowercaseQuery);
       const contentMatch = content.content.toLowerCase().includes(lowercaseQuery);
