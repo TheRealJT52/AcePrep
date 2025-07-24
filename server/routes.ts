@@ -129,17 +129,27 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     }
   }
   
-  // Regular search - now returns ALL results with no limit
+  // Regular search - now returns ALL results with no limit and includes unit attribution
   const results = await storage.searchApContent(course, message);
 
   if (results.length === 0) {
     return "";
   }
 
-  // Return ALL matching content with no limit
-  return results.map(content => {
+  // Collect unique units from search results
+  const unitsFound = [...new Set(results.map(content => `${content.period}: ${content.title}`))];
+  
+  // Return ALL matching content with unit attribution
+  const contentText = results.map(content => {
     return `TOPIC: ${content.title}\n${content.content}`;
   }).join("\n\n");
+  
+  // Add unit attribution at the end
+  const unitAttribution = unitsFound.length > 0 
+    ? `\n\nThis content is found in: ${unitsFound.join(", ")}`
+    : "";
+    
+  return contentText + unitAttribution;
 }
 
 // Format messages for OpenAI API
@@ -244,6 +254,7 @@ function formatMessagesForOpenAI(
     - Connect the term to related concepts that appear in the same curriculum material
     - Structure your response with clear organization: definition first, then functions, then relationships to other concepts
     - Use all available details from the context to provide the most complete explanation possible
+    - When unit attribution appears at the end of the context (format: "This content is found in: Unit X: Name"), include this information at the end of your response to help students understand which units contain the topic
 
     SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add study tips, exam strategies, or additional explanations unless they appear in the provided context.
 
