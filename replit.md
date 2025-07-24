@@ -60,6 +60,8 @@ The platform currently supports eight AP courses:
 - ✅ **Fixed APGOV data structure issue** - moved content from topic field to content field in first entry
 - ✅ **Fixed trustee representation search** - APGOV now properly finds and explains trustee vs delegate models
 - ✅ **Added backward compatibility** - API accepts both "course" and "courseType" parameters
+- ✅ **Fixed APUSH DBQ rubric functionality** - special handling ensures complete DBQ rubric content is delivered
+- ✅ **DBQ queries now work perfectly** - APUSH tutor provides verbatim College Board DBQ rubric on request
 
 **Previous updates:**
 - Fixed critical DBQ rubric accuracy by enhancing system prompts

@@ -135,12 +135,39 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   console.log(`About to search for "${message}" in course: ${course}`);
   const results = await storage.searchApContent(course, message);
   console.log(`Search returned ${results.length} results`);
+  
+
 
   if (results.length === 0) {
     return "";
   }
 
-  // Dynamically add results until approaching token limit (roughly 4,500 chars = ~1,125 tokens)
+  // Special handling for DBQ queries - prioritize DBQ Rubric content
+  if (message.toLowerCase().includes('dbq')) {
+    // Find and prioritize DBQ Rubric content
+    const dbqRubricResult = results.find(result => {
+      const titleLower = result.title.toLowerCase();
+      return titleLower.includes('dbq rubric');
+    });
+    if (dbqRubricResult) {
+      // Return ONLY the DBQ Rubric for DBQ rubric queries
+      const selectedResults = [dbqRubricResult];
+      const unitsList = selectedResults.map(content => `${content.period}: ${content.title}`);
+      const unitsFound = Array.from(new Set(unitsList));
+      
+      const contentText = selectedResults.map(content => {
+        return `TOPIC: ${content.title}\n${content.content}`;
+      }).join("\n\n");
+      
+      const unitAttribution = unitsFound.length > 0 
+        ? `\n\nThis content is found in: ${unitsFound.join(", ")}`
+        : "";
+        
+      return contentText + unitAttribution;
+    }
+  }
+  
+  // Regular handling for non-DBQ queries or when DBQ Rubric not found
   const maxChars = 4500; // Conservative estimate to stay under 6,000 tokens
   let currentLength = 0;
   const selectedResults = [];
@@ -173,7 +200,11 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     ? `\n\n(${results.length - selectedResults.length} additional related topics available - ask more specific questions for additional details)`
     : "";
     
-  return contentText + unitAttribution + moreResultsNote;
+  const finalContent = contentText + unitAttribution + moreResultsNote;
+  
+
+    
+  return finalContent;
 }
 
 // Format messages for OpenAI API
