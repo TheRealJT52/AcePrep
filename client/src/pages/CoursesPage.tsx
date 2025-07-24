@@ -23,7 +23,7 @@ export default function CoursesPage() {
     }
     
     // Currently available courses
-    if (["APUSH", "APWH", "APEURO"].includes(courseCode)) {
+    if (["APUSH", "APWH", "APEURO", "APBIO"].includes(courseCode)) {
       return "available" as const;
     }
     return "coming-soon" as const;
