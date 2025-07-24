@@ -156,15 +156,29 @@ export class MemStorage implements IStorage {
       searchTerms = searchTerms.replace(pattern, '').trim();
     }
     
+    // Split compound queries into individual search terms
+    // Handle "and", "or", commas, and other separators
+    const individualTerms = searchTerms
+      .split(/\s+(?:and|or|,)\s+|\s*,\s*|\s+/)
+      .map(term => term.trim())
+      .filter(term => term.length > 2); // Filter out very short terms
+    
+    console.log(`Original query: "${query}" -> Search terms: ${JSON.stringify(individualTerms)}`);
+    
     const allContent = Array.from(this.apContent.values());
     const courseContent = allContent.filter(content => content.course === course);
     
     const results = courseContent.filter(content => {
-      const titleMatch = content.title.toLowerCase().includes(searchTerms);
-      const contentMatch = content.content.toLowerCase().includes(searchTerms);
-      const topicMatch = content.topic?.toLowerCase().includes(searchTerms);
+      const titleLower = content.title.toLowerCase();
+      const contentLower = content.content.toLowerCase();
+      const topicLower = content.topic?.toLowerCase() || '';
       
-      return titleMatch || contentMatch || topicMatch;
+      // Check if any of the individual search terms match
+      return individualTerms.some(term => 
+        titleLower.includes(term) || 
+        contentLower.includes(term) || 
+        topicLower.includes(term)
+      );
     });
     return results;
   }
