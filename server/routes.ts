@@ -256,7 +256,7 @@ function formatMessagesForOpenAI(
     - You may expand upon the provided curriculum content with relevant explanations, examples, or connections that enhance understanding
     - If the context is empty or doesn't contain relevant information, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
-    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present the curriculum materials as the core content, but you may add helpful explanations or context to enhance student understanding.
+    SPECIAL UNIT OVERVIEW INSTRUCTION: When providing unit overviews or summaries, present ONLY the pure content from the curriculum materials. Do not add explanations, examples, or additional context for unit summaries.
 
     EXPANSION GUIDELINES:
     - Only expand when you have relevant curriculum content as a foundation
