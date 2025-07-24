@@ -118,15 +118,6 @@ export default function CoursesPage() {
       description: "Explore biological concepts from molecular to ecosystem levels. Master cell biology, genetics, evolution, and ecology.",
       status: getStatus("APBIO"),
       link: "/apbio-tutor"
-    },
-    {
-      id: "appsych",
-      title: "AP Psychology",
-      icon: "brain",
-      bgColor: "bg-pink-600",
-      description: "Study psychological concepts, theories, and research methods. Ideal for AP exam preparation.",
-      status: getStatus("APPSYCH"),
-      link: "/appsych-tutor"
     }
   ];
 

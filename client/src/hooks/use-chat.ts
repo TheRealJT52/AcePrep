@@ -24,8 +24,6 @@ export function useChat(course: CourseType = "APUSH") {
         return "Hello! I'm your AP U.S. Government and Politics tutor. I can help you understand political concepts, governmental structures, and answer questions based on the official College Board CED. What would you like to learn about today?";
       case "APBIO":
         return "Hello! I'm your AP Biology tutor. I can help you understand key biological concepts, cellular processes, genetics, evolution, and answer questions based on the official College Board CED. What would you like to learn about today?";
-      case "APPSYCH":
-        return "Hello! I'm your AP Psychology tutor. I can help you understand psychological concepts, theories, research methods, and answer questions based on the official College Board CED. What would you like to learn about today?";
       case "APUSH":
       default:
         return "Hello! I'm your AP U.S. History tutor. I can help you understand key concepts, historical events, and answer questions based on the official College Board CED. What would you like to learn about today?";
