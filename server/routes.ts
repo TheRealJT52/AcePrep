@@ -136,20 +136,27 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     return "";
   }
 
-  // Limit to top 2 results and truncate content to prevent token overflow
-  const limitedResults = results.slice(0, 2);
+  // Dynamically add results until approaching token limit (roughly 4,500 chars = ~1,125 tokens)
+  const maxChars = 4500; // Conservative estimate to stay under 6,000 tokens
+  let currentLength = 0;
+  const selectedResults = [];
   
-  // Collect unique units from search results
-  const unitsList = limitedResults.map(content => `${content.period}: ${content.title}`);
+  for (const result of results) {
+    const resultText = `TOPIC: ${result.title}\n${result.content}\n\n`;
+    if (currentLength + resultText.length > maxChars && selectedResults.length > 0) {
+      break; // Stop adding if we'd exceed limit (but ensure at least 1 result)
+    }
+    selectedResults.push(result);
+    currentLength += resultText.length;
+  }
+  
+  // Collect unique units from selected results
+  const unitsList = selectedResults.map(content => `${content.period}: ${content.title}`);
   const unitsFound = Array.from(new Set(unitsList));
   
-  // Return limited and truncated content with unit attribution
-  const contentText = limitedResults.map(content => {
-    // Truncate content to max 800 characters to stay within token limits
-    const truncatedContent = content.content.length > 800 
-      ? content.content.substring(0, 800) + "..."
-      : content.content;
-    return `TOPIC: ${content.title}\n${truncatedContent}`;
+  // Return dynamically sized content with unit attribution
+  const contentText = selectedResults.map(content => {
+    return `TOPIC: ${content.title}\n${content.content}`;
   }).join("\n\n");
   
   // Add unit attribution at the end
@@ -158,8 +165,8 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     : "";
     
   // Add note if more results were available
-  const moreResultsNote = results.length > 2 
-    ? `\n\n(${results.length - 2} additional related topics available - ask more specific questions for additional details)`
+  const moreResultsNote = results.length > selectedResults.length 
+    ? `\n\n(${results.length - selectedResults.length} additional related topics available - ask more specific questions for additional details)`
     : "";
     
   return contentText + unitAttribution + moreResultsNote;
