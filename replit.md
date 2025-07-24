@@ -57,6 +57,9 @@ The platform currently supports eight AP courses:
 - ✅ Added APBIO CourseType support across frontend and backend
 - ✅ Added APBIO system prompt and welcome message
 - ✅ Resolved all LSP diagnostics and compilation errors
+- ✅ **Fixed APGOV data structure issue** - moved content from topic field to content field in first entry
+- ✅ **Fixed trustee representation search** - APGOV now properly finds and explains trustee vs delegate models
+- ✅ **Added backward compatibility** - API accepts both "course" and "courseType" parameters
 
 **Previous updates:**
 - Fixed critical DBQ rubric accuracy by enhancing system prompts

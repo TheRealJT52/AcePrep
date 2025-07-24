@@ -12,7 +12,8 @@ const chatRequestSchema = z.object({
     role: z.enum(["user", "assistant", "system"]),
     content: z.string()
   })),
-  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO"]).default("APUSH")
+  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO"]).optional(),
+  courseType: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO"]).optional()
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -28,13 +29,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const { message, history, course } = result.data;
+      const { message, history, course, courseType } = result.data;
+      const actualCourse = course || courseType || "APUSH";
 
       // Get contextually relevant information based on course
-      const relevantContent = await getRelevantCourseContent(message, course);
+      const relevantContent = await getRelevantCourseContent(message, actualCourse);
 
       // Format messages for OpenAI
-      const messages = formatMessagesForOpenAI(message, history, relevantContent, course);
+      const messages = formatMessagesForOpenAI(message, history, relevantContent, actualCourse);
 
       // Get response from Groq
       const aiResponse = await groq.chat.completions.create({
@@ -130,7 +132,9 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   }
   
   // Regular search - limit results to prevent token overflow
+  console.log(`About to search for "${message}" in course: ${course}`);
   const results = await storage.searchApContent(course, message);
+  console.log(`Search returned ${results.length} results`);
 
   if (results.length === 0) {
     return "";
