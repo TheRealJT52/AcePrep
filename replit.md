@@ -62,6 +62,9 @@ The platform currently supports eight AP courses:
 - ✅ **Added backward compatibility** - API accepts both "course" and "courseType" parameters
 - ✅ **Fixed APUSH DBQ rubric functionality** - special handling ensures complete DBQ rubric content is delivered
 - ✅ **DBQ queries now work perfectly** - APUSH tutor provides verbatim College Board DBQ rubric on request
+- ✅ **Updated ALL course system prompts** - replaced rigid robotic prompts with flexible natural tutoring
+- ✅ **Enhanced quiz functionality** - all tutors now provide proper multiple choice questions with encouraging feedback
+- ✅ **Improved conversation flow** - tutors can handle follow-up questions and general interactions naturally
 
 **Previous updates:**
 - Fixed critical DBQ rubric accuracy by enhancing system prompts
