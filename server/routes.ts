@@ -129,19 +129,22 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     }
   }
   
-  // Regular search - now returns ALL results with no limit and includes unit attribution
+  // Regular search - limit results to prevent token overflow
   const results = await storage.searchApContent(course, message);
 
   if (results.length === 0) {
     return "";
   }
 
+  // Limit to top 3 most relevant results to prevent token overflow
+  const limitedResults = results.slice(0, 3);
+  
   // Collect unique units from search results
-  const unitsList = results.map(content => `${content.period}: ${content.title}`);
+  const unitsList = limitedResults.map(content => `${content.period}: ${content.title}`);
   const unitsFound = Array.from(new Set(unitsList));
   
-  // Return ALL matching content with unit attribution
-  const contentText = results.map(content => {
+  // Return limited content with unit attribution
+  const contentText = limitedResults.map(content => {
     return `TOPIC: ${content.title}\n${content.content}`;
   }).join("\n\n");
   
@@ -150,7 +153,12 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     ? `\n\nThis content is found in: ${unitsFound.join(", ")}`
     : "";
     
-  return contentText + unitAttribution;
+  // Add note if more results were available
+  const moreResultsNote = results.length > 3 
+    ? `\n\n(${results.length - 3} additional related topics available - ask more specific questions for additional details)`
+    : "";
+    
+  return contentText + unitAttribution + moreResultsNote;
 }
 
 // Format messages for OpenAI API
