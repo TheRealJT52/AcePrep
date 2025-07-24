@@ -137,7 +137,8 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   }
 
   // Collect unique units from search results
-  const unitsFound = [...new Set(results.map(content => `${content.period}: ${content.title}`))];
+  const unitsList = results.map(content => `${content.period}: ${content.title}`);
+  const unitsFound = Array.from(new Set(unitsList));
   
   // Return ALL matching content with unit attribution
   const contentText = results.map(content => {
