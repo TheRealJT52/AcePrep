@@ -31,7 +31,7 @@ export const siteConfig = {
       APES: { maintenance: true, development: false },
       APMACRO: { maintenance: true, development: false },
       APMICRO: { maintenance: true, development: false },
-      APGOV: { maintenance: true, development: false },
+      APGOV: { maintenance: true, development: true },
       APBIO: { maintenance: false, development: false },
     }
   }
