@@ -9,13 +9,13 @@ export const siteConfig = {
   // Announcement configuration
   announcement: {
     // Text to display in the announcement banner
-    message: "The AP World AND European History Tutors are now available!",
+    message: "The AP Bio Tutor is now available!",
     // Link destination for the "Try it now" button
-    link: "/courses",
+    link: "/apbio-tutor",
     // Whether to show the secondary message on non-mobile
     showSecondaryMessage: true,
     // Secondary message text
-    secondaryMessage: "Explore history with our intelligent AI tutors.",
+    secondaryMessage: "Explore biology with our intelligent AI tutor.",
   },
   
   // Password protection settings
@@ -32,7 +32,7 @@ export const siteConfig = {
       APMACRO: { maintenance: true, development: false },
       APMICRO: { maintenance: true, development: false },
       APGOV: { maintenance: true, development: false },
-      APBIO: { maintenance: false, development: true },
+      APBIO: { maintenance: false, development: false },
     }
   }
 };
