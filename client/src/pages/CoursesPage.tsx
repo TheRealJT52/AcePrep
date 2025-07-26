@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna } from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna, Brain-cog} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
@@ -23,7 +23,7 @@ export default function CoursesPage() {
     }
     
     // Currently available courses
-    if (["APUSH", "APWH", "APEURO", "APBIO"].includes(courseCode)) {
+    if (["APUSH", "APWH", "APEURO", "APBIO, APPSYCH"].includes(courseCode)) {
       return "available" as const;
     }
     return "coming-soon" as const;
@@ -118,6 +118,15 @@ export default function CoursesPage() {
       description: "Explore biological concepts from molecular to ecosystem levels. Master cell biology, genetics, evolution, and ecology.",
       status: getStatus("APBIO"),
       link: "/apbio-tutor"
+    },
+    {
+      id: "appsych",
+      title: "AP Psychology",
+      icon: Brain-cog,
+      bgColor: "bg-pink-600",
+      description: "Study the science of behavior and mental processes. Ideal for AP exam preparation.",
+      status: getStatus("APPSYCH"),
+      link: "/appsych-tutor"
     }
   ];
 

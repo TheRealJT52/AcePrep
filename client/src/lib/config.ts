@@ -33,6 +33,7 @@ export const siteConfig = {
       APMICRO: { maintenance: true, development: false },
       APGOV: { maintenance: true, development: true },
       APBIO: { maintenance: false, development: false },
+      APPSYCH: { maintenance: false, development: false }
     }
   }
 };

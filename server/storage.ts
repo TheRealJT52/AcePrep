@@ -195,7 +195,7 @@ import { apmacroContent } from "./lib/apmacro-data";
 import { apmicroContent } from "./lib/apmicro-data";
 import { apgovContent } from "./lib/apgov-data";
 import { apbioContent } from "./lib/apbio-data";
-
+import { appsychContent } from "./lib/appsych-data"
 (async function initializeStorage() {
   // Add APUSH content to storage
   for (const content of apushContent) {
@@ -284,6 +284,14 @@ import { apbioContent } from "./lib/apbio-data";
       topic: content.topic
     });
   }
-  
+ for (const content of appsychContent) {
+  await storage.addApContent({
+    course: "APPSYCH",
+    title: content.title,
+    content: content.content,
+    period: content.period,
+    topic: content.topic
+  });
+} 
   console.log("Initialized storage with course content");
 })();
