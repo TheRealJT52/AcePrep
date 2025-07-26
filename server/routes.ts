@@ -18,8 +18,33 @@ const chatRequestSchema = z.object({
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
-  app.post("/api/chat", async (req: Request, res: Response) => {
+  app.post('/api/chat', async (req: Request, res: Response) => {
     try {
+      const { message, courseType, course } = req.body;
+
+      // Support both courseType and course for backward compatibility
+      const actualCourseType = courseType || course;
+
+      console.log('Chat request received:', { message, courseType, course, actualCourseType });
+
+      if (!message || !actualCourseType) {
+        console.log('Invalid request - missing required fields');
+        return res.status(400).json({ 
+          message: 'Invalid request format',
+          errors: [{ received: { message, courseType, course } }]
+        });
+      }
+
+      // Validate courseType
+      const validCourseTypes = ['APUSH', 'APGOV', 'APBIO', 'APPSYCH', 'APES', 'APEURO', 'APMACRO', 'APMICRO', 'APWH'];
+      if (!validCourseTypes.includes(actualCourseType)) {
+        console.log('Invalid course type:', actualCourseType);
+        return res.status(400).json({ 
+          message: 'Invalid course type',
+          errors: [{ received: actualCourseType, valid: validCourseTypes }]
+        });
+      }
+
       const result = chatRequestSchema.safeParse(req.body);
 
       if (!result.success) {
@@ -29,7 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const { message, history, course, courseType } = result.data;
+      const { history } = result.data;
       const actualCourse = course || courseType || "APUSH";
 
       // Get contextually relevant information based on course
@@ -62,47 +87,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
 // Helper function to get relevant course content based on the user's message and selected course
 async function getRelevantCourseContent(message: string, course: string): Promise<string> {
   const messageLower = message.toLowerCase();
-  
+
   // Check for specific unit overview keywords first
   const hasOverviewKeywords = messageLower.includes('overview') || 
                              messageLower.includes('summary') || 
                              messageLower.includes('tell me about') ||
                              messageLower.includes('about');
-  
+
   // Extract unit/period patterns (single unit or range like "units 1-3")
   const unitMatch = messageLower.match(/(units?|periods?)\s*(\d+|one|two|three|four|five|six|seven|eight|nine|ten)(?:-(\d+|one|two|three|four|five|six|seven|eight|nine|ten))?/);
-  
+
   // Only activate unit search if we have BOTH keywords AND unit patterns
   const isUnitOverviewRequest = hasOverviewKeywords && unitMatch;
-  
+
   // Convert written numbers to digits
   const numberMap: { [key: string]: string } = {
     'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5',
     'six': '6', 'seven': '7', 'eight': '8', 'nine': '9', 'ten': '10'
   };
-  
+
   if (isUnitOverviewRequest && unitMatch) {
     const startUnit = unitMatch[2]; // Starting unit number
     const endUnit = unitMatch[3]; // Ending unit number (for ranges like "units 1-3")
-    
+
     // Convert written numbers to digits
     const convertNumber = (num: string) => numberMap[num] || num;
     const startNum = convertNumber(startUnit);
     const endNum = endUnit ? convertNumber(endUnit) : startNum;
-    
+
     // Generate array of unit numbers to search for
     const unitsToSearch: string[] = [];
     for (let i = parseInt(startNum); i <= parseInt(endNum); i++) {
       unitsToSearch.push(i.toString());
     }
-    
+
     // Search for all content related to the specified unit(s)
     const allContent = await storage.getApContentByCourse(course);
     const unitResults = allContent.filter(content => {
       const contentLower = content.content.toLowerCase();
       const titleLower = content.title.toLowerCase();
       const periodLower = content.period?.toLowerCase() || '';
-      
+
       return unitsToSearch.some(unitNum => {
         const unitPatterns = [
           `unit ${unitNum}`,
@@ -114,7 +139,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
           `period: ${unitNum}`,
           `period  ${unitNum}`
         ];
-        
+
         return unitPatterns.some(pattern => 
           contentLower.includes(pattern) || 
           titleLower.includes(pattern) ||
@@ -122,7 +147,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
         );
       });
     });
-    
+
     if (unitResults.length > 0) {
       // Return ALL content for the unit(s)
       return unitResults.map(content => {
@@ -130,12 +155,12 @@ async function getRelevantCourseContent(message: string, course: string): Promis
       }).join("\n\n");
     }
   }
-  
+
   // Regular search - limit results to prevent token overflow
   console.log(`About to search for "${message}" in course: ${course}`);
   const results = await storage.searchApContent(course, message);
   console.log(`Search returned ${results.length} results`);
-  
+
 
 
   if (results.length === 0) {
@@ -154,24 +179,24 @@ async function getRelevantCourseContent(message: string, course: string): Promis
       const selectedResults = [dbqRubricResult];
       const unitsList = selectedResults.map(content => `${content.period}: ${content.title}`);
       const unitsFound = Array.from(new Set(unitsList));
-      
+
       const contentText = selectedResults.map(content => {
         return `TOPIC: ${content.title}\n${content.content}`;
       }).join("\n\n");
-      
+
       const unitAttribution = unitsFound.length > 0 
         ? `\n\nThis content is found in: ${unitsFound.join(", ")}`
         : "";
-        
+
       return contentText + unitAttribution;
     }
   }
-  
+
   // Regular handling for non-DBQ queries or when DBQ Rubric not found
   const maxChars = 4500; // Conservative estimate to stay under 6,000 tokens
   let currentLength = 0;
   const selectedResults = [];
-  
+
   for (const result of results) {
     const resultText = `TOPIC: ${result.title}\n${result.content}\n\n`;
     if (currentLength + resultText.length > maxChars && selectedResults.length > 0) {
@@ -180,30 +205,30 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     selectedResults.push(result);
     currentLength += resultText.length;
   }
-  
+
   // Collect unique units from selected results
   const unitsList = selectedResults.map(content => `${content.period}: ${content.title}`);
   const unitsFound = Array.from(new Set(unitsList));
-  
+
   // Return dynamically sized content with unit attribution
   const contentText = selectedResults.map(content => {
     return `TOPIC: ${content.title}\n${content.content}`;
   }).join("\n\n");
-  
+
   // Add unit attribution at the end
   const unitAttribution = unitsFound.length > 0 
     ? `\n\nThis content is found in: ${unitsFound.join(", ")}`
     : "";
-    
+
   // Add note if more results were available
   const moreResultsNote = results.length > selectedResults.length 
     ? `\n\n(${results.length - selectedResults.length} additional related topics available - ask more specific questions for additional details)`
     : "";
-    
-  const finalContent = contentText + unitAttribution + moreResultsNote;
-  
 
-    
+  const finalContent = contentText + unitAttribution + moreResultsNote;
+
+
+
   return finalContent;
 }
 
