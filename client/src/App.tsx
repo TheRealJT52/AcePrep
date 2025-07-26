@@ -36,7 +36,7 @@ function Router() {
           <Route path="/apmicro-tutor" component={APMicroTutorPage} />
           <Route path="/apgov-tutor" component={APGovTutorPage} />
           <Route path="/apbio-tutor" component={APBioTutorPage} />
-          <Route path="/appsych-tutor" element={<APPsychTutorPage />} />
+          <Route path="/appsych-tutor" component={APPsychTutorPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
