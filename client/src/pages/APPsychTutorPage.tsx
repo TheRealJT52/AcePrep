@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, GraduationCap, Bot, Brain, ChevronLeft } from "lucide-react";
+import { Send, Sparkles, GraduationCap, Bot, Brain, ChevronLeft, Dna } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -128,7 +128,7 @@ export default function APPsychTutorPage() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   className="flex-grow rounded-l-full focus-visible:ring-primary bg-neutral-200/20 border-neutral-200/30"
-                  placeholder="Ask a question about Biology..."
+                  placeholder="Ask a question about Psychology..."
                   disabled={isLoading}
                 />
                 <Button
