@@ -12,16 +12,16 @@ export default function CoursesPage() {
 
   const getStatus = (courseCode: keyof typeof siteConfig.passwordProtection.courses) => {
     const courseConfig = siteConfig.passwordProtection.courses[courseCode];
-    
+
     // Development status overrides everything
     if (courseConfig?.development) {
       return "development" as const;
     }
-    
+
     if (courseConfig?.maintenance) {
       return "maintenance" as const;
     }
-    
+
     // Currently available courses
     if (["APUSH", "APWH", "APEURO", "APBIO, APPSYCH"].includes(courseCode)) {
       return "available" as const;
@@ -135,7 +135,7 @@ export default function CoursesPage() {
       {/* Background elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-center space-x-2 mb-8">
           <GraduationCap className="text-primary h-6 w-6" />
@@ -143,11 +143,11 @@ export default function CoursesPage() {
             <span className="text-primary glow-primary">AP Courses</span> Collection
           </h1>
         </div>
-        
+
         <p className="text-neutral-400 text-center max-w-2xl mx-auto mb-12">
           Browse our growing library of AP course tutors, each designed to help you master content, practice skills, and prepare for your exams.
         </p>
-        
+
         {/* Search and filter controls */}
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-12">
           <div className="relative w-full md:w-96">
@@ -157,13 +157,13 @@ export default function CoursesPage() {
               className="pl-10 bg-neutral-200/20 border-neutral-200/30 focus-visible:ring-primary"
             />
           </div>
-          
+
           <Button variant="outline" size="sm" className="gap-2">
             <Filter className="h-4 w-4" />
             Filter
           </Button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {courses.map((course) => (
             <CourseCard
@@ -178,7 +178,7 @@ export default function CoursesPage() {
             />
           ))}
         </div>
-        
+
         <PasswordDialog
           isOpen={showPasswordDialog}
           onClose={handlePasswordDialogClose}
