@@ -101,14 +101,11 @@
 
   /* Chat container with proper height */
   .chat-container {
-    height: 400px;
-    max-height: 400px;
+    height: 400px !important;
+    max-height: 400px !important;
+    min-height: 400px !important;
+    overflow-y: auto;
   }
-}
-
-.chat-container {
-  height: calc(100vh - 300px);
-  min-height: 400px;
 }
 
 .chat-message {
