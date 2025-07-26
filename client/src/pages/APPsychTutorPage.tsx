@@ -1,4 +1,5 @@
 
+
 import { useState, useRef, useEffect } from "react";
 import { Send, Sparkles, GraduationCap, Bot, Brain, ChevronLeft, Dna } from "lucide-react";
 import { Button } from "@/components/ui/button";
