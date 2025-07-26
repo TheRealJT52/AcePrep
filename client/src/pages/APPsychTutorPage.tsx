@@ -87,7 +87,7 @@ export default function APPsychTutorPage() {
                 <Brain className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-bold">AP Biology AI Tutor</h3>
+                <h3 className="font-bold">AP Psychology AI Tutor</h3>
                 <p className="text-xs text-white/80">Powered by Groq AI</p>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function APPsychTutorPage() {
           {/* Topic suggestions */}
           <div className="mt-8">
             <h4 className="text-lg font-medium text-neutral-400 mb-4 flex items-center">
-              <Dna className="h-4 w-4 mr-2 text-primary" />
+              <Brain className="h-4 w-4 mr-2 text-primary" />
               Suggested Topics to Explore:
             </h4>
             <div className="flex flex-wrap gap-2">
