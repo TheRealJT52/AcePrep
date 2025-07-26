@@ -80,18 +80,18 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
-  
+
   /* Modern glowing highlights */
   .glow-primary {
     text-shadow: 0 0 10px hsla(var(--primary), 0.5),
                  0 0 20px hsla(var(--primary), 0.3);
   }
-  
+
   .glow-accent {
     text-shadow: 0 0 10px hsla(var(--accent), 0.5),
                  0 0 20px hsla(var(--accent), 0.3);
   }
-  
+
   /* Glass effect for modern UI */
   .glass-effect {
     backdrop-filter: blur(8px);
