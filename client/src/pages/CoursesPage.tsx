@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna, Brain-cog} from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna, Brain} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
@@ -122,7 +122,7 @@ export default function CoursesPage() {
     {
       id: "appsych",
       title: "AP Psychology",
-      icon: Brain-cog,
+      icon: Brain,
       bgColor: "bg-pink-600",
       description: "Study the science of behavior and mental processes. Ideal for AP exam preparation.",
       status: getStatus("APPSYCH"),

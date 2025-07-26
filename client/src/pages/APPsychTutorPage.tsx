@@ -1,7 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { useChat } from "../hooks/useChat";
-import { Input, Button, TopicPill } from "../components";
-import { Sparkles, History, Brain } from "lucide-react";
+import { Send, Sparkles, GraduationCap, Bot, History, ChevronLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChatMessage } from "@/components/ui/chat-message";
+import { TopicPill } from "@/components/ui/topic-pill";
+import { useChat } from "@/hooks/use-chat";
+import { Link } from "wouter";
 
 export default function APPsychTutorPage() {
   const [inputValue, setInputValue] = useState("");
