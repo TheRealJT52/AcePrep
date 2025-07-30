@@ -59,7 +59,7 @@ export function PasswordDialog({ isOpen, onClose, onSuccess, courseName }: Passw
             Enter Password Here to Access {courseName}
           </DialogTitle>
           <DialogDescription>
-            Please enter the access password to continue to {courseName}.
+            Please enter an access password to continue to {courseName}. Don't have one? <a href="https://forms.fillout.com/t/g4aHm5hDfzus" target="_blank" rel="noopener noreferrer" className="text-primary">Sign up for free</a>
           </DialogDescription>
         </DialogHeader>
         
