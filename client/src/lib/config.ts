@@ -34,7 +34,7 @@ export const siteConfig = {
       APES: { maintenance: true, development: false, requirePassword: false },
       APMACRO: { maintenance: true, development: false, requirePassword: false },
       APMICRO: { maintenance: true, development: false, requirePassword: false },
-      APGOV: { maintenance: true, development: false, requirePassword: false },
+      APGOV: { maintenance: false, development: false, requirePassword: true },
       APBIO: { maintenance: false, development: false, requirePassword: true },
       APPSYCH: { maintenance: false, development: false, requirePassword: true }
     }
