@@ -404,8 +404,7 @@ function formatMessagesForOpenAI(
     - When unit attribution appears at the end (format: "This content is found in: Unit X: Name"), include this information
 
     SPECIAL INSTRUCTIONS:
-    - Unit overviews/summaries: Present ONLY the curriculum content without additions
-
+    - Unit overviews/summaries: Present ONLY the curriculum content without additions.
     CURRICULUM CONTENT:
     ${context}
 
