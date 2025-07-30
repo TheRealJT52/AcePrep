@@ -56,7 +56,7 @@ export function PasswordDialog({ isOpen, onClose, onSuccess, courseName }: Passw
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lock className="h-5 w-5 text-yellow-500" />
-            Course Coming Soon
+            Enter Password Here to Access {courseName}
           </DialogTitle>
           <DialogDescription>
             Please enter the access password to continue to {courseName}.
