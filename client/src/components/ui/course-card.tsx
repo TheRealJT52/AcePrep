@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, CalendarClock, Sparkles, Wrench, Code } from "lucide-react";
+import { ChevronRight, CalendarClock, Sparkles, Wrench, Code, Play } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -71,6 +71,14 @@ export function CourseCard({
 
       <CardFooter className="p-6 pt-0">
         {status === "available" ? (
+        onClick ? (
+          <Button onClick={onClick}  variant="secondary" 
+            size="sm" 
+            className="w-full gap-1 group-hover:bg-primary group-hover:text-white transition-colors">
+             Start Learning
+             <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+          </Button>
+        ) : (
           <Button 
             asChild 
             variant="secondary" 
@@ -82,7 +90,8 @@ export function CourseCard({
               <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-        ) : status === "development" ? (
+        )
+      ) : status === "development" ? (
           <Button 
             onClick={onClick}
             variant="outline" 

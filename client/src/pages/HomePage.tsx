@@ -28,13 +28,20 @@ export default function HomePage() {
               Get instant help and instant feedback for your AP courses using our advanced AI tutor system.
             </p>
             
-            <div className="flex justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button asChild size="lg" className="gap-2 rounded-full shadow-lg shadow-primary/20 h-14 px-8 group">
                 <Link href="/courses">
                   <Rocket className="h-5 w-5" />
                   Explore AP Courses
                   <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="gap-2 rounded-full h-14 px-8 group">
+                <a href="https://forms.fillout.com/t/g4aHm5hDfzus" target="_blank" rel="noopener noreferrer">
+                  <Sparkles className="h-5 w-5" />
+                  Sign Up Now for Free
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
             </div>
             

@@ -23,17 +23,20 @@ export const siteConfig = {
     // Master password for accessing maintenance-mode courses
     masterPassword: "aceprep2025",
     
+    // Valid passwords for available courses
+    validPasswords: ["AcePrep-719study!", "study!ap2025"],
+    
     // Course-specific settings
     courses: {
-      APUSH: { maintenance: false, development: false },
-      APWH: { maintenance: false, development: false },
-      APEURO: { maintenance: false, development: false },
-      APES: { maintenance: true, development: false },
-      APMACRO: { maintenance: true, development: false },
-      APMICRO: { maintenance: true, development: false },
-      APGOV: { maintenance: true, development: true },
-      APBIO: { maintenance: false, development: false },
-      APPSYCH: { maintenance: false, development: false }
+      APUSH: { maintenance: false, development: false, requirePassword: true },
+      APWH: { maintenance: false, development: false, requirePassword: true },
+      APEURO: { maintenance: false, development: false, requirePassword: true },
+      APES: { maintenance: true, development: false, requirePassword: false },
+      APMACRO: { maintenance: true, development: false, requirePassword: false },
+      APMICRO: { maintenance: true, development: false, requirePassword: false },
+      APGOV: { maintenance: true, development: true, requirePassword: false },
+      APBIO: { maintenance: false, development: false, requirePassword: true },
+      APPSYCH: { maintenance: false, development: false, requirePassword: true }
     }
   }
 };

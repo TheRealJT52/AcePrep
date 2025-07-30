@@ -29,9 +29,11 @@ export default function CoursesPage() {
     return "coming-soon" as const;
   };
 
-  const handleDevelopmentClick = (courseName: string, link: string) => {
-    setSelectedCourse({ name: courseName, link });
-    setShowPasswordDialog(true);
+  const handleCourseClick = (courseName: string, link: string, status: string) => {
+    if (status === "development" || status === "available") {
+      setSelectedCourse({ name: courseName, link });
+      setShowPasswordDialog(true);
+    }
   };
 
   const handlePasswordDialogSuccess = () => {
@@ -174,7 +176,7 @@ export default function CoursesPage() {
               description={course.description}
               status={course.status}
               link={course.link}
-              onClick={course.status === "development" ? () => handleDevelopmentClick(course.title, course.link) : undefined}
+              onClick={course.status === "development" || course.status === "available" ? () => handleCourseClick(course.title, course.link, course.status) : undefined}
             />
           ))}
         </div>

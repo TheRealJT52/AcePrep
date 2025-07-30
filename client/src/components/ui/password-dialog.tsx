@@ -28,7 +28,10 @@ export function PasswordDialog({ isOpen, onClose, onSuccess, courseName }: Passw
     // Import the config to check password
     const { siteConfig } = await import("@/lib/config");
     
-    if (password === siteConfig.passwordProtection.masterPassword) {
+    const isValidPassword = siteConfig.passwordProtection.validPasswords.includes(password) || 
+                           password === siteConfig.passwordProtection.masterPassword;
+    
+    if (isValidPassword) {
       // Store authentication in sessionStorage
       sessionStorage.setItem(`aceprep_auth_${courseName}`, "true");
       setPassword("");
@@ -56,7 +59,7 @@ export function PasswordDialog({ isOpen, onClose, onSuccess, courseName }: Passw
             Course Coming Soon
           </DialogTitle>
           <DialogDescription>
-            {courseName} is coming soon. Please enter the staff password to continue.
+            Please enter the access password to continue to {courseName}.
           </DialogDescription>
         </DialogHeader>
         
