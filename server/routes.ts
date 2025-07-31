@@ -161,14 +161,27 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   const results = await storage.searchApContent(course, message);
   console.log(`Search returned ${results.length} results`);
 
-
-
   if (results.length === 0) {
     console.log("No search results found for query:", message);
     return "";
   }
   
   console.log("Found results:", results.map(r => r.title));
+
+  // For specific historical terms like "Dawes Act", prioritize the most relevant content
+  const messageLower = message.toLowerCase();
+  if (messageLower.includes('dawes') && messageLower.includes('act')) {
+    const gildedAgeResult = results.find(result => 
+      result.title.toLowerCase().includes('gilded age') || 
+      result.content.toLowerCase().includes('dawes act')
+    );
+    
+    if (gildedAgeResult) {
+      console.log("Found Dawes Act content in:", gildedAgeResult.title);
+      // Return focused content about the Dawes Act
+      return `TOPIC: The Dawes Act (1887)\n${gildedAgeResult.content}\n\nThis content is found in: ${gildedAgeResult.period}: ${gildedAgeResult.title}`;
+    }
+  }
 
   // Special handling for DBQ queries - prioritize DBQ Rubric content
   if (message.toLowerCase().includes('dbq')) {
@@ -232,6 +245,16 @@ async function getRelevantCourseContent(message: string, course: string): Promis
 
   console.log("Final content length:", finalContent.length);
   console.log("Content preview:", finalContent.substring(0, 200));
+  
+  // Debug: Check if Dawes Act content is actually included
+  if (messageLower.includes('dawes')) {
+    console.log("Dawes Act search - Content includes 'dawes':", finalContent.toLowerCase().includes('dawes'));
+    console.log("Dawes Act search - Content includes 'Dawes Act':", finalContent.includes('Dawes Act'));
+    if (finalContent.toLowerCase().includes('dawes')) {
+      const dawesIndex = finalContent.toLowerCase().indexOf('dawes');
+      console.log("Dawes content excerpt:", finalContent.substring(Math.max(0, dawesIndex - 50), dawesIndex + 200));
+    }
+  }
 
   return finalContent;
 }
