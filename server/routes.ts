@@ -169,7 +169,6 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   console.log("Found results:", results.map(r => r.title));
 
   // For specific historical terms like "Dawes Act", prioritize the most relevant content
-  const messageLower = message.toLowerCase();
   if (messageLower.includes('dawes') && messageLower.includes('act')) {
     const gildedAgeResult = results.find(result => 
       result.title.toLowerCase().includes('gilded age') || 
