@@ -164,8 +164,11 @@ async function getRelevantCourseContent(message: string, course: string): Promis
 
 
   if (results.length === 0) {
+    console.log("No search results found for query:", message);
     return "";
   }
+  
+  console.log("Found results:", results.map(r => r.title));
 
   // Special handling for DBQ queries - prioritize DBQ Rubric content
   if (message.toLowerCase().includes('dbq')) {
@@ -227,7 +230,8 @@ async function getRelevantCourseContent(message: string, course: string): Promis
 
   const finalContent = contentText + unitAttribution + moreResultsNote;
 
-
+  console.log("Final content length:", finalContent.length);
+  console.log("Content preview:", finalContent.substring(0, 200));
 
   return finalContent;
 }
