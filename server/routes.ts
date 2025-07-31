@@ -165,7 +165,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
     console.log("No search results found for query:", message);
     return "";
   }
-  
+
   console.log("Found results:", results.map(r => r.title));
 
   // For specific historical terms like "Dawes Act", prioritize the most relevant content
@@ -174,7 +174,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
       result.title.toLowerCase().includes('gilded age') || 
       result.content.toLowerCase().includes('dawes act')
     );
-    
+
     if (gildedAgeResult) {
       console.log("Found Dawes Act content in:", gildedAgeResult.title);
       // Return focused content about the Dawes Act
@@ -244,7 +244,7 @@ async function getRelevantCourseContent(message: string, course: string): Promis
 
   console.log("Final content length:", finalContent.length);
   console.log("Content preview:", finalContent.substring(0, 200));
-  
+
   // Debug: Check if Dawes Act content is actually included
   if (messageLower.includes('dawes')) {
     console.log("Dawes Act search - Content includes 'dawes':", finalContent.toLowerCase().includes('dawes'));
@@ -273,10 +273,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP World History tutor who helps students learn and understand historical concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific historical facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -296,10 +297,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP European History tutor who helps students learn and understand historical concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific historical facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -319,10 +321,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP Environmental Science tutor who helps students learn and understand scientific concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific scientific facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -342,10 +345,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP Macroeconomics tutor who helps students learn and understand economic concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific economic facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -365,10 +369,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP Microeconomics tutor who helps students learn and understand economic concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific economic facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -388,10 +393,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP U.S. Government and Politics tutor who helps students learn and understand political concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific political facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -411,10 +417,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP Biology tutor who helps students learn and understand biological concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific biological facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -439,10 +446,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP Psychology tutor who helps students learn and understand psychological concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific psychological facts, unit summaries, EBQ and AAQ questions, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
@@ -464,10 +472,11 @@ function formatMessagesForOpenAI(
     systemContent = `You are an experienced AP U.S. History tutor who helps students learn and understand historical concepts.
 
     CONTENT USAGE GUIDELINES:
-    - For specific historical facts, unit summaries, and curriculum questions: Use ONLY the provided curriculum content below
+    - When curriculum content is provided below, use it as your primary source for answering questions
+    - The curriculum content may contain the information you need within broader historical sections - look carefully through all provided content
+    - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answer
+    - Only respond with "I don't have that information in the curriculum content provided" if you have thoroughly searched through ALL the provided content and genuinely cannot find relevant information
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
-    - When curriculum content is provided, use it as your foundation but enhance understanding with clear explanations
-    - If asked about specific topics not in the curriculum content, respond: "I don't have that information in the curriculum content provided. Please ask about topics covered in the materials."
 
     QUIZ AND INTERACTION GUIDELINES:
     - When creating quiz questions, base them on the provided curriculum content
