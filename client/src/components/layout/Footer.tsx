@@ -50,7 +50,7 @@ export default function Footer() {
                 <a href="#" className="text-neutral-400 group-hover:text-primary transition-colors">Help Center</a>
               </li>
               <li className="flex items-center group">
-                <a href="#" className="text-neutral-400 group-hover:text-primary transition-colors">Privacy Policy</a>
+                <Link href="/privacy-policy" className="text-neutral-400 group-hover:text-primary transition-colors">Privacy Policy</Link>
               </li>
             </ul>
           </div>
