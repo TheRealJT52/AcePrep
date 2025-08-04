@@ -67,7 +67,7 @@ export function PasswordDialog({ isOpen, onClose, onSuccess, courseName }: Passw
           <div>
             <Input
               type="password"
-              placeholder="Enter staff password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={error ? "border-red-500" : ""}
