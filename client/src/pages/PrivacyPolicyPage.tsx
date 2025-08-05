@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
 
 <p>AcePrep is intended for use only by individuals who are at least thirteen (13) years of age. By creating an account and utilizing our services, you represent and warrant that you meet this minimum age requirement. We do not knowingly collect personal information from children under 13 years of age.</p>
 
-<p>Additionally, in compliance with applicable data protection laws, including the General Data Protection Regulation (“GDPR”) and the UK Data Protection Act, AcePrep is intended solely for users located outside the European Union and the United Kingdom. By using our services, you confirm that you are not located within these jurisdictions. Should we become aware that we have collected personal data from residents of the EU or UK, we will take prompt action to delete such data.</p>
+<p>Additionally, in compliance with applicable data protection laws, including the General Data Protection Regulation (“GDPR”) and the UK Data Protection Act, AcePrep is intended solely for users located outside the European Union, European Economic Area (EEA), and the United Kingdom. By using our services, you confirm that you are not located within these jurisdictions. Should we become aware that we have collected personal data from residents of the EU, EEA, or UK, we will take prompt action to delete such data.</p>
 
 <hr />
 
