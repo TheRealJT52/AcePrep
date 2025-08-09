@@ -1,5 +1,5 @@
 import { CourseCard } from "@/components/ui/course-card";
-import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna, Brain} from "lucide-react";
+import { Filter, Search, GraduationCap, Crown, Globe, Flag, Leaf, LineChart, BarChart3, Landmark, Dna, Brain, Tangent, Sigma} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
@@ -129,6 +129,24 @@ export default function CoursesPage() {
       description: "Study the science of behavior and mental processes. Ideal for AP exam preparation.",
       status: getStatus("APPSYCH"),
       link: "/appsych-tutor"
+    },
+    {
+      id: "apcalcab",
+      title: "AP Calculus AB",
+      icon: Tangent,
+      bgColor: "bg-blue-600",
+      description: "Master Calculus I concepts like limits, derivatives, and integrals. Ideal for AP exam preparation.",
+      status: "coming-soon",
+      link: "/apcalcab-tutor"
+    },
+    {
+      id: "apcalcbc",
+      title: "AP Calculus BC",
+      icon: Sigma,
+      bgColor: "bg-purple-600",
+      description: "Study Calculus I and II concepts. Ideal for AP exam preparation.",
+      status: "coming-soon",
+      link: "/apcalcbc-tutor"
     }
   ];
 
