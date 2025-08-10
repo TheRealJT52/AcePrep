@@ -1,7 +1,7 @@
 
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, GraduationCap, Bot, Brain, ChevronLeft, Dna } from "lucide-react";
+import { Send, Sparkles, GraduationCap, Bot, Tangent, ChevronLeft, Dna } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,19 +16,14 @@ export default function APCalcABTutorPage() {
   const { messages, sendMessage, isLoading } = useChat("APCALCAB");
 
   const suggestedTopics = [
-    "History & Approaches",
-    "Research Methods",
-    "Biological Bases of Behavior",
-    "Sensation & Perception",
-    "Learning",
-    "Cognition",
-    "Motivation & Emotion",
-    "Developmental Psychology",
-    "Personality",
-    "Testing & Individual Differences",
-    "Abnormal Psychology",
-    "Treatment of Psychological Disorders",
-    "Social Psychology"
+    "Limits",
+    "L'Hôpital's Rule",
+    "Derivatives",
+    "Integrals",
+    "Chain Rule",
+    "Product Rule",
+    "Quotient Rule",
+    "Power Rule"
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -71,11 +66,11 @@ export default function APCalcABTutorPage() {
           </div>
           
           <h1 className="text-4xl font-bold mb-4">
-            <span className="text-primary glow-primary">AP Psychology</span> AI Tutor
+            <span className="text-primary glow-primary">AP Calculus AB</span> AI Tutor
           </h1>
           
           <p className="text-neutral-400 max-w-3xl mx-auto">
-            Ask questions about any AP Psychology topic and get accurate, contextual answers based on the official College Board Course and Exam Description.
+            Ask questions about any AP Calculus AB topic and get accurate, contextual answers based on the official College Board Course and Exam Description.
           </p>
         </div>
         
@@ -85,10 +80,10 @@ export default function APCalcABTutorPage() {
             {/* Chat header */}
             <div className="bg-gradient-to-r from-primary/80 to-primary text-white p-4 flex items-center">
               <div className="bg-white/20 p-2 rounded-full mr-3">
-                <Brain className="h-5 w-5" />
+                <Tangent className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-bold">AP Psychology AI Tutor</h3>
+                <h3 className="font-bold">AP Calculus AB AI Tutor</h3>
                 <p className="text-xs text-white/80">Powered by Groq AI</p>
               </div>
             </div>
@@ -146,7 +141,7 @@ export default function APCalcABTutorPage() {
           {/* Topic suggestions */}
           <div className="mt-8">
             <h4 className="text-lg font-medium text-neutral-400 mb-4 flex items-center">
-              <Brain className="h-4 w-4 mr-2 text-primary" />
+             <Tangent className="h-4 w-4 mr-2 text-primary" />
               Suggested Topics to Explore:
             </h4>
             <div className="flex flex-wrap gap-2">
