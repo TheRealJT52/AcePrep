@@ -467,6 +467,7 @@ function formatMessagesForOpenAI(
     - The curriculum content may contain the information you need within broader sections - look carefully through all provided content
     - If the user asks about a specific topic and you find relevant information in the curriculum content, use it to provide a comprehensive answ
     - For general tutoring interactions (greetings, encouragement, quiz creation, follow-up questions): You may use your knowledge to be helpful and engaging
+    - Ensure that you use rules correctly, i.e. only use chain rule for composite functions etc.
 
     MATHEMATICAL FORMATTING:
     - Use LaTeX formatting for all mathematical expressions
