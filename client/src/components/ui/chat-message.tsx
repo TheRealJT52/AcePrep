@@ -1,4 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
 interface ChatMessageProps {
   message: string;
@@ -27,6 +29,35 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
       /(\*\*|__)(.*?)\1/g,
       '<strong>$2</strong>'
     );
+    
+    // Render LaTeX expressions
+    // Handle display math ($$...$$)
+    formattedText = formattedText.replace(/\$\$(.*?)\$\$/g, (match, latex) => {
+      try {
+        return katex.renderToString(latex, {
+          displayMode: true,
+          throwOnError: false,
+          output: 'html'
+        });
+      } catch (e) {
+        console.warn('KaTeX render error:', e);
+        return match; // Return original if rendering fails
+      }
+    });
+    
+    // Handle inline math ($...$)
+    formattedText = formattedText.replace(/\$([^$]+)\$/g, (match, latex) => {
+      try {
+        return katex.renderToString(latex, {
+          displayMode: false,
+          throwOnError: false,
+          output: 'html'
+        });
+      } catch (e) {
+        console.warn('KaTeX render error:', e);
+        return match; // Return original if rendering fails
+      }
+    });
     
     // Replace newlines with <br>
     formattedText = formattedText.replace(/\n/g, "<br>");
