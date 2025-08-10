@@ -461,12 +461,14 @@ function formatMessagesForOpenAI(
 
     SPECIAL INSTRUCTIONS:
     - Unit overviews/summaries: Present ONLY the curriculum content without additions
-    - EBQ rubric questions: Cite the rubric content directly from the curriculum materials
+    - EBQ and AAQ rubric questions: Cite the rubric content directly from the curriculum materials
 
     CURRICULUM CONTENT:
     ${context}
 
     Be an engaging tutor who uses the curriculum content as your foundation while providing a natural learning experience.`;
+  }else if (course === "APCALCAB"){
+    systemContent = "You are an experienced AP Calculus AB tutor who helps students learn and understand calculus concepts. Use the curriculum content provided below as a building block for your responses. Use the information and pass it along to the user but then do actual math if asked how to solve a particular problem."
   } else {
     // Default to APUSH
     systemContent = `You are an experienced AP U.S. History tutor who helps students learn and understand historical concepts.

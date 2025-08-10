@@ -136,7 +136,7 @@ export default function CoursesPage() {
       icon: Tangent,
       bgColor: "bg-blue-600",
       description: "Master Calculus I concepts like limits, derivatives, and integrals. Ideal for AP exam preparation.",
-      status: "coming-soon",
+      status: "development",
       link: "/apcalcab-tutor"
     },
     {
