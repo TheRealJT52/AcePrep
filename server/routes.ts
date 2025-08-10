@@ -35,15 +35,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Validate courseType
-      const validCourseTypes = ['APUSH', 'APGOV', 'APBIO', 'APPSYCH', 'APES', 'APEURO', 'APMACRO', 'APMICRO', 'APWH', 'APCALCAB'];
-      if (!validCourseTypes.includes(actualCourseType)) {
-        console.log('Invalid course type:', actualCourseType);
-        return res.status(400).json({ 
-          message: 'Invalid course type',
-          errors: [{ received: actualCourseType, valid: validCourseTypes }]
-        });
-      }
+      
 
       const result = chatRequestSchema.safeParse(req.body);
 
