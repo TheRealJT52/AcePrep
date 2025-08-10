@@ -200,14 +200,14 @@ async function getRelevantCourseContent(message: string, course: string): Promis
   }
 
   // Regular handling for non-DBQ queries or when DBQ Rubric not found
-  const maxChars = 4500; // Conservative estimate to stay under 6,000 tokens
+  const maxChars = 8000; // Increased limit to allow more comprehensive content
   let currentLength = 0;
   const selectedResults = [];
 
   for (const result of results) {
     const resultText = `TOPIC: ${result.title}\n${result.content}\n\n`;
-    if (currentLength + resultText.length > maxChars && selectedResults.length > 0) {
-      break; // Stop adding if we'd exceed limit (but ensure at least 1 result)
+    if (currentLength + resultText.length > maxChars && selectedResults.length >= 3) {
+      break; // Stop adding if we'd exceed limit (but ensure at least 3 results)
     }
     selectedResults.push(result);
     currentLength += resultText.length;

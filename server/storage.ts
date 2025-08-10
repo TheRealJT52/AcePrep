@@ -135,52 +135,49 @@ export class MemStorage implements IStorage {
   }
 
   async searchApContent(course: string, query: string): Promise<ApContent[]> {
-    // In a real implementation, we would use vector similarity search
-    // Here we're just doing a simple text search
-    const lowercaseQuery = query.toLowerCase();
+    const courseContent = await this.getApContentByCourse(course);
+    const searchTerms = query.toLowerCase()
+      .replace(/[^\w\s]/g, ' ')
+      .split(/\s+/)
+      .filter(term => term.length > 2);
 
-    // Extract key terms from common question patterns
-    let searchTerms = lowercaseQuery;
+    console.log(`Original query: "${query}" -> Search terms:`, JSON.stringify(searchTerms));
 
-    // Remove common question words and phrases
-    const questionPatterns = [
-      /^what is (the )?/,
-      /^tell me about (the )?/,
-      /^explain (the )?/,
-      /^describe (the )?/,
-      /^what are (the )?/,
-      /\?$/
-    ];
-
-    for (const pattern of questionPatterns) {
-      searchTerms = searchTerms.replace(pattern, '').trim();
+    if (searchTerms.length === 0) {
+      return courseContent.slice(0, 5); // Return first 5 items if no valid search terms
     }
 
-    // Split compound queries into individual search terms
-    // Handle "and", "or", commas, and other separators
-    const individualTerms = searchTerms
-      .split(/\s+(?:and|or|,)\s+|\s*,\s*|\s+/)
-      .map(term => term.trim())
-      .filter(term => term.length > 2); // Filter out very short terms
-
-    console.log(`Original query: "${query}" -> Search terms: ${JSON.stringify(individualTerms)}`);
-
-    const allContent = Array.from(this.apContent.values());
-    const courseContent = allContent.filter(content => content.course === course);
-
-    const results = courseContent.filter(content => {
+    const scoredResults = courseContent.map(content => {
       const titleLower = content.title.toLowerCase();
       const contentLower = content.content.toLowerCase();
-      const topicLower = content.topic?.toLowerCase() || '';
+      const topicLower = (content.topic || '').toLowerCase();
+      const periodLower = (content.period || '').toLowerCase();
 
-      // Check if any of the individual search terms match
-      return individualTerms.some(term => 
-        titleLower.includes(term) || 
-        contentLower.includes(term) || 
-        topicLower.includes(term)
-      );
+      let score = 0;
+
+      // Score based on search terms
+      searchTerms.forEach(term => {
+        // Title matches (highest priority)
+        if (titleLower.includes(term)) score += 10;
+        // Topic matches
+        if (topicLower.includes(term)) score += 5;
+        // Period matches
+        if (periodLower.includes(term)) score += 3;
+        // Content matches
+        if (contentLower.includes(term)) score += 1;
+      });
+
+      return { content, score };
     });
-    return results;
+
+    // Filter and sort by score
+    const results = scoredResults
+      .filter(result => result.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(result => result.content);
+
+    console.log(`Search returned ${results.length} results`);
+    return results; // Return ALL relevant results, don't limit to 10
   }
 }
 
