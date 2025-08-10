@@ -15,6 +15,7 @@ import APMicroTutorPage from "@/pages/APMicroTutorPage";
 import APGovTutorPage from "./pages/APGovTutorPage";
 import APBioTutorPage from "./pages/APBioTutorPage";
 import APPsychTutorPage from "./pages/APPsychTutorPage";
+import APCalcABTutorPage from "./pages/APCalcABTutorPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -39,6 +40,7 @@ function Router() {
           <Route path="/apbio-tutor" component={APBioTutorPage} />
           <Route path="/appsych-tutor" component={APPsychTutorPage} />
           <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+          <Route path="/apcalcab-tutor" component={APCalcABTutorPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

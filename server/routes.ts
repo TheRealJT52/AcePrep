@@ -12,8 +12,8 @@ const chatRequestSchema = z.object({
     role: z.enum(["user", "assistant", "system"]),
     content: z.string()
   })),
-  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO", "APPSYCH"]).optional(),
-  courseType: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO", "APPSYCH"]).optional()
+  course: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO", "APPSYCH", "APCALCAB"]).optional(),
+  courseType: z.enum(["APUSH", "APWH", "APEURO", "APES", "APMACRO", "APMICRO", "APGOV", "APBIO", "APPSYCH", "APCALCAB"]).optional()
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -36,7 +36,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Validate courseType
-      const validCourseTypes = ['APUSH', 'APGOV', 'APBIO', 'APPSYCH', 'APES', 'APEURO', 'APMACRO', 'APMICRO', 'APWH'];
+      const validCourseTypes = ['APUSH', 'APGOV', 'APBIO', 'APPSYCH', 'APES', 'APEURO', 'APMACRO', 'APMICRO', 'APWH', 'APCALCAB'];
       if (!validCourseTypes.includes(actualCourseType)) {
         console.log('Invalid course type:', actualCourseType);
         return res.status(400).json({ 
