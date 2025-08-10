@@ -68,7 +68,7 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
   return (
     <div className={`flex mb-4 ${role === "user" ? "justify-end" : ""}`}>
       {role === "assistant" && (
-        <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
+        <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-2 flex-shrink-0">
           <span className="text-sm">🤖</span>
         </div>
       )}
@@ -78,18 +78,23 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           role === "assistant" 
             ? "bg-primary-light" 
             : "bg-white"
-        } shadow-sm`}
+        } shadow-sm max-w-full overflow-hidden`}
       >
         <CardContent className="p-3">
           <div 
-            className={role === "user" ? "text-black" : ""} 
+            className={`${role === "user" ? "text-black" : ""} overflow-x-auto`}
+            style={{
+              maxWidth: '100%',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
+            }}
             dangerouslySetInnerHTML={{ __html: formatMessage(message) }} 
           />
         </CardContent>
       </Card>
       
       {role === "user" && (
-        <div className="h-8 w-8 rounded-full bg-neutral-300 text-white flex items-center justify-center ml-2">
+        <div className="h-8 w-8 rounded-full bg-neutral-300 text-white flex items-center justify-center ml-2 flex-shrink-0">
           <span className="text-sm">👤</span>
         </div>
       )}

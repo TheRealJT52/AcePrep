@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* KaTeX mobile responsiveness fixes */
+.chat-message .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.chat-message .katex {
+  font-size: clamp(0.9em, 2.5vw, 1.2em);
+  max-width: 100%;
+}
+
+/* Ensure chat messages don't exceed viewport on mobile */
+@media (max-width: 768px) {
+  .chat-message {
+    max-width: calc(100vw - 80px); /* Account for avatar and padding */
+  }
+  
+  .chat-message .katex-display {
+    font-size: clamp(0.8em, 3vw, 1em);
+    padding: 0.5em 0;
+  }
+  
+  .chat-message .katex {
+    font-size: clamp(0.75em, 2.5vw, 0.9em);
+  }
+}
+
 :root {
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
