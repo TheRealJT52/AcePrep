@@ -57,7 +57,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Get response from Groq
       const aiResponse = await groq.chat.completions.create({
-        model: "llama3-70b-8192", // Groq's high-performance model
+        model: "openai/gpt-oss-120b", // Groq's high-performance model
         messages,
         temperature: 0.7,
         max_tokens: 800,
