@@ -20,7 +20,7 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
 
     // Convert URLs to links
     formattedText = formattedText.replace(
-      /(https?:\/\/[^\s]+)/g, 
+      /(https?:\/\/[^\s]+)/g,
       '<a href="$1" class="text-primary underline" target="_blank" rel="noopener noreferrer">$1</a>'
     );
 
@@ -84,22 +84,22 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
         </div>
       )}
 
-      <Card 
+      <Card
         className={`chat-message ${
-          role === "assistant" 
-            ? "bg-primary-light" 
+          role === "assistant"
+            ? "bg-primary-light"
             : "bg-white"
         } shadow-sm max-w-full overflow-hidden`}
       >
         <CardContent className="p-3">
-          <div 
+          <div
             className={`${role === "user" ? "text-black" : ""} overflow-x-auto katex-message-content`}
             style={{
               maxWidth: '100%',
               wordWrap: 'break-word',
               overflowWrap: 'break-word'
             }}
-            dangerouslySetInnerHTML={{ __html: formatMessage(message) }} 
+            dangerouslySetInnerHTML={{ __html: formatMessage(message) }}
           />
         </CardContent>
       </Card>
