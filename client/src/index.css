@@ -3,16 +3,27 @@
 @tailwind utilities;
 
 /* KaTeX mobile responsiveness fixes */
-.chat-message .katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
-  margin: 1em 0;
+.chat-message .katex-display,
+.katex-message-content .katex-display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  margin: 1em 0 !important;
 }
 
-.chat-message .katex {
-  font-size: clamp(0.9em, 2.5vw, 1.2em);
-  max-width: 100%;
+.chat-message .katex,
+.katex-message-content .katex {
+  font-size: clamp(0.9em, 2.5vw, 1.2em) !important;
+  max-width: 100% !important;
+}
+
+.katex-message-content .katex-display-container {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+}
+
+.katex-message-content .katex-inline-container {
+  display: inline !important;
 }
 
 /* Ensure chat messages don't exceed viewport on mobile */
@@ -21,13 +32,19 @@
     max-width: calc(100vw - 80px); /* Account for avatar and padding */
   }
   
-  .chat-message .katex-display {
-    font-size: clamp(0.8em, 3vw, 1em);
-    padding: 0.5em 0;
+  .chat-message .katex-display,
+  .katex-message-content .katex-display {
+    font-size: clamp(0.8em, 3vw, 1em) !important;
+    padding: 0.5em 0 !important;
   }
   
-  .chat-message .katex {
-    font-size: clamp(0.75em, 2.5vw, 0.9em);
+  .chat-message .katex,
+  .katex-message-content .katex {
+    font-size: clamp(0.75em, 2.5vw, 0.9em) !important;
+  }
+  
+  .katex-message-content .katex-display-container {
+    margin: 0.5em 0 !important;
   }
 }
 

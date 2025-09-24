@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
@@ -31,30 +32,42 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
     );
     
     // Render LaTeX expressions
-    // Handle display math ($$...$$)
-    formattedText = formattedText.replace(/\$\$(.*?)\$\$/g, (match, latex) => {
+    // Handle display math ($$...$$) first to avoid conflicts - use non-greedy matching and handle multiline
+    formattedText = formattedText.replace(/\$\$([\s\S]*?)\$\$/g, (match, latex) => {
+      // Skip empty or whitespace-only latex
+      if (!latex.trim()) return match;
+      
       try {
-        return katex.renderToString(latex, {
+        const rendered = katex.renderToString(latex.trim(), {
           displayMode: true,
           throwOnError: false,
-          output: 'html'
+          output: 'html',
+          strict: false,
+          trust: true
         });
+        return `<div class="katex-display-container" style="margin: 1em 0; text-align: center; overflow-x: auto;">${rendered}</div>`;
       } catch (e) {
-        console.warn('KaTeX render error:', e);
+        console.warn('KaTeX display math render error:', e);
         return match; // Return original if rendering fails
       }
     });
     
-    // Handle inline math ($...$)
-    formattedText = formattedText.replace(/\$([^$]+)\$/g, (match, latex) => {
+    // Handle inline math ($...$) - improved regex to avoid matching across line breaks and empty content
+    formattedText = formattedText.replace(/\$([^$\n\r]+?)\$/g, (match, latex) => {
+      // Skip if latex is empty, just whitespace, or contains problematic characters
+      if (!latex.trim() || latex.includes('$$')) return match;
+      
       try {
-        return katex.renderToString(latex, {
+        const rendered = katex.renderToString(latex.trim(), {
           displayMode: false,
           throwOnError: false,
-          output: 'html'
+          output: 'html',
+          strict: false,
+          trust: true
         });
+        return `<span class="katex-inline-container">${rendered}</span>`;
       } catch (e) {
-        console.warn('KaTeX render error:', e);
+        console.warn('KaTeX inline math render error:', e);
         return match; // Return original if rendering fails
       }
     });
@@ -82,7 +95,7 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
       >
         <CardContent className="p-3">
           <div 
-            className={`${role === "user" ? "text-black" : ""} overflow-x-auto`}
+            className={`${role === "user" ? "text-black" : ""} overflow-x-auto katex-message-content`}
             style={{
               maxWidth: '100%',
               wordWrap: 'break-word',
@@ -98,6 +111,57 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           <span className="text-sm">👤</span>
         </div>
       )}
+      
+      <style jsx>{`
+        .katex-message-content .katex {
+          font-size: 1.1em !important;
+          color: inherit !important;
+        }
+        
+        .katex-message-content .katex-display {
+          margin: 0.5em 0 !important;
+          text-align: center !important;
+        }
+        
+        .katex-message-content .katex-display-container {
+          overflow-x: auto !important;
+          max-width: 100% !important;
+          scrollbar-width: thin;
+        }
+        
+        .katex-message-content .katex-display-container::-webkit-scrollbar {
+          height: 4px;
+        }
+        
+        .katex-message-content .katex-display-container::-webkit-scrollbar-track {
+          background: rgba(0,0,0,0.1);
+          border-radius: 2px;
+        }
+        
+        .katex-message-content .katex-display-container::-webkit-scrollbar-thumb {
+          background: rgba(0,0,0,0.3);
+          border-radius: 2px;
+        }
+        
+        .katex-message-content .katex-inline-container .katex {
+          font-size: 1em !important;
+        }
+        
+        .katex-message-content .katex .base {
+          display: inline-block !important;
+        }
+        
+        .katex-message-content .katex-html {
+          overflow: visible !important;
+        }
+        
+        .katex-message-content .katex .mord,
+        .katex-message-content .katex .mop,
+        .katex-message-content .katex .mbin,
+        .katex-message-content .katex .mrel {
+          color: inherit !important;
+        }
+      `}</style>
     </div>
   );
 }
