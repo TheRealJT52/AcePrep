@@ -2,47 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* KaTeX comprehensive styling */
+/* Enhanced KaTeX styling for chat messages */
 .katex-message-content .katex {
   font-size: 1.1em !important;
   color: inherit !important;
-  max-width: 100% !important;
+  font-family: 'KaTeX_Main', 'Times New Roman', serif !important;
 }
 
 .katex-message-content .katex-display {
-  margin: 0.5em 0 !important;
+  margin: 1em 0 !important;
   text-align: center !important;
+  display: block !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
 }
 
-.katex-message-content .katex-display-container {
+.katex-message-content .katex-display-wrapper {
+  margin: 1em 0 !important;
+  text-align: center !important;
   overflow-x: auto !important;
   max-width: 100% !important;
-  scrollbar-width: thin;
-  margin: 1em 0 !important;
+  padding: 0.5em 0 !important;
 }
 
-.katex-message-content .katex-display-container::-webkit-scrollbar {
+.katex-message-content .katex-display-wrapper::-webkit-scrollbar {
   height: 4px;
 }
 
-.katex-message-content .katex-display-container::-webkit-scrollbar-track {
+.katex-message-content .katex-display-wrapper::-webkit-scrollbar-track {
   background: rgba(0,0,0,0.1);
   border-radius: 2px;
 }
 
-.katex-message-content .katex-display-container::-webkit-scrollbar-thumb {
+.katex-message-content .katex-display-wrapper::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.3);
   border-radius: 2px;
 }
 
-.katex-message-content .katex-inline-container {
+.katex-message-content .katex-inline-wrapper {
   display: inline !important;
 }
 
-.katex-message-content .katex-inline-container .katex {
+.katex-message-content .katex-inline-wrapper .katex {
   font-size: 1em !important;
+  display: inline !important;
 }
 
 .katex-message-content .katex .base {
@@ -51,18 +54,29 @@
 
 .katex-message-content .katex-html {
   overflow: visible !important;
+  display: inline !important;
 }
 
+/* Ensure all KaTeX elements inherit text color */
+.katex-message-content .katex,
+.katex-message-content .katex *,
 .katex-message-content .katex .mord,
 .katex-message-content .katex .mop,
 .katex-message-content .katex .mbin,
-.katex-message-content .katex .mrel {
+.katex-message-content .katex .mrel,
+.katex-message-content .katex .mopen,
+.katex-message-content .katex .mclose,
+.katex-message-content .katex .mpunct {
   color: inherit !important;
 }
 
-/* Ensure KaTeX renders properly in both light and dark themes */
-.katex-message-content .katex * {
-  color: inherit !important;
+/* Fix for fractions and superscripts */
+.katex-message-content .katex .frac-line {
+  border-bottom-color: currentColor !important;
+}
+
+.katex-message-content .katex .sqrt > .sqrt-line {
+  border-top-color: currentColor !important;
 }
 
 .chat-message .katex,

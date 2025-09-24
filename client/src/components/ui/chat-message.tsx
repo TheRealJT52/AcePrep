@@ -31,9 +31,8 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
     );
 
     // Render LaTeX expressions
-    // Handle display math ($$...$$) first to avoid conflicts - use non-greedy matching and handle multiline
+    // Handle display math ($$...$$) first to avoid conflicts
     formattedText = formattedText.replace(/\$\$([\s\S]*?)\$\$/g, (match, latex) => {
-      // Skip empty or whitespace-only latex
       if (!latex.trim()) return match;
 
       try {
@@ -42,19 +41,19 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           throwOnError: false,
           output: 'html',
           strict: false,
-          trust: true
+          trust: true,
+          fleqn: false
         });
-        return `<div class="katex-display-container" style="margin: 1em 0; text-align: center; overflow-x: auto;">${rendered}</div>`;
+        return `<div class="katex-display-wrapper">${rendered}</div>`;
       } catch (e) {
-        console.warn('KaTeX display math render error:', e);
-        return match; // Return original if rendering fails
+        console.warn('KaTeX display math error:', e, 'LaTeX:', latex);
+        return match;
       }
     });
 
-    // Handle inline math ($...$) - improved regex to avoid matching across line breaks and empty content
-    formattedText = formattedText.replace(/\$([^$\n\r]+?)\$/g, (match, latex) => {
-      // Skip if latex is empty, just whitespace, or contains problematic characters
-      if (!latex.trim() || latex.includes('$$')) return match;
+    // Handle inline math ($...$) - be more specific about what constitutes valid inline math
+    formattedText = formattedText.replace(/\$([^$\n\r]{1,100}?)\$/g, (match, latex) => {
+      if (!latex.trim() || latex.includes('$$') || latex.length < 1) return match;
 
       try {
         const rendered = katex.renderToString(latex.trim(), {
@@ -64,10 +63,10 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           strict: false,
           trust: true
         });
-        return `<span class="katex-inline-container">${rendered}</span>`;
+        return `<span class="katex-inline-wrapper">${rendered}</span>`;
       } catch (e) {
-        console.warn('KaTeX inline math render error:', e);
-        return match; // Return original if rendering fails
+        console.warn('KaTeX inline math error:', e, 'LaTeX:', latex);
+        return match;
       }
     });
 
@@ -110,58 +109,6 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           <span className="text-sm">👤</span>
         </div>
       )}
-
-      {/* Regular CSS classes are used for KaTeX styling */}
-      <style>{`
-        .katex-message-content .katex {
-          font-size: 1.1em !important;
-          color: inherit !important;
-        }
-
-        .katex-message-content .katex-display {
-          margin: 0.5em 0 !important;
-          text-align: center !important;
-        }
-
-        .katex-message-content .katex-display-container {
-          overflow-x: auto !important;
-          max-width: 100% !important;
-          scrollbar-width: thin;
-        }
-
-        .katex-message-content .katex-display-container::-webkit-scrollbar {
-          height: 4px;
-        }
-
-        .katex-message-content .katex-display-container::-webkit-scrollbar-track {
-          background: rgba(0,0,0,0.1);
-          border-radius: 2px;
-        }
-
-        .katex-message-content .katex-display-container::-webkit-scrollbar-thumb {
-          background: rgba(0,0,0,0.3);
-          border-radius: 2px;
-        }
-
-        .katex-message-content .katex-inline-container .katex {
-          font-size: 1em !important;
-        }
-
-        .katex-message-content .katex .base {
-          display: inline-block !important;
-        }
-
-        .katex-message-content .katex-html {
-          overflow: visible !important;
-        }
-
-        .katex-message-content .katex .mord,
-        .katex-message-content .katex .mop,
-        .katex-message-content .katex .mbin,
-        .katex-message-content .katex .mrel {
-          color: inherit !important;
-        }
-      `}</style>
     </div>
   );
 }
