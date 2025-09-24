@@ -30,7 +30,27 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
       '<strong>$2</strong>'
     );
 
-    // Handle display math ($$...$$) first
+    // Handle display math \[...\] first (LaTeX style)
+    formattedText = formattedText.replace(/\\\[([\s\S]*?)\\\]/g, (match, latex) => {
+      if (!latex.trim()) return match;
+      
+      try {
+        const rendered = katex.renderToString(latex.trim(), {
+          displayMode: true,
+          throwOnError: false,
+          output: 'html',
+          strict: false,
+          trust: true,
+          fleqn: false
+        });
+        return `<div class="katex-display-wrapper">${rendered}</div>`;
+      } catch (error) {
+        console.warn('KaTeX display math error:', error);
+        return `<div class="math-fallback">\\[${latex}\\]</div>`;
+      }
+    });
+
+    // Handle display math ($$...$$) second
     formattedText = formattedText.replace(/\$\$([\s\S]*?)\$\$/g, (match, latex) => {
       if (!latex.trim()) return match;
       
@@ -50,7 +70,26 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
       }
     });
 
-    // Handle inline math ($...$)
+    // Handle inline math \(...\) first (LaTeX style)
+    formattedText = formattedText.replace(/\\\(((?:[^\\]|\\(?!\)))*?)\\\)/g, (match, latex) => {
+      if (!latex.trim()) return match;
+
+      try {
+        const rendered = katex.renderToString(latex.trim(), {
+          displayMode: false,
+          throwOnError: false,
+          output: 'html',
+          strict: false,
+          trust: true
+        });
+        return `<span class="katex-inline-wrapper">${rendered}</span>`;
+      } catch (error) {
+        console.warn('KaTeX inline math error:', error);
+        return `<span class="math-fallback">\\(${latex}\\)</span>`;
+      }
+    });
+
+    // Handle inline math ($...$) second
     formattedText = formattedText.replace(/\$([^$\n\r]{1,100}?)\$/g, (match, latex) => {
       if (!latex.trim() || latex.includes('$$') || latex.length < 1) return match;
 
