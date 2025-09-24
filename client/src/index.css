@@ -84,6 +84,16 @@
   font-size: clamp(0.9em, 2.5vw, 1.2em) !important;
 }
 
+/* Fallback styles for failed math rendering */
+.math-fallback {
+  font-family: 'Courier New', monospace;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: inherit;
+  font-size: 0.95em;
+}
+
 /* Ensure chat messages don't exceed viewport on mobile */
 @media (max-width: 768px) {
   .chat-message {

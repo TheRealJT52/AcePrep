@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
@@ -10,13 +11,12 @@ interface ChatMessageProps {
 export function ChatMessage({ message, role }: ChatMessageProps) {
   if (role === "system") return null;
 
-  // Convert newlines to <br> and handle Markdown-style lists
-  const formatMessage = (text: string) => {
-    // Ensure text is a string
+  const formatMessage = (text: string): string => {
     const textStr = typeof text === 'string' ? text : String(text || '');
+    let formattedText = textStr;
 
     // Replace markdown list items with HTML list items
-    let formattedText = textStr.replace(/\n- /g, "\n• ");
+    formattedText = formattedText.replace(/\n- /g, "\n• ");
 
     // Convert URLs to links
     formattedText = formattedText.replace(
@@ -30,11 +30,10 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
       '<strong>$2</strong>'
     );
 
-    // Render LaTeX expressions
-    // Handle display math ($$...$$) first to avoid conflicts
+    // Handle display math ($$...$$) first
     formattedText = formattedText.replace(/\$\$([\s\S]*?)\$\$/g, (match, latex) => {
       if (!latex.trim()) return match;
-
+      
       try {
         const rendered = katex.renderToString(latex.trim(), {
           displayMode: true,
@@ -45,13 +44,13 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           fleqn: false
         });
         return `<div class="katex-display-wrapper">${rendered}</div>`;
-      } catch (e) {
-        console.warn('KaTeX display math error:', e, 'LaTeX:', latex);
-        return match;
+      } catch (error) {
+        console.warn('KaTeX display math error:', error);
+        return `<div class="math-fallback">$$${latex}$$</div>`;
       }
     });
 
-    // Handle inline math ($...$) - be more specific about what constitutes valid inline math
+    // Handle inline math ($...$)
     formattedText = formattedText.replace(/\$([^$\n\r]{1,100}?)\$/g, (match, latex) => {
       if (!latex.trim() || latex.includes('$$') || latex.length < 1) return match;
 
@@ -64,9 +63,9 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
           trust: true
         });
         return `<span class="katex-inline-wrapper">${rendered}</span>`;
-      } catch (e) {
-        console.warn('KaTeX inline math error:', e, 'LaTeX:', latex);
-        return match;
+      } catch (error) {
+        console.warn('KaTeX inline math error:', error);
+        return `<span class="math-fallback">$${latex}$</span>`;
       }
     });
 
@@ -84,13 +83,7 @@ export function ChatMessage({ message, role }: ChatMessageProps) {
         </div>
       )}
 
-      <Card
-        className={`chat-message ${
-          role === "assistant"
-            ? "bg-primary-light"
-            : "bg-white"
-        } shadow-sm max-w-full overflow-hidden`}
-      >
+      <Card className={`chat-message ${role === "assistant" ? "bg-primary-light" : "bg-white"} shadow-sm max-w-full overflow-hidden`}>
         <CardContent className="p-3">
           <div
             className={`${role === "user" ? "text-black" : ""} overflow-x-auto katex-message-content`}
